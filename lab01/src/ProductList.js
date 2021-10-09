@@ -4,9 +4,11 @@ import './styles/ProductList.scss'
 
 const url = "https://fakestoreapi.com/"
 
-const ProductList = () => {
+const ProductList = (props) => {
 
-    const [productList, setProductList] = useState([]);
+    // const [productList, setProductList] = useState([]);
+    const productList = props.productList;
+    const setProductList = props.setProductList;
 
     useEffect(()=>{
 
