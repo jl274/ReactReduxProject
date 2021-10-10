@@ -1,0 +1,54 @@
+.productForm {
+
+    display: flex;
+    justify-content: center;
+
+    margin: 10px;
+
+    form {
+
+        background-color: #85DCBA;
+        border: double 3px black;
+        box-shadow: 0 0 5px 0px gray;
+        width: fit-content;
+        padding: 30px;
+
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+
+        h2 {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+            align-items: center;
+        }
+
+        input {
+            margin: 10px;
+
+            &.invalid {
+                box-shadow: 0 0 3px 2px rgb(243, 90, 90);
+            }
+        }
+
+        .error {
+            color: gray;
+        }
+
+    }
+
+    
+}
+
+.marginAdd {
+    margin: 10px;
+    padding: 10px;
+}

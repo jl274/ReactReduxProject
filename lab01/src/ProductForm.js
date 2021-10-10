@@ -1,6 +1,8 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import axios from 'axios';
+import * as Yup from 'yup';
+import './styles/ProductForm.scss'
 
 const url = "https://fakestoreapi.com/";
 
@@ -25,22 +27,49 @@ const ProductForm = (props) => {
         
     };
 
+    const addingSchema = Yup.object().shape({
+        title: Yup.string().required('Title is required'),
+        price: Yup.number().moreThan(0, 'Must be greater than 0$').required('Price is required'),
+        image: Yup.string('Image must have URL format').url('Image must have URL format')
+    })
+
     return (
-        <div>
+        <div className="productForm">
             <Formik
                 initialValues={initialValues}
-                onSubmit={(val)=>{
+                onSubmit={(val, {resetForm})=>{
                     update(val);
+                    resetForm();
                 }}
+                validationSchema={addingSchema}
             >
-                <Form>
-                    <Field name="title" type="text" placeholder="Title" ></Field>
-                    <Field name="price" type="number" step="0.01" placeholder="Price"></Field>
-                    <Field name="description" type="text" placeholder="Description" ></Field>
-                    <Field name="category" type="text" placeholder="Category" ></Field>
-                    <Field name="image" type="text" placeholder="Image url"></Field>
-                    <button type="submit">Submit</button>
-                </Form>
+                {({ errors, touched }) => (
+                    <Form>
+                        <h2>Add new product</h2>
+                        <div>
+                            <Field 
+                                name="title" type="text" placeholder="Title" 
+                                className = {`${touched.title && errors.title ? 'invalid' : ''}`}
+                            ></Field>
+                            <ErrorMessage name="title" component="div" className="error"/>
+                        </div>
+                        <div>
+                            <label>$</label>
+                            <Field name="price" type="number" step="0.01" placeholder="Price"
+                            className = {`${touched.price && errors.price ? 'invalid' : ''}`}></Field>
+                            <ErrorMessage name="price" component="div" className="error"/>
+                        </div>
+                        <Field name="description" type="text" placeholder="Description" ></Field>
+                        <Field name="category" type="text" placeholder="Category" ></Field>
+                        <div>
+                            <Field name="image" type="text" placeholder="Image url"
+                            className = {`${touched.image && errors.image ? 'invalid' : ''}`}></Field>
+                            <ErrorMessage name="image" component="div" className="error"/>
+                        </div>
+                        
+                        <button type="submit">Submit</button>
+                    </Form>
+                )}
             </Formik>
         </div>
     )
