@@ -8,10 +8,22 @@ function App() {
 
   const [productList, setProductList] = useState([]);
 
+  const updateFromForm = (newProduct) => {
+
+    // const newProductModified = {...newProduct};
+    // newProductModified['id'] = newProductModified.id + 1;
+    // console.log(newProductModified.id);
+
+    setProductList([
+      ...productList,
+      newProduct
+    ]);
+  };
+
   return (
     <div className="App">
       <ProductList productList={productList} setProductList={setProductList}/>
-      <ProductForm setProductList={setProductList}/>
+      <ProductForm updateProductList={updateFromForm}/>
     </div>
   );
 }
