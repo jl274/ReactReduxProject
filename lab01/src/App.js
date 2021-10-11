@@ -23,10 +23,9 @@ function App() {
   };
 
   const deleteFromForm = (id) => {
-    console.log(productList[0].id);
-    console.log(id);
-    const newProductList = productList.filter(x => x.id !== id);
-  }
+    const newList =productList.filter(x => x.id !== id);
+    setProductList(newList);
+  };
 
   return (
     <div className="App">

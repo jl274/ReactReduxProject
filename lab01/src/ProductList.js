@@ -4,6 +4,14 @@ import './styles/ProductList.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+
 const element = <FontAwesomeIcon icon={faTrashAlt} />
 
 const url = "https://fakestoreapi.com/"
@@ -34,18 +42,27 @@ const ProductList = (props) => {
 
     // deleting product
     const deleteProduct = async (id) => {
-        console.log('starting work');
         try {
             const deletionResult = await axios.delete(url + "products/" + id);
-            console.log('yeah')
             if (deletionResult.status === 200){
-                console.log(deletionResult);
                 props.delete(id);
             }
         } catch (error) {
             console.error(error);
         }
     }
+
+    // opening confirmation
+    const [activeId, setActiveId] = useState(null);
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
 
     return (
@@ -59,8 +76,33 @@ const ProductList = (props) => {
                             <p>{elem.price}$</p>
                             <div 
                                 className="delete"
-                                onClick={() => {deleteProduct(elem.id);}}
+                                onClick={async () => {
+                                    setActiveId(elem.id);
+                                    handleClickOpen();
+                                    // deleteProduct(elem.id);
+                                }}
                             >{element}</div>
+                            <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">
+                                {"Are you sure you want to delete this product?"}
+                                </DialogTitle>
+                                <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    This action is permanent!
+                                </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                <Button onClick={handleClose}>Cancel</Button>
+                                <Button onClick={()=>{deleteProduct(activeId);handleClose();}} autoFocus>
+                                    Delete
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
                         </div>
                     </li>)}
             </ul>
