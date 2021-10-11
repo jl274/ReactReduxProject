@@ -6,8 +6,10 @@ import { useState } from 'react';
 
 function App() {
 
+  // product list
   const [productList, setProductList] = useState([]);
 
+  // updating list without using network
   const updateFromForm = (newProduct) => {
 
     // const newProductModified = {...newProduct};
@@ -20,9 +22,15 @@ function App() {
     ]);
   };
 
+  const deleteFromForm = (id) => {
+    console.log(productList[0].id);
+    console.log(id);
+    const newProductList = productList.filter(x => x.id !== id);
+  }
+
   return (
     <div className="App">
-      <ProductList productList={productList} setProductList={setProductList}/>
+      <ProductList productList={productList} setProductList={setProductList}  delete={deleteFromForm}/>
       <ProductForm updateProductList={updateFromForm}/>
     </div>
   );

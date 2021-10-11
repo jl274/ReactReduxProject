@@ -24,7 +24,10 @@
                 box-shadow:  0 0 3px 3px red, 0 0 6px 6px gray;
             }
 
-            div{
+            div.holder{
+
+                position: relative;
+
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -41,6 +44,16 @@
 
                 img {
                     max-height: 5vw;
+                }
+
+                div.delete {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+
+                    &:hover {
+                        color: gray;
+                    }
                 }
             }
             
