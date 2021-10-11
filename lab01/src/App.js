@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import ProductList from './ProductList';
 import ProductForm from './ProductForm';

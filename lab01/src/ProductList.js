@@ -1,11 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import DeleteButton from "./DeleteButton";
 import './styles/ProductList.scss';
-
-
-
-
 
 const url = "https://fakestoreapi.com/"
 

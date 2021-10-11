@@ -3,7 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
