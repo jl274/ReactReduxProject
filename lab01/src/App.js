@@ -26,6 +26,7 @@ function App() {
   const deleteFromForm = (id) => {
     const newList =productList.filter(x => x.id !== id);
     setProductList(newList);
+    <Redirect to="/products"/>
   };
 
   return (

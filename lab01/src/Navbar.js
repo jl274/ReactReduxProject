@@ -1,4 +1,4 @@
-import { BrowserRouter, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './styles/Navbar.scss'
 
 const Navbar = () => {
@@ -6,8 +6,8 @@ const Navbar = () => {
     return(
         <div className="nav">
             <ul>
-                <Link to="/products/new" replace><li>ADD NEW</li></Link>
-                <Link to="/products"><li>HOME</li></Link>
+                <NavLink exact to="/products/new" activeClassName="selected" replace><li>ADD NEW</li></NavLink>
+                <NavLink exact to="/products" activeClassName="selected"><li>HOME</li></NavLink>
             </ul>
         </div>
     )

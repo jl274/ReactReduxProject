@@ -26,8 +26,10 @@ const ProductList = (props) => {
             }
         };
 
-        fetchData();
-    }, []);
+        if (productList.length === 0){
+            fetchData();
+        }
+    }, [productList.length, setProductList]);
 
     
 

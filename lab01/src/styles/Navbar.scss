@@ -1,6 +1,10 @@
 .nav {
 
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    padding-bottom: 10px;
+
     margin: 30px 0;
+    border-bottom: 1px black solid;
 
     ul {
         display: flex;
@@ -32,8 +36,15 @@
                 &:active {
                     box-shadow:  0 0 3px 3px red, 0 0 6px 6px gray;
                 }
+
+                
             }
 
         }
     }
+}
+
+.selected {
+    font-weight: bold;
+    text-shadow: gray 1px 0 10px;
 }
