@@ -1,0 +1,39 @@
+.nav {
+
+    margin: 30px 0;
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+
+        a {
+            text-decoration: none;
+            color: black;
+
+            
+        
+
+            li {
+                list-style: none;
+
+                padding: 0 50px;
+
+                border-left: 5px black double;
+                border-right: 5px black double;
+                border-radius: 30px;
+
+                
+
+                &:hover {
+                    box-shadow: 0 0 3px 3px gray;
+                    border: none;
+                }
+
+                &:active {
+                    box-shadow:  0 0 3px 3px red, 0 0 6px 6px gray;
+                }
+            }
+
+        }
+    }
+}
