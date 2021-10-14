@@ -37,6 +37,10 @@ function App() {
         <Navbar />
         <Switch>
 
+          <Route path="/products/:id/edit" exact>
+            <ProductForm updateProductList={updateFromForm} appUserList={productList} />
+          </Route>
+
           <Route path="/products/new">
             <ProductForm updateProductList={updateFromForm}/>
           </Route>

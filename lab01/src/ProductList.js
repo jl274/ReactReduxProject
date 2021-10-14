@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect} from "react";
 import DeleteButton from "./DeleteButton";
+import EditButton from "./EditButton";
 import './styles/ProductList.scss';
 
 const url = "https://fakestoreapi.com/"
@@ -44,6 +45,7 @@ const ProductList = (props) => {
                             <p>{elem.title}</p>
                             <p>{elem.price}$</p>
                             <DeleteButton delete={props.delete} id={elem.id}/>
+                            <EditButton id={elem.id}/>
                         </div>
                     </li>)}
             </ul>

@@ -2,11 +2,18 @@ import React from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
-import './styles/ProductForm.scss'
+import './styles/ProductForm.scss';
+import { withRouter } from "react-router";
 
 const url = "https://fakestoreapi.com/";
 
 const ProductForm = (props) => {
+
+    // editing
+    const idFromParam = props.match.params.id ? props.match.params.id : 0;
+    if (idFromParam) {
+        console.log(props)
+    }
 
     const initialValues = {
         title: "",
@@ -15,6 +22,15 @@ const ProductForm = (props) => {
         category: "",
         image: ""
     }
+    // const initialValues = idFromParam ? {
+    //     ...props.appUserList.find(user => user.id === idFromParam)
+    // } : {
+    //     title: "",
+    //     price: 0.00,
+    //     description: "",
+    //     category: "",
+    //     image: ""
+    // }
 
     const update = async (newProduct) => {
         try {
@@ -75,4 +91,4 @@ const ProductForm = (props) => {
     )
 };
 
-export default ProductForm;
+export default withRouter(ProductForm);
