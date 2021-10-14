@@ -4,13 +4,16 @@ import ProductForm from './ProductForm';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './Navbar';
+import { createBrowserHistory } from "history";
+
+const customHistory = createBrowserHistory();
 
 function App() {
 
   // product list
   const [productList, setProductList] = useState([]);
 
-  // updating list without using network
+  // updating list without using network POST
   const updateFromForm = (newProduct) => {
 
     // const newProductModified = {...newProduct};
@@ -23,6 +26,20 @@ function App() {
     ]);
   };
 
+  // after PUT
+  const reUpdateFromForm = (editedProduct) => {
+    const newProductList = productList.map(x => {
+      console.log(x)
+      if (parseInt(x.id) === parseInt(editedProduct.id)){
+        return editedProduct
+      } else {
+        return x
+      }
+    })
+    console.log(newProductList)
+    setProductList(newProductList);
+  }
+
   const deleteFromForm = (id) => {
     const newList =productList.filter(x => x.id !== id);
     setProductList(newList);
@@ -30,7 +47,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router history={customHistory}>
       <div className="App">
         {/* <ProductList productList={productList} setProductList={setProductList}  delete={deleteFromForm}/>
         <ProductForm updateProductList={updateFromForm}/> */}
@@ -38,7 +55,7 @@ function App() {
         <Switch>
 
           <Route path="/products/:id/edit" exact>
-            <ProductForm updateProductList={updateFromForm} appUserList={productList} />
+            <ProductForm updateProductList={reUpdateFromForm} appUserList={productList} />
           </Route>
 
           <Route path="/products/new">

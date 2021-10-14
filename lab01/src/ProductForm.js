@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
 import './styles/ProductForm.scss';
-import { withRouter } from "react-router";
+import { Redirect, withRouter } from "react-router";
 
 const url = "https://fakestoreapi.com/";
 
@@ -11,32 +11,33 @@ const ProductForm = (props) => {
 
     // editing
     const idFromParam = props.match.params.id ? props.match.params.id : 0;
-    if (idFromParam) {
-        console.log(props)
-    }
 
-    const initialValues = {
+    // initial values depending on whether got id or not
+    const initialValues = idFromParam ? {
+        ...props.appUserList.filter(x => x['id'] === parseInt(idFromParam))[0]
+    } : {
         title: "",
         price: 0.00,
         description: "",
         category: "",
         image: ""
     }
-    // const initialValues = idFromParam ? {
-    //     ...props.appUserList.find(user => user.id === idFromParam)
-    // } : {
-    //     title: "",
-    //     price: 0.00,
-    //     description: "",
-    //     category: "",
-    //     image: ""
-    // }
+
+    // redirect
+    const [redirect, setRedirect] = useState(false);
 
     const update = async (newProduct) => {
         try {
-            const result = await axios.post(url + "products", newProduct);
-            console.log(result.data)
-            result.status === 200 ? props.updateProductList(result.data) : props.updateProductList({});
+            if (idFromParam){
+                const result = await axios.put(url + "products/" + idFromParam, newProduct);
+                result.status === 200 ? props.updateProductList(result.data) : props.updateProductList({}) // ?
+                setRedirect(true)
+            } else {
+                const result = await axios.post(url + "products", newProduct);
+                console.log(result.data)
+                result.status === 200 ? props.updateProductList(result.data) : props.updateProductList({});
+            }
+            
         } catch (error) {
             console.error(error)
         }
@@ -61,7 +62,7 @@ const ProductForm = (props) => {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <h2>Add new product</h2>
+                        <h2>{idFromParam ? `Edit product` : `Add new product`}</h2>
                         <div>
                             <Field 
                                 name="title" type="text" placeholder="Title" 
@@ -87,6 +88,7 @@ const ProductForm = (props) => {
                     </Form>
                 )}
             </Formik>
+            {redirect === true ? <Redirect to="/products" /> : null}
         </div>
     )
 };
