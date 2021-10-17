@@ -8,8 +8,6 @@ import { Redirect } from "react-router";
 
 const element = <FontAwesomeIcon icon={faPen} />
 
-const url = "https://fakestoreapi.com/"
-
 const EditButton = (props) => {
 
     const id = props.id;

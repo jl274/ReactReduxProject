@@ -30,14 +30,14 @@ function App() {
   // after PUT
   const reUpdateFromForm = (editedProduct) => {
     const newProductList = productList.map(x => {
-      console.log(x)
       if (parseInt(x.id) === parseInt(editedProduct.id)){
+        editedProduct.id = parseInt(editedProduct.id);
         return editedProduct
       } else {
         return x
       }
     })
-    console.log(newProductList)
+    // console.log(newProductList)
     setProductList(newProductList);
   }
 

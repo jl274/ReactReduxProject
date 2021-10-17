@@ -13,7 +13,6 @@
     
             li {
 
-                cursor: pointer; 
 
                 border: 5px black double;
                 border-radius: 20px;
@@ -32,6 +31,7 @@
                 div.holder{
 
                     position: relative;
+                    cursor: pointer;
 
                     display: flex;
                     flex-direction: column;
@@ -53,24 +53,32 @@
                         max-height: 5vw;
                     }
 
-                    div.delete {
-                        position: absolute;
-                        right: 0;
-                        top: 0;
+                    
+                }
 
-                        &:hover {
-                            color: gray;
-                        }
+                position: relative;
+
+                div.delete {
+                    cursor: pointer;
+                    position: absolute;
+                    right: 20px;
+                    top: 20px;
+                    z-index: 1;
+
+                    &:hover {
+                        color: gray;
                     }
+                }
 
-                    div.edit {
-                        position: absolute;
-                        left: 0;
-                        top: 0;
+                div.edit {
+                    cursor: pointer;
+                    position: absolute;
+                    left: 20px;
+                    top: 20px;
+                    z-index: 1;
 
-                        &:hover {
-                            color: gray;
-                        }
+                    &:hover {
+                        color: gray;
                     }
                 }
                 

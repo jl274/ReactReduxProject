@@ -1,45 +1,63 @@
-.detailbox {
+div {
 
-    margin: 30px 50px;
-    padding-top: 30px;
+    .detailbox {
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+        margin: 30px 50px;
+        padding-top: 30px;
 
-    border: 5px black double;
-    border-radius: 20px;
-    padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
 
-    min-height: 60vh;
+        border: 5px black double;
+        border-radius: 20px;
+        padding: 10px;
 
-    .left {
-        grid-column: span 1;
-        img {
-            max-height: 15vw;
-        }
+        min-height: 60vh;
 
-        display: flex;
-        align-content: center;
-        align-items: center;
-        justify-content: center;
-    }
-    .right {
-        grid-column: span 2;
+        .left {
+            grid-column: span 1;
+            img {
+                max-height: 15vw;
+            }
 
-        display: flex;
-        
-
-        ul {
             display: flex;
-            flex-direction: column;
+            align-content: center;
+            align-items: center;
             justify-content: center;
-            align-items: flex-start;
-
-            text-decoration: none;
         }
+        .right {
+            grid-column: span 2;
+
+            display: flex;
+
+            padding: 10px;
+            
+
+            ul {
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+
+                text-decoration: none;
+                list-style: none;
+
+                h4 {
+                    display: inline;
+                }
+
+                li {
+                    text-align: left;
+
+                    margin: 30px;
+                }
+            }
+        }
+    }
+
+    h3 {
+        margin: 50px 30px;
     }
 }
 
-h3 {
-    margin: 10px;
-}
