@@ -2,7 +2,7 @@ import './App.css';
 import ProductList from './ProductList';
 import ProductForm from './ProductForm';
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './Navbar';
 import { createBrowserHistory } from "history";
 import ProductDetail from './ProductDetail';
@@ -44,7 +44,6 @@ function App() {
   const deleteFromForm = (id) => {
     const newList =productList.filter(x => x.id !== id);
     setProductList(newList);
-    <Redirect to="/products"/>
   };
 
   return (
@@ -64,7 +63,7 @@ function App() {
           </Route>
 
           <Route path="/products/:id" exact>
-            <ProductDetail appUserList={productList} />
+            <ProductDetail appUserList={productList} delete={deleteFromForm} />
           </Route>
           
           <Route path="/products" >

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect} from "react";
+import { useEffect, useState} from "react";
 import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
 import './styles/ProductList.scss';
@@ -33,13 +33,14 @@ const ProductList = (props) => {
         }
     }, [productList.length, setProductList]);
 
-    // redirect
+    // redirect to edit
     const history = useHistory();
 
     const routeChange = (id) =>{ 
         let path = `/products/${id}`; 
         history.push(path);
     }
+
 
     return (
         <div className="list">
@@ -56,7 +57,7 @@ const ProductList = (props) => {
                             </div>
                         </div>
                         <DeleteButton delete={props.delete} id={elem.id}/>
-                        <EditButton id={elem.id}/>
+                        <EditButton id={elem.id} inside={false}/>
                     </li>
                     )}
                     

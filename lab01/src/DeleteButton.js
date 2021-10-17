@@ -11,6 +11,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Redirect } from "react-router";
 
 const element = <FontAwesomeIcon icon={faTrashAlt} />
 
@@ -42,6 +43,9 @@ const DeleteButton = (props) => {
         setOpen(false);
     };
 
+    // REDIRECT
+    const [doRedirect, setDoRedirect] = useState(false)
+
     return(
         <div>
             <div 
@@ -67,8 +71,9 @@ const DeleteButton = (props) => {
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={()=>{deleteProduct(activeId);handleClose();}} autoFocus>
+                    <Button onClick={()=>{deleteProduct(activeId);handleClose();setDoRedirect(true);}} autoFocus>
                         Delete
+                        {doRedirect === true ? <Redirect to="/products" /> : null}
                     </Button>
                     </DialogActions>
                 </Dialog>

@@ -1,7 +1,10 @@
 import { withRouter } from "react-router";
+import { Redirect } from 'react-router-dom';
 import './styles/ProductDetail.scss';
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import EditButton from "./EditButton";
+import DeleteButton from "./DeleteButton";
 
 const ProductDetails = (props) => {
 
@@ -29,7 +32,9 @@ const ProductDetails = (props) => {
         }
         getProduct()
     },[givenId, productInfoList, props.appUserList])
-    
+
+    //redirect after delete
+     const [deleteRedirect, setDeleteRedirect] = useState(false);
 
     return (
         <div>
@@ -41,10 +46,17 @@ const ProductDetails = (props) => {
             </div>
             <div className="right">
                 <ul>
-                    <li><h4>Rating: </h4>{productInfo.rating.rate}</li>
+                    <li className="actions">
+                        <p>Edit</p>
+                        <EditButton id={productInfo.id} inside={false}/>
+                        <p>Delete</p>
+                        <DeleteButton delete={props.delete} id={productInfo.id} />
+                    </li>
+                    <li><h4>Rating: </h4>{productInfo.rating ? productInfo.rating.rate : "not rated yet"}</li>
                     <li><h4>Price: </h4>{productInfo.price}$</li>
                     <li><h4>Category: </h4>{productInfo.category}</li>
                     <li><h4>Description: </h4><p>{productInfo.description}</p></li>
+
                 </ul>
             </div>
         </div>
