@@ -31,11 +31,12 @@ const ProductForm = (props) => {
             if (idFromParam){
                 const result = await axios.put(url + "products/" + idFromParam, newProduct);
                 result.status === 200 ? props.updateProductList(result.data) : props.updateProductList({}) // ?
-                setRedirect(true)
+                setRedirect(true);
             } else {
                 const result = await axios.post(url + "products", newProduct);
                 console.log(result.data)
                 result.status === 200 ? props.updateProductList(result.data) : props.updateProductList({});
+                setRedirect(true);
             }
             
         } catch (error) {
@@ -59,9 +60,10 @@ const ProductForm = (props) => {
                     resetForm();
                 }}
                 validationSchema={addingSchema}
+                enableReinitialize="true"
             >
-                {({ errors, touched }) => (
-                    <Form>
+                {({ errors, touched, resetForm}) => (
+                    <Form id="form">
                         <h2>{idFromParam ? `Edit product` : `Add new product`}</h2>
                         <div>
                             <Field 
@@ -83,8 +85,10 @@ const ProductForm = (props) => {
                             className = {`${touched.image && errors.image ? 'invalid' : ''}`}></Field>
                             <ErrorMessage name="image" component="div" className="error"/>
                         </div>
-                        
+                        <div>
                         <button type="submit">Submit</button>
+                        <button type="reset" onClick={()=>{resetForm()}} form="form">Reset</button>
+                        </div>
                     </Form>
                 )}
             </Formik>

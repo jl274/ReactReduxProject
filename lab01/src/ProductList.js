@@ -3,6 +3,7 @@ import { useEffect} from "react";
 import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
 import './styles/ProductList.scss';
+import { useHistory } from "react-router-dom";
 
 const url = "https://fakestoreapi.com/"
 
@@ -32,22 +33,31 @@ const ProductList = (props) => {
         }
     }, [productList.length, setProductList]);
 
-    
+    // redirect
+    const history = useHistory();
 
+    const routeChange = (id) =>{ 
+        let path = `/products/${id}`; 
+        history.push(path);
+    }
 
     return (
         <div className="list">
             <ul>
                 {productList && productList.map(elem => 
-                    <li id={elem.id} key={elem.id}>
-                        <div className="holder">
-                            <img src={elem.image} alt="Product"></img>
-                            <p>{elem.title}</p>
-                            <p>{elem.price}$</p>
-                            <DeleteButton delete={props.delete} id={elem.id}/>
-                            <EditButton id={elem.id}/>
-                        </div>
-                    </li>)}
+                    // <Link to={`/products/${elem.id}`} id={elem.id} key={elem.id}>
+                        <li onClick={()=>{routeChange(elem.id)}} id={elem.id} key={elem.id}>
+                            <div className="holder">
+                                <img src={elem.image} alt="Product"></img>
+                                <p>{elem.title}</p>
+                                <p>{elem.price}$</p>
+                                <DeleteButton delete={props.delete} id={elem.id}/>
+                                <EditButton id={elem.id}/>
+                            </div>
+                        </li>
+                    // </Link>
+                    )}
+                    
             </ul>
         </div>
 

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './Navbar';
 import { createBrowserHistory } from "history";
+import ProductDetail from './ProductDetail';
 
 const customHistory = createBrowserHistory();
 
@@ -60,6 +61,10 @@ function App() {
 
           <Route path="/products/new">
             <ProductForm updateProductList={updateFromForm}/>
+          </Route>
+
+          <Route path="/products/:id" exact>
+            <ProductDetail appUserList={productList} />
           </Route>
           
           <Route path="/products" >
