@@ -16,86 +16,47 @@ DELETE_NOTE - usuwa notatkę o podanym id
 
 Zadanie 3. Podziel istniejący reducer na dwa osobne - jeden dla elementów todo, a drugi do notes. Użyj funkcji `combineReducers(...)`, 
 aby połączyć utworzone reducery i przekazać je do `createStore`.
+
+Zadanie 4. Spróbuj podzielić reducery i akcje na osobne pliki tak, aby każdy reducer znajdował się w osobnym pliku, 
+a akcje dotyczące danej encji były zgrupowane w jednym pliku (np. TodoActions, NotesActions etc.)
 */
+import toDoReducer from './todo/toDoReducer.js';
+import notesReducer from './notes/notesReducer.js';
+import { addTodo, deleteTodo, updateTodo, finishTodo} from './todo/toDoActions.js';
+import { addNote, deleteNote} from './notes/notesActions.js';
+import { createStore, combineReducers } from 'redux';
 
-const Redux = require('Redux');
 
-let store = Redux.createStore(Redux.combineReducers({toDoReducer, notesReducer}));
+// const Redux = require('Redux');
 
-// tak nie działa, czemu?
-// const initial_state = {
-//     toDos: []
-// }
-
-function toDoReducer(state = {toDos: []}, action) {
-    switch(action.type){
-
-        case 'ADD_TODO':
-            return {...state, toDos: [...state.toDos, action.payload]};
-
-        case 'DELETE_TODO':
-            return {...state, toDos: state.toDos.filter(x => x.id !== action.payload.id)};
-
-        case 'UPDATE_TODO':
-            return {...state, toDos: state.toDos.map(x => {
-                if (x.id === action.payload.id) {
-                    x.title = action.payload.title;
-                    return x;
-                } else {
-                    return x;
-                }
-            })};
-
-        case 'FINISH_TODO':
-            return {...state, toDos: state.toDos.map(x => {
-                if (x.id === action.payload.id) {
-                    x.done = true;
-                    return x;
-                } else {
-                    return x;
-                }
-            })}
-
-        default:
-            return state;
-    }
-}
-
-function notesReducer (state = {notes: []}, action) {
-    switch(action.type){
-
-        case 'ADD_NOTE':
-            return {...state, notes: [...state.notes, action.payload]};
-
-        case 'DELETE_NOTE':
-            return {...state, notes: state.notes.filter(x => x.id !== action.payload.id)};
-
-        default:
-            return state;
-    }
-}
+let store = createStore(combineReducers({toDoReducer, notesReducer}));
 
 // subscription
 store.subscribe(()=>{
     const state = store.getState();
     console.log(JSON.stringify(state));
-})
+    console.log("\n");
+});
 
-// actions
-// adding test
-store.dispatch({type: 'ADD_TODO', payload: {id: 0, title: "Wash armpits", done: false}})
-store.dispatch({type: 'ADD_TODO', payload: {id: 1, title: "Buy tomato", done: true}})
-store.dispatch({type: 'ADD_TODO', payload: {id: 2, title: "Eat dinner", done: false}})
-// deleting test (id=1)
-store.dispatch({type: 'DELETE_TODO', payload: {id: 1}})
-// editing test (id=0)
-store.dispatch({type: 'UPDATE_TODO', payload: {id: 0, title: "Wash both armpits"}})
-// finishing dinner test
-store.dispatch({type: 'FINISH_TODO', payload: {id: 2}})
 
-// adding notes
-store.dispatch({type: "ADD_NOTE", payload: {id: 0, content: "2 + 2 = 5"}});
-store.dispatch({type: "ADD_NOTE", payload: {id: 1, content: "Kamil ślimak od tyłu to kamil ślimak"}});
+//--------------- actions testing---------------//
+// //adding test
+store.dispatch(addTodo(0, "Wash armpits"));
+store.dispatch(addTodo(1, "Buy Tomato"));
+store.dispatch(addTodo(2, "Eat dinner"));
 
-// deleting note id=0
-store.dispatch({type: "DELETE_NOTE", payload: {id: 0}});
+// // deleting test (id=1)
+store.dispatch(deleteTodo(1));
+
+// // editing test (id=0)
+store.dispatch(updateTodo(0, "Wash both armpits"));
+
+// // finishing dinner test
+store.dispatch(finishTodo(2));
+
+// // adding notes
+store.dispatch(addNote(0, "2 + 2 = 5"));
+store.dispatch(addNote(1, "Kamil ślimak od tyłu to kamil ślimak"));
+
+// // deleting note id=0
+store.dispatch(deleteNote(0));
