@@ -8,22 +8,26 @@ DELETE_TODO - usuwa element todo
 UPDATE_TODO - aktualizuje tytuł elementu todo o danym id
 FINISH_TODO - zmienia wartość flagi done na true w elemencie o danym id. 
 
-Zadanie 2. Do istniejącego store'a dodaj przechowywanie notatek (notes). Zmodyfikuj istniejący reducer tak, aby obsługiwał poniższe operacje:
+Zadanie 2. Do istniejącego store'a dodaj przechowywanie notatek (notes). 
+Zmodyfikuj istniejący reducer tak, aby obsługiwał poniższe operacje:
 
 ADD_NOTE - dodaje notatkę o polach: id oraz content
 DELETE_NOTE - usuwa notatkę o podanym id
+
+Zadanie 3. Podziel istniejący reducer na dwa osobne - jeden dla elementów todo, a drugi do notes. Użyj funkcji `combineReducers(...)`, 
+aby połączyć utworzone reducery i przekazać je do `createStore`.
 */
 
 const Redux = require('Redux');
 
-let store = Redux.createStore(toDoReducer);
+let store = Redux.createStore(Redux.combineReducers({toDoReducer, notesReducer}));
 
 // tak nie działa, czemu?
 // const initial_state = {
 //     toDos: []
 // }
 
-function toDoReducer(state = {toDos: [], notes: []}, action) {
+function toDoReducer(state = {toDos: []}, action) {
     switch(action.type){
 
         case 'ADD_TODO':
@@ -52,6 +56,14 @@ function toDoReducer(state = {toDos: [], notes: []}, action) {
                 }
             })}
 
+        default:
+            return state;
+    }
+}
+
+function notesReducer (state = {notes: []}, action) {
+    switch(action.type){
+
         case 'ADD_NOTE':
             return {...state, notes: [...state.notes, action.payload]};
 
@@ -64,7 +76,10 @@ function toDoReducer(state = {toDos: [], notes: []}, action) {
 }
 
 // subscription
-store.subscribe(()=>{console.log(store.getState())})
+store.subscribe(()=>{
+    const state = store.getState();
+    console.log(JSON.stringify(state));
+})
 
 // actions
 // adding test
