@@ -7,6 +7,11 @@ ADD_TODO - dodaje do store'a nowy element typu to-do
 DELETE_TODO - usuwa element todo
 UPDATE_TODO - aktualizuje tytuł elementu todo o danym id
 FINISH_TODO - zmienia wartość flagi done na true w elemencie o danym id. 
+
+Zadanie 2. Do istniejącego store'a dodaj przechowywanie notatek (notes). Zmodyfikuj istniejący reducer tak, aby obsługiwał poniższe operacje:
+
+ADD_NOTE - dodaje notatkę o polach: id oraz content
+DELETE_NOTE - usuwa notatkę o podanym id
 */
 
 const Redux = require('Redux');
@@ -18,7 +23,7 @@ let store = Redux.createStore(toDoReducer);
 //     toDos: []
 // }
 
-function toDoReducer(state = {toDos: []}, action) {
+function toDoReducer(state = {toDos: [], notes: []}, action) {
     switch(action.type){
 
         case 'ADD_TODO':
@@ -47,6 +52,12 @@ function toDoReducer(state = {toDos: []}, action) {
                 }
             })}
 
+        case 'ADD_NOTE':
+            return {...state, notes: [...state.notes, action.payload]};
+
+        case 'DELETE_NOTE':
+            return {...state, notes: state.notes.filter(x => x.id !== action.payload.id)};
+
         default:
             return state;
     }
@@ -66,3 +77,10 @@ store.dispatch({type: 'DELETE_TODO', payload: {id: 1}})
 store.dispatch({type: 'UPDATE_TODO', payload: {id: 0, title: "Wash both armpits"}})
 // finishing dinner test
 store.dispatch({type: 'FINISH_TODO', payload: {id: 2}})
+
+// adding notes
+store.dispatch({type: "ADD_NOTE", payload: {id: 0, content: "2 + 2 = 5"}});
+store.dispatch({type: "ADD_NOTE", payload: {id: 1, content: "Kamil ślimak od tyłu to kamil ślimak"}});
+
+// deleting note id=0
+store.dispatch({type: "DELETE_NOTE", payload: {id: 0}});
