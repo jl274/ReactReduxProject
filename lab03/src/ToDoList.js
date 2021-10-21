@@ -1,4 +1,5 @@
 import { connect } from "react-redux"
+import {v4 as uuidv4} from 'uuid';
 
 export const toDoListReducer = (state = [
     {id: 1, name: "abc", date: new Date("2020/10/10"), done: false}
@@ -7,18 +8,18 @@ export const toDoListReducer = (state = [
     switch(action.type){
 
         case 'ADD_TODO':
-            return {...state, ...action.payload}
+            return [...state, action.payload];
 
         default:
-            return state
+            return state;
     }
 }
 
-const addTodo = (id, name, date) => {
+export const addTodo = (name, date) => {
     return {
         type: 'ADD_TODO',
         payload: {
-            id,
+            id: uuidv4(),
             name,
             date: new Date(date),
             done: false
@@ -53,7 +54,7 @@ const mapStateToProps = (state) => {
 } 
 
 const mapDispatchToProps = {
-
+    addTodo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoList)
