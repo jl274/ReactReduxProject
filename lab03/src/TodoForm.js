@@ -1,4 +1,5 @@
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+import { Field, Formik } from 'formik';
 
 export const toDoFormReducer = (state = [], action) => {
     switch(action.type){
@@ -12,7 +13,20 @@ const ToDoForm = () => {
 
     return (
         <div>
-            test
+            <Formik
+                initialValues={{
+                    name: '',
+                    date: '',
+                }}
+                onSubmit={(vals)=>console.log(vals)}
+            >
+                {({errors}) => (
+                    <form>
+                        <Field type="text" name="name"></Field>
+                        <Field type="date" name="date"></Field>
+                    </form>
+                )}
+            </Formik>
         </div>
     )
 }
