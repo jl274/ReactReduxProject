@@ -5,13 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
-import { toDoFormReducer } from './TodoForm'
 import { toDoListReducer } from './ToDoList';
 
 let store = createStore(
   combineReducers({
-    list: toDoListReducer,
-    form: toDoFormReducer
+    list: toDoListReducer
   })
 );
 
