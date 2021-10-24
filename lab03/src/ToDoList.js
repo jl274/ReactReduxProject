@@ -1,4 +1,5 @@
 import { connect } from "react-redux"
+import { Link } from "react-router-dom";
 import {v4 as uuidv4} from 'uuid'
 import {showToggle, hideToggle} from './toggling.js'
 
@@ -90,21 +91,29 @@ const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle, 
 
     return (
         <div style={{margin: "10px 30vw"}}>
+
             <ul>
-                {stateToDoList.map(todo => <li key={todo.id}>
+
+                {stateToDoList.map(todo => 
+                <li key={todo.id}>
                     <input type="checkbox" onClick={()=>toggleToDo(todo.id)}></input>
                     <ul style={{listStyle: "none"}}>
-                        <li>Id: {todo.id}</li>
-                        <li>Name: {todo.name}</li>
+
+                        <li><Link to={`/todos/${todo.id}`}>Name: {todo.name}</Link></li>
                         <li>Date: {todo.date.toLocaleDateString()}</li>
                         <li>Done: {todo.done.toString()}</li>
+
                         <li>
                             <button onClick={()=>onClickEdit(todo)}>{toggler.edit ? `Hide` : `Edit`}</button>
                             <button onClick={()=>deleteToDo(todo.id)}>Delete</button>
                         </li>
+
                     </ul>
+
                 </li>)}
+
             </ul>
+
         </div>
     )
 }

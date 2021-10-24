@@ -3,14 +3,31 @@ import { connect } from 'react-redux';
 import './App.css';
 import TodoForm from './TodoForm';
 import ToDoList from './ToDoList';
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom' 
+import ToDoDetail from './ToDoDetail';
 
 function App({toggler}) {
   return (
-    <div className="App">
-      <TodoForm />
-      {toggler.edit ? <TodoForm edit={true} /> : null}
-      <ToDoList />
-    </div>
+    <BrowserRouter>
+      <Switch>
+        
+        <Route path="/todos/:id" exact>
+          <ToDoDetail test="xd"/>
+        </Route>
+
+        <Route path="/todos" exact>
+          <div className="App">
+            <TodoForm />
+            {toggler.edit ? <TodoForm edit={true} /> : null}
+            <ToDoList />
+          </div>
+        </Route>
+
+        <Route path="/" exact>
+          <Redirect to="/todos" />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
