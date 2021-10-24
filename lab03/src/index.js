@@ -6,10 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import { toDoListReducer } from './ToDoList';
+import { togglingReducer } from './toggling';
 
 let store = createStore(
   combineReducers({
-    list: toDoListReducer
+    list: toDoListReducer,
+    toggling: togglingReducer
   })
 );
 

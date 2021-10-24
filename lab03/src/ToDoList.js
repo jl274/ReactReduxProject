@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
-import {v4 as uuidv4} from 'uuid';
+import {v4 as uuidv4} from 'uuid'
+import {showToggle, hideToggle} from './toggling.js'
 
 export const toDoListReducer = (state = [
     {id: 1, name: "abc", date: new Date("2020/10/10"), done: false}
@@ -18,6 +19,15 @@ export const toDoListReducer = (state = [
                 return x
             })]
 
+        case 'EDIT_TODO':
+            return [...state.map(x => {
+                if (x.id === action.payload.id) {
+                    return {...x, ...action.payload}
+                } else {
+                    return x
+                }
+            })]
+
         default:
             return state;
     }
@@ -30,7 +40,8 @@ export const addTodo = (name, date) => {
             id: uuidv4(),
             name,
             date: new Date(date),
-            done: false
+            done: false,
+            showEdit: false
         }
     }
 }
@@ -42,8 +53,18 @@ export const toggleToDo = (id) => {
     }
 }
 
-const ToDoList = ({ stateToDoList, toggleToDo },props) => {
+export const editToDo = (payload) => {
+    return {
+        type: 'EDIT_TODO',
+        payload
+    }
+}
 
+const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle },props) => {
+
+    const onClickEdit = () => {
+        toggler.edit ? hideToggle("edit") : showToggle("edit")
+    }
 
     return (
         <div style={{margin: "10px 30vw"}}>
@@ -55,6 +76,7 @@ const ToDoList = ({ stateToDoList, toggleToDo },props) => {
                         <li>Name: {todo.name}</li>
                         <li>Date: {todo.date.toLocaleDateString()}</li>
                         <li>Done: {todo.done.toString()}</li>
+                        <li><button onClick={onClickEdit}>{toggler.edit ? `Hide` : `Edit`}</button></li>
                     </ul>
                 </li>)}
             </ul>
@@ -64,13 +86,15 @@ const ToDoList = ({ stateToDoList, toggleToDo },props) => {
 
 const mapStateToProps = (state) => {
     return {
-        stateToDoList: state.list
+        stateToDoList: state.list,
+        toggler: state.toggling
     }
 } 
 
 const mapDispatchToProps = {
     addTodo,
-    toggleToDo
+    showToggle,
+    hideToggle
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoList)
