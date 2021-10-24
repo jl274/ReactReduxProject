@@ -1,14 +1,16 @@
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { addTodo, editToDo } from './ToDoList';
 import { connect } from "react-redux";
+import {hideToggle} from './toggling'
 import * as Yup from 'yup';
 
 
-const ToDoForm = ({addTodo, toggler, edit, editToDo}, props) => {
+const ToDoForm = ({addTodo, toggler, edit, editToDo, editedTodo, hideToggle}, props) => {
 
-    const handleSubmit = (name, date, ...other) => {
+    const handleSubmit = (name, date) => {
         // addTodo(name, date);
-        toggler.edit ? editToDo({name, date, ...other}) : addTodo(name, date)
+        edit ? editToDo({...editedTodo, name, date}) : addTodo(name, date);
+        hideToggle("edit")
     }
 
     const yupSchema = Yup.object().shape({
@@ -19,8 +21,8 @@ const ToDoForm = ({addTodo, toggler, edit, editToDo}, props) => {
     })
 
     const initialFormValues = edit ? {
-        name: 'x',
-        date: ''
+        name: editedTodo.name,
+        date: editedTodo.date.toISOString().substr(0,10)
     }:{
         name: '',
         date: '',
@@ -33,7 +35,7 @@ const ToDoForm = ({addTodo, toggler, edit, editToDo}, props) => {
                 onSubmit={(val, {resetForm})=>{
                     // console.log(props)
                     handleSubmit(val.name, new Date(val.date));
-                    resetForm();
+                    edit || resetForm();
                 }}
                 enableReinitialize="true"
                 validationSchema={yupSchema}
@@ -42,26 +44,28 @@ const ToDoForm = ({addTodo, toggler, edit, editToDo}, props) => {
                     <Form style={{display: "flex", alignItems: "center", justifyContent: "center", margin: "10px"}}>
                         <Field type="text" name="name" placeholder="ToDo name"></Field>
                         <Field type="date" name="date"></Field>
-                        <button type="submit">{edit ? `Edit` : `Add`}</button>
+                        <button type="submit" >{edit ? `Edit` : `Add`}</button>
                         <ErrorMessage name="name" component="div"/>
                         <ErrorMessage name="date" component="div"/>
                     </Form>
                 )}
             </Formik>
-            {console.log(edit)}
+            {edit ? console.log(editedTodo.date.toJSON().slice(0,10).replace(/-/g,'/')) : null}
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        toggler: state.toggling
-      }
+        toggler: state.toggling,
+        editedTodo: state.list.editActive
+    }
 }
 
 const mapDispatchToProps = {
     addTodo,
-    editToDo
+    editToDo,
+    hideToggle
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoForm);

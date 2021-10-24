@@ -2,34 +2,45 @@ import { connect } from "react-redux"
 import {v4 as uuidv4} from 'uuid'
 import {showToggle, hideToggle} from './toggling.js'
 
-export const toDoListReducer = (state = [
-    {id: 1, name: "abc", date: new Date("2020/10/10"), done: false}
-], action) => {
+export const toDoListReducer = (state = {
+    todos: [{id: 1, name: "abc", date: new Date("2020/10/10"), done: false}],
+    editActive: null
+}, action) => {
 
     switch(action.type){
 
         case 'ADD_TODO':
-            return [...state, action.payload];
+            return {...state, todos: [...state.todos, action.payload]};
 
         case 'TOGGLE_TODO':
-            return [...state.map(x => {
-                if (x.id === action.payload.id) {
-                    x.done = !x.done
-                }
-                return x
-            })]
+            return {...state, todos: state.todos.map(x => {
+                    if (x.id === action.payload.id) {
+                        x.done = !x.done
+                    }
+                    return x
+                })
+            }
 
         case 'EDIT_TODO':
-            return [...state.map(x => {
-                if (x.id === action.payload.id) {
-                    return {...x, ...action.payload}
-                } else {
-                    return x
+            return {...state, todos: state.todos.map(x => {
+                if (x.id === action.payload.id){
+                    x = action.payload
                 }
-            })]
+                return x;
+            })}
+
+        case 'SET_ACTIVE':
+            return {...state, editActive: action.payload}
 
         default:
             return state;
+    }
+}
+
+export const setActive = (payload) => {
+    return {
+        type: 'SET_ACTIVE',
+        payload
     }
 }
 
@@ -60,10 +71,11 @@ export const editToDo = (payload) => {
     }
 }
 
-const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle },props) => {
+const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle, setActive },props) => {
 
-    const onClickEdit = () => {
-        toggler.edit ? hideToggle("edit") : showToggle("edit")
+    const onClickEdit = (todo) => {
+        setActive(todo)
+        toggler.edit ? hideToggle("edit") : showToggle("edit");
     }
 
     return (
@@ -76,7 +88,7 @@ const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle }
                         <li>Name: {todo.name}</li>
                         <li>Date: {todo.date.toLocaleDateString()}</li>
                         <li>Done: {todo.done.toString()}</li>
-                        <li><button onClick={onClickEdit}>{toggler.edit ? `Hide` : `Edit`}</button></li>
+                        <li><button onClick={()=>onClickEdit(todo)}>{toggler.edit ? `Hide` : `Edit`}</button></li>
                     </ul>
                 </li>)}
             </ul>
@@ -86,7 +98,7 @@ const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle }
 
 const mapStateToProps = (state) => {
     return {
-        stateToDoList: state.list,
+        stateToDoList: state.list.todos,
         toggler: state.toggling
     }
 } 
@@ -94,7 +106,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     addTodo,
     showToggle,
-    hideToggle
+    hideToggle,
+    toggleToDo,
+    setActive
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoList)
