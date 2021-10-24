@@ -23,7 +23,6 @@ const ToDoForm = ({addTodo}, props) => {
                     date: '',
                 }}
                 onSubmit={(val, {resetForm})=>{
-                    console.log(val);
                     // console.log(props)
                     handleSubmit(val.name, new Date(val.date));
                     resetForm();

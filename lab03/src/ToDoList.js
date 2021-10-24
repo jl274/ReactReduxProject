@@ -10,6 +10,14 @@ export const toDoListReducer = (state = [
         case 'ADD_TODO':
             return [...state, action.payload];
 
+        case 'TOGGLE_TODO':
+            return [...state.map(x => {
+                if (x.id === action.payload.id) {
+                    x.done = !x.done
+                }
+                return x
+            })]
+
         default:
             return state;
     }
@@ -27,19 +35,26 @@ export const addTodo = (name, date) => {
     }
 }
 
-const ToDoList = ({ stateToDoList },props) => {
+export const toggleToDo = (id) => {
+    return {
+        type: 'TOGGLE_TODO',
+        payload: {id}
+    }
+}
+
+const ToDoList = ({ stateToDoList, toggleToDo },props) => {
 
 
     return (
         <div style={{margin: "10px 30vw"}}>
             <ul>
                 {stateToDoList.map(todo => <li key={todo.id}>
+                    <input type="checkbox" onClick={()=>toggleToDo(todo.id)}></input>
                     <ul>
                         <li>Id: {todo.id}</li>
                         <li>Name: {todo.name}</li>
                         <li>Date: {todo.date.toLocaleDateString()}</li>
                         <li>Done: {todo.done.toString()}</li>
-                    {console.log(todo)}
                     </ul>
                 </li>)}
             </ul>
@@ -54,7 +69,8 @@ const mapStateToProps = (state) => {
 } 
 
 const mapDispatchToProps = {
-    addTodo
+    addTodo,
+    toggleToDo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoList)
