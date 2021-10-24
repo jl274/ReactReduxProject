@@ -50,7 +50,7 @@ const ToDoForm = ({addTodo, toggler, edit, editToDo, editedTodo, hideToggle}, pr
                     </Form>
                 )}
             </Formik>
-            {edit ? console.log(editedTodo.date.toJSON().slice(0,10).replace(/-/g,'/')) : null}
+            {/* {edit ? console.log(editedTodo.date.toJSON().slice(0,10).replace(/-/g,'/')) : null} */}
         </div>
     )
 }

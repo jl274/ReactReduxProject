@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid'
 import {showToggle, hideToggle} from './toggling.js'
 
 export const toDoListReducer = (state = {
-    todos: [{id: 1, name: "abc", date: new Date("2020/10/10"), done: false}],
+    todos: [],
     editActive: null
 }, action) => {
 
@@ -28,6 +28,9 @@ export const toDoListReducer = (state = {
                 }
                 return x;
             })}
+
+        case 'DELETE_TODO':
+            return {...state, todos: state.todos.filter(x => x.id !== action.payload)}
 
         case 'SET_ACTIVE':
             return {...state, editActive: action.payload}
@@ -71,7 +74,14 @@ export const editToDo = (payload) => {
     }
 }
 
-const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle, setActive },props) => {
+export const deleteToDo = id => {
+    return {
+        type: 'DELETE_TODO',
+        payload: id
+    }
+}
+
+const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle, setActive, deleteToDo },props) => {
 
     const onClickEdit = (todo) => {
         setActive(todo)
@@ -83,12 +93,15 @@ const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle, 
             <ul>
                 {stateToDoList.map(todo => <li key={todo.id}>
                     <input type="checkbox" onClick={()=>toggleToDo(todo.id)}></input>
-                    <ul>
+                    <ul style={{listStyle: "none"}}>
                         <li>Id: {todo.id}</li>
                         <li>Name: {todo.name}</li>
                         <li>Date: {todo.date.toLocaleDateString()}</li>
                         <li>Done: {todo.done.toString()}</li>
-                        <li><button onClick={()=>onClickEdit(todo)}>{toggler.edit ? `Hide` : `Edit`}</button></li>
+                        <li>
+                            <button onClick={()=>onClickEdit(todo)}>{toggler.edit ? `Hide` : `Edit`}</button>
+                            <button onClick={()=>deleteToDo(todo.id)}>Delete</button>
+                        </li>
                     </ul>
                 </li>)}
             </ul>
@@ -108,7 +121,8 @@ const mapDispatchToProps = {
     showToggle,
     hideToggle,
     toggleToDo,
-    setActive
+    setActive,
+    deleteToDo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoList)
