@@ -6,6 +6,7 @@ import ToDoList from './ToDoList';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom' 
 import ToDoDetail from './ToDoDetail';
 import Navbar from './Navbar';
+import NoteList from './NoteList';
 
 function App({toggler}) {
   return (
@@ -20,6 +21,10 @@ function App({toggler}) {
           <ToDoDetail/>
         </Route>
 
+        <Route path="/notes" exact>
+          <NoteList />
+        </Route>
+
         <Route path="/todos" exact>
           <div className="App">
             <TodoForm />
@@ -27,6 +32,8 @@ function App({toggler}) {
             <ToDoList />
           </div>
         </Route>
+
+        
 
         <Route path="/" exact>
           <Redirect to="/todos" />

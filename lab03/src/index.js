@@ -7,11 +7,13 @@ import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import { toDoListReducer } from './ToDoList';
 import { togglingReducer } from './toggling';
+import { noteListReducer } from './NoteList'
 
 let store = createStore(
   combineReducers({
     list: toDoListReducer,
-    toggling: togglingReducer
+    toggling: togglingReducer,
+    notes: noteListReducer
   })
 );
 
