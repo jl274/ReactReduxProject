@@ -9,25 +9,39 @@ div.notes {
     }
 
     div.space {
-        display: grid;
-        grid-gap: 10px;
-        grid-template-columns: repeat(auto-fill, calc(60vw/4));
-        justify-content: center;
+        // display: grid;
+        // grid-gap: 10px;
+        // grid-template-columns: repeat(auto-fill, calc(60vw/4));
+        // justify-content: center;
+        margin: 0;
+
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        flex: 5 1 calc(60vw/5);
+        flex-wrap: wrap;
 
 
         ul {
 
             background-color: yellow;
             box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-            padding: 30px;
+            padding: 50px;
+            margin: 20px 30px;
+
+            height: max-content;
+            max-width: calc(50vw/2);
 
             li {
                 list-style: none;
+                // max-width: calc(50vw/3);
 
                 &.author {
                     padding-top: 10px;
                     text-align: right;
                     color: gray;
+                    font-size: small;
+                    font-style: italic;
                 }
             }
         }

@@ -8,7 +8,25 @@ div.form {
         flex-direction: column;
         align-items: center;
 
+        .errorMessage {
+            color: gray;
+            margin: 0;
+            padding: 5px;
+        }
+
         input {
+            margin: 10px;
+
+            &.invalid {
+                box-shadow: 0 0 2px 1px red;
+            }
+        }
+
+        textarea.invalid {
+            box-shadow: 0 0 2px 1px red;
+        }
+        
+        button {
             margin: 10px;
         }
     }

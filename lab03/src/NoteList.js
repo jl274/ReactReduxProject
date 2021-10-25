@@ -1,16 +1,36 @@
 import { connect } from "react-redux";
 import './styles/Notelist.scss'
+import {v4 as uuidv4} from 'uuid';
 
+
+//--------------------Reducer
 export const noteListReducer = (state = {
     notes:[{id: 1, text: "Myśl pozytywnie", author: "Antoni"}]
 }, action) => {
 
     switch(action.type){
 
+        case 'ADD_NOTE':
+            return {...state, notes: [...state.notes ,action.payload]}
+
         default:
             return state
     }
 }
+
+//--------------------Actions
+export const addNote = (payload) => {
+    return {
+        type: 'ADD_NOTE',
+        payload: {
+            id: uuidv4(),
+            ...payload
+        }
+    }
+}
+
+
+//--------------------- Element Note List
 
 const NoteList = ({notes}) => {
 

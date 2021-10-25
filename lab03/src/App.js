@@ -14,6 +14,7 @@ function App({toggler}) {
     <BrowserRouter>
 
       <Navbar />
+      <div className="App">
 
       <Switch>
         
@@ -28,11 +29,11 @@ function App({toggler}) {
         </Route>
 
         <Route path="/todos" exact>
-          <div className="App">
+          
             <TodoForm />
             {toggler.edit ? <TodoForm edit={true} /> : null}
             <ToDoList />
-          </div>
+          
         </Route>
 
         
@@ -41,6 +42,7 @@ function App({toggler}) {
           <Redirect to="/todos" />
         </Route>
       </Switch>
+      </div>
     </BrowserRouter>
   );
 }
