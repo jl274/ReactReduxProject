@@ -12,7 +12,8 @@ function App({toggler}) {
       <Switch>
         
         <Route path="/todos/:id" exact>
-          <ToDoDetail test="xd"/>
+          {toggler.edit ? <TodoForm edit={true} /> : null}
+          <ToDoDetail/>
         </Route>
 
         <Route path="/todos" exact>

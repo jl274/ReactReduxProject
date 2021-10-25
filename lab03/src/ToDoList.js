@@ -96,7 +96,7 @@ const ToDoList = ({ stateToDoList, toggleToDo, toggler, showToggle, hideToggle, 
 
                 {stateToDoList.map(todo => 
                 <li key={todo.id}>
-                    <input type="checkbox" onClick={()=>toggleToDo(todo.id)}></input>
+                    <input type="checkbox" checked={todo.done} onChange={()=>toggleToDo(todo.id)}></input>
                     <ul style={{listStyle: "none"}}>
 
                         <li><Link to={`/todos/${todo.id}`}>Name: {todo.name}</Link></li>

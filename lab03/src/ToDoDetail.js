@@ -1,14 +1,35 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom"
+import { toggleToDo, setActive, deleteToDo } from './ToDoList';
+import { showToggle, hideToggle} from './toggling';
 
-const ToDoDetail = ({ thatToDo }) => {
+const ToDoDetail = ({ thatToDo, history, showToggle, toggler,
+    hideToggle,
+    toggleToDo,
+    setActive,
+    deleteToDo }) => {
 
-    // const readId = props.match.params.id;
+    const onClickEdit = (todo) => {
+        setActive(todo)
+        toggler.edit ? hideToggle("edit") : showToggle("edit");
+    }
 
     return (
-        <div>
-            {thatToDo.id}
-            {console.log(thatToDo)}
+        <div style={thatToDo[0].done ? {backgroundColor: "lightgreen"} : {backgroundColor: "orange"}}>
+            <p onClick={()=>history.goBack()} style={{color: "blue", cursor: "pointer"}}>Wróć</p>
+            <h2>{thatToDo[0].name}</h2>
+            <ul>
+                <li>Id: {thatToDo[0].id}</li>
+                <li>Date: {thatToDo[0].date.toLocaleDateString()}</li>
+                <li>
+                    Done: {thatToDo[0].done ? "True" : "False"} 
+                    <input type="checkbox" checked={thatToDo.done} onChange={()=>{toggleToDo(thatToDo[0].id)}}></input>
+                </li>
+                <li>
+                            <button onClick={()=>onClickEdit(thatToDo[0])}>{toggler.edit ? `Hide` : `Edit`}</button>
+                            {/* <button onClick={()=>{history.goBack();deleteToDo(thatToDo[0].id)}}>Delete</button> */}
+                </li>
+            </ul>
         </div>
     )
 }
@@ -16,8 +37,17 @@ const ToDoDetail = ({ thatToDo }) => {
 const mapStateToProps = (state, ownProps) => {
     const { match: {params: {id}} } = ownProps;
     return {
-        thatToDo: state.list.todos.filter(x => x.id === id)[0]
+        thatToDo: state.list.todos.filter(x => x.id === id),
+        toggler: state.toggling
     }
 }
 
-export default withRouter(connect(mapStateToProps,null)(ToDoDetail));
+const mapDispatchToProps = {
+    showToggle,
+    hideToggle,
+    toggleToDo,
+    setActive,
+    deleteToDo
+}
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ToDoDetail));
