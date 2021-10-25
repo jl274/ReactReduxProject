@@ -14,6 +14,7 @@ const ToDoDetail = ({ thatToDo, history, showToggle, toggler,
         toggler.edit ? hideToggle("edit") : showToggle("edit");
     }
 
+    if(thatToDo[0]){
     return (
         <div style={thatToDo[0].done ? {backgroundColor: "lightgreen"} : {backgroundColor: "orange"}}>
             <p onClick={()=>history.goBack()} style={{color: "blue", cursor: "pointer"}}>Wróć</p>
@@ -23,15 +24,18 @@ const ToDoDetail = ({ thatToDo, history, showToggle, toggler,
                 <li>Date: {thatToDo[0].date.toLocaleDateString()}</li>
                 <li>
                     Done: {thatToDo[0].done ? "True" : "False"} 
-                    <input type="checkbox" checked={thatToDo.done} onChange={()=>{toggleToDo(thatToDo[0].id)}}></input>
+                    <input type="checkbox" checked={thatToDo[0].done} onChange={()=>{toggleToDo(thatToDo[0].id)}}></input>
                 </li>
                 <li>
                             <button onClick={()=>onClickEdit(thatToDo[0])}>{toggler.edit ? `Hide` : `Edit`}</button>
-                            {/* <button onClick={()=>{history.goBack();deleteToDo(thatToDo[0].id)}}>Delete</button> */}
+                            <button onClick={()=>{history.goBack();deleteToDo(thatToDo[0].id)}}>Delete</button>
                 </li>
             </ul>
         </div>
-    )
+    )}
+    else {
+        return (<div>Wrong path</div>)
+    }
 }
 
 const mapStateToProps = (state, ownProps) => {
