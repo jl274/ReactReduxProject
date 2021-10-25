@@ -20,7 +20,7 @@ const NoteList = ({notes}) => {
             <h1>Notes</h1>
 
             <div className="space">
-                {notes.map(oneNote => <ul>
+                {notes.map(oneNote => <ul key={oneNote.id}>
                     <li>{oneNote.text}</li>
                     <li className="author">~{oneNote.author}</li>
                 </ul>)}

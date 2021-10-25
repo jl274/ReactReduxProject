@@ -7,6 +7,7 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import ToDoDetail from './ToDoDetail';
 import Navbar from './Navbar';
 import NoteList from './NoteList';
+import NoteForm from './NoteForm';
 
 function App({toggler}) {
   return (
@@ -22,6 +23,7 @@ function App({toggler}) {
         </Route>
 
         <Route path="/notes" exact>
+          <NoteForm />
           <NoteList />
         </Route>
 
