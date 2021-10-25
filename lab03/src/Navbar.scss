@@ -1,0 +1,50 @@
+nav {
+    background-color: darkgray;
+
+    margin: 0;
+
+    position: fixed;
+    left: 0;
+
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+        color: white;
+        padding: 50px 5px;
+
+
+        display: block;
+        width: 100%;
+
+        text-align: center;
+
+        &:nth-child(1) {
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+        }
+
+        &:nth-child(2) {
+            border-bottom: 1px solid white;
+        }
+
+        &:hover {
+            color: gray;
+        }
+
+        &:active {
+            color: white;
+            text-shadow: 1px 1px 2px red, 0 0 1em black;
+        }
+
+        &.active {
+            text-shadow: 1px 1px 2px red, 0 0 1em black;
+        }
+
+    }
+}

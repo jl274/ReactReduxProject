@@ -5,10 +5,14 @@ import TodoForm from './TodoForm';
 import ToDoList from './ToDoList';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom' 
 import ToDoDetail from './ToDoDetail';
+import Navbar from './Navbar';
 
 function App({toggler}) {
   return (
     <BrowserRouter>
+
+      <Navbar />
+
       <Switch>
         
         <Route path="/todos/:id" exact>

@@ -41,7 +41,7 @@ const ToDoForm = ({addTodo, toggler, edit, editToDo, editedTodo, hideToggle}, pr
                 validationSchema={yupSchema}
             >
                 {({errors}) => (
-                    <Form style={{display: "flex", alignItems: "center", justifyContent: "center", margin: "10px"}}>
+                    <Form style={{display: "flex", alignItems: "center", justifyContent: "center", paddingTop: "10px"}}>
                         <Field type="text" name="name" placeholder="ToDo name"></Field>
                         <Field type="date" name="date"></Field>
                         <button type="submit" >{edit ? `Edit` : `Add`}</button>
