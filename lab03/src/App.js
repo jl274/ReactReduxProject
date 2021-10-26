@@ -8,6 +8,7 @@ import ToDoDetail from './ToDoDetail';
 import Navbar from './Navbar';
 import NoteList from './NoteList';
 import NoteForm from './NoteForm';
+import NotesDetails from './NotesDetails';
 
 function App({toggler}) {
   return (
@@ -21,6 +22,10 @@ function App({toggler}) {
         <Route path="/todos/:id" exact>
           {toggler.edit ? <TodoForm edit={true} /> : null}
           <ToDoDetail/>
+        </Route>
+
+        <Route path="/notes/:id/detail">
+          <NotesDetails />
         </Route>
 
         <Route path="/notes/new" >

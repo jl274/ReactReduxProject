@@ -41,10 +41,10 @@ const NoteList = ({notes}) => {
             <h1>Notes<Link to="/notes/new"><button>Add +</button></Link></h1>
 
             <div className="space">
-                {notes.map(oneNote => <ul key={oneNote.id}>
+                {notes.map(oneNote => <Link to={`/notes/${oneNote.id}/detail`} key={oneNote.id}><ul key={oneNote.id}>
                     <li>{oneNote.text}</li>
                     <li className="author">~{oneNote.author}</li>
-                </ul>)}
+                </ul></Link>)}
             </div>
 
         </div>
