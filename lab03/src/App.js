@@ -28,6 +28,10 @@ function App({toggler}) {
           <NotesDetails />
         </Route>
 
+        <Route path="/notes/:id/edit" >
+          <NoteForm editing={true} />
+        </Route>
+
         <Route path="/notes/new" >
           <NoteForm />
         </Route>

@@ -19,6 +19,7 @@ const NotesDetail = ({note}) => {
 
                 <ul>
                     <li><Link to="/notes">Go back</Link></li>
+                    <li><Link to={`/notes/${note.id}/edit`}><button>Edit</button></Link></li>
                     <li><b>Id:</b> {note.id}</li>
                     <li><b>Author:</b> {note.author}</li>
                     <li><b>Creation date:</b> {note.date.toISOString().slice(0,10)},

@@ -1,14 +1,14 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { connect } from "react-redux";
 import './styles/NoteForm.scss';
-import { addNote } from './NoteList';
+import { addNote, editNote } from './NoteList';
 import * as Yup from 'yup';
 import { withRouter } from "react-router-dom";
 
-const NoteForm = ({ addNote, history }) => {
+const NoteForm = ({ addNote, history, editing, editedNote, editNote }) => {
 
     const handleSubmit = (payload) => {
-        addNote(payload);
+        editing ? editNote(editedNote.id, payload.text, payload.author) : addNote(payload);
         history.goBack();
     }
 
@@ -16,16 +16,21 @@ const NoteForm = ({ addNote, history }) => {
         text: Yup.string().min(5, "Your note must be at least 5 characters long").required("Required field"),
         author: Yup.string().required("You must add author")
     })
+
+    const initialValues = editing ? {
+        text: editedNote.text,
+        author: editedNote.author
+    } : {
+        text: "",
+        author: ""
+    }
     
 
     return (
         <div className="form">
             <Formik 
-                initialValues={{
-                    text: "",
-                    author: ""
-                }}
-                onSubmit={(vals, { resetForm })=>{
+                initialValues={initialValues}
+                onSubmit={(vals)=>{
                     handleSubmit(vals);
                 }}
                 validationSchema={validationSchema}
@@ -48,8 +53,21 @@ const NoteForm = ({ addNote, history }) => {
     )
 }
 
-const mapDispatchToProps = {
-    addNote
+const mapStateToProps = (state, ownProps) => {
+    if (ownProps.match.params.id){
+        const { match: {params: {id}} } = ownProps;
+        return {
+            editedNote: state.notes.notes.find(x => x.id.toString() === id.toString())
+        }
+    }
+    else {
+        return{}
+    }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(NoteForm));
+const mapDispatchToProps = {
+    addNote,
+    editNote
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NoteForm));

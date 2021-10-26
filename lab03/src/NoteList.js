@@ -17,6 +17,17 @@ export const noteListReducer = (state = {
         case 'DELETE_NOTE':
             return {...state, notes: state.notes.filter(x => x.id.toString() !== action.payload.id.toString())}
 
+        case 'EDIT_NOTE':
+            return {...state, notes: state.notes.map(x => {
+                if(x.id.toString() === action.payload.id.toString()){
+                    x.text = action.payload.text;
+                    x.author = action.payload.author
+                } 
+                return x
+            })}
+    
+
+
         default:
             return state
     }
@@ -39,6 +50,17 @@ export const deleteNote = id => {
         type: 'DELETE_NOTE',
         payload: {
             id
+        }
+    }
+}
+
+export const editNote = (id, text, author) => {
+    return {
+        type: 'EDIT_NOTE',
+        payload: {
+            id,
+            text,
+            author
         }
     }
 }
