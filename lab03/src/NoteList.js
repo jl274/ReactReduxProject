@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 //--------------------Reducer
 export const noteListReducer = (state = {
-    notes:[{id: 1, text: "Myśl pozytywnie", author: "Antoni", date: new Date()}]
+    notes:[]
 }, action) => {
 
     switch(action.type){
@@ -64,7 +64,7 @@ const NoteList = ({notes, deleteNote}) => {
                         <li className="author">~{oneNote.author}</li>
                     </ul></Link>
                     <div className="delete" onClick={()=>{handleNoteDeletion(oneNote.id)}}>X</div>
-                </div>) : `There is no notes here. Add first.`}
+                </div>) : `There are no notes here. Add first.`}
             </div>
 
         </div>
