@@ -48,29 +48,46 @@ div.notes {
         flex: 5 1 calc(60vw/5);
         flex-wrap: wrap;
 
-        a {text-decoration: none; color: black;}
+        div {
+
+            a {text-decoration: none; color: black;}
 
 
-        ul {
+            ul {
 
-            background-color: yellow;
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-            padding: 50px;
-            margin: 20px 30px;
+                background-color: yellow;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+                padding: 50px;
+                margin: 20px 30px;
 
-            height: max-content;
-            max-width: calc(50vw/2);
+                height: max-content;
+                max-width: calc(50vw/2);
 
-            li {
-                list-style: none;
-                // max-width: calc(50vw/3);
+                li {
+                    list-style: none;
+                    // max-width: calc(50vw/3);
 
-                &.author {
-                    padding-top: 10px;
-                    text-align: right;
-                    color: gray;
-                    font-size: small;
-                    font-style: italic;
+                    &.author {
+                        padding-top: 10px;
+                        text-align: right;
+                        color: gray;
+                        font-size: small;
+                        font-style: italic;
+                    }
+                }
+            }
+
+            position: relative;
+
+            div.delete {
+                position: absolute;
+                top: 0;
+                right: 0;
+                cursor: pointer;
+                z-index: 1;
+
+                &:hover {
+                    text-shadow: 1px 1px gray;
                 }
             }
         }
