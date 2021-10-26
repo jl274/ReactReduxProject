@@ -8,6 +8,12 @@ div.form {
         flex-direction: column;
         align-items: center;
 
+        background-color: yellow;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        padding: 50px;
+        padding-top: 60px;
+        margin: 20px 30px;
+
         .errorMessage {
             color: gray;
             margin: 0;

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import './styles/Notelist.scss'
 import {v4 as uuidv4} from 'uuid';
+import { Link } from "react-router-dom";
 
 
 //--------------------Reducer
@@ -37,7 +38,7 @@ const NoteList = ({notes}) => {
     return (
         <div className="notes">
 
-            <h1>Notes</h1>
+            <h1>Notes<Link to="/notes/new"><button>Add +</button></Link></h1>
 
             <div className="space">
                 {notes.map(oneNote => <ul key={oneNote.id}>

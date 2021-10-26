@@ -23,8 +23,12 @@ function App({toggler}) {
           <ToDoDetail/>
         </Route>
 
-        <Route path="/notes" exact>
+        <Route path="/notes/new" >
           <NoteForm />
+        </Route>
+
+        <Route path="/notes" exact>
+          {/* <NoteForm /> */}
           <NoteList />
         </Route>
 

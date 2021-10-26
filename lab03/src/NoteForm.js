@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import './styles/NoteForm.scss';
 import { addNote } from './NoteList';
 import * as Yup from 'yup';
+import { withRouter } from "react-router-dom";
 
-const NoteForm = ({ addNote }) => {
+const NoteForm = ({ addNote, history }) => {
 
     const handleSubmit = (payload) => {
-        addNote(payload)
+        addNote(payload);
+        history.goBack();
     }
 
     const validationSchema = Yup.object().shape({
@@ -25,7 +27,6 @@ const NoteForm = ({ addNote }) => {
                 }}
                 onSubmit={(vals, { resetForm })=>{
                     handleSubmit(vals);
-                    resetForm();
                 }}
                 validationSchema={validationSchema}
             >
@@ -51,4 +52,4 @@ const mapDispatchToProps = {
     addNote
 }
 
-export default connect(null, mapDispatchToProps)(NoteForm);
+export default withRouter(connect(null, mapDispatchToProps)(NoteForm));
