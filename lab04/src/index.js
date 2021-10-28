@@ -5,10 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
+import movieReducer from './reducers/MoviesReducer.js';
+import directorsReducer from './reducers/DirectorsReducer';
 
 const store = createStore(
   combineReducers({
-    
+    movies: movieReducer,
+    diretors: directorsReducer
   })
 )
 

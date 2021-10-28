@@ -2,7 +2,7 @@ const initState = {
     list: []
 }
 
-const movieReducer = (state = initState, action) => {
+const directorsReducer = (state = initState, action) => {
     switch(action.type){
 
         default:
@@ -10,4 +10,4 @@ const movieReducer = (state = initState, action) => {
     }
 }
 
-export default movieReducer;
+export default directorsReducer;
