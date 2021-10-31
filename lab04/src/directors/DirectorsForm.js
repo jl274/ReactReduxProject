@@ -2,6 +2,7 @@ import { Form, Formik, Field, ErrorMessage } from "formik";
 import { connect } from "react-redux";
 import * as Yup from 'yup';
 import {v4 as uuidv4} from 'uuid';
+import '../styles/DirectorsForm.scss'
 
 const DirectorsForm = (props) => {
 
@@ -23,6 +24,7 @@ const DirectorsForm = (props) => {
         age: Yup
                 .number('Age is a number')
                 .min(10).max(120)
+                .required('Age is required')
     })
 
     console.log(uuidv4())
@@ -32,22 +34,37 @@ const DirectorsForm = (props) => {
         <div className="form">
             <Formik
                 initialValues={initValues}
-                onSubmit={(vals)=>console.log(uuidv4)}
+                onSubmit={(vals)=>console.log(vals)}
                 validationSchema={validationSchema}
             >
-            {({errors, touched}) => 
+            {({errors, touched, isValid}) => 
                 <Form>
 
-                    <Field type="text" name="firstName" placeholder="Name"></Field>
+                    <div className="firstName">
+                        <label>First Name</label>
+                        <Field type="text" name="firstName" 
+                        className={`${errors.firstName && touched.firstName ? `invalid` : ``} 
+                        ${!errors.firstName && touched.firstName? `valid` : ``}`}></Field>
+                    </div>
                     <ErrorMessage name="firstName" component="div" className="errorMessage"/>
 
-                    <Field type="text" name="lastName" placeholder="Surname"></Field>
+                    <div className="lastName">
+                        <label>Last name</label>
+                        <Field type="text" name="lastName" 
+                        className={`${errors.lastName && touched.lastName ? `invalid` : ``} 
+                        ${!errors.lastName && touched.lastName? `valid` : ``}`}></Field>
+                    </div>
                     <ErrorMessage name="lastName" component="div" className="errorMessage"/>
 
-                    <Field type="number" min="10" max="120" step="1" name="age"></Field>
-                    <ErrorMessage name="number" component="div" className="errorMessage"/>
+                    <div className="age">
+                        <label>Age</label>
+                        <Field type="number" min="10" max="120" 
+                        step="1" name="age" className={`${errors.age && touched.age ? `invalid` : ``} 
+                        ${!errors.age && touched.age? `valid` : ``}`}></Field>
+                    </div>
+                    <ErrorMessage name="age" component="div" className="errorMessage"/>
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" disabled={!isValid}>Submit</button>
 
                 </Form>
             }
