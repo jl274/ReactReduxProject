@@ -34,11 +34,37 @@ div.form{
                 }
             }
 
+            select {
+                border: 1px solid black;
+                border-radius: 10px;
+
+                padding: 10px;
+                margin: 5px;
+                // border: none;
+                min-width: 150px;
+
+                *,
+                *::before,
+                *::after {
+                box-sizing: border-box;
+                }
+
+                &.invalid{
+                    // box-shadow: 0 0 5px 2px rgb(255, 81, 81);
+                    border: 1px solid red;
+                }
+
+                &.valid{
+                    border: 1px solid green;
+                }
+            }
+
             label {
                 position:absolute;
                 top:-5px;
                 left:20px;
                 background-color:white;
+                padding: 0 5px;
             }
 
             &.errorMessage {
