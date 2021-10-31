@@ -2,7 +2,7 @@ import { Form, Formik, Field, ErrorMessage } from "formik";
 import { connect } from "react-redux";
 import * as Yup from 'yup';
 import {v4 as uuidv4} from 'uuid';
-import '../styles/DirectorsForm.scss'
+import '../styles/formStyle.scss';
 import { addDirector } from "../actions/directorsActions";
 
 const DirectorsForm = ({addDirector}, props) => {

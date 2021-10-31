@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Dashboard from './movies/Dashboard';
 import DirectorsForm from './directors/DirectorsForm';
 import Navbar from './Navbar';
+import MovieForm from './movies/MovieForm';
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
 
           <Route path="/directors/add">
             <DirectorsForm />
+          </Route>
+
+          <Route path="/movies/add">
+            <MovieForm />
           </Route>
 
           <Route exact path="/">
