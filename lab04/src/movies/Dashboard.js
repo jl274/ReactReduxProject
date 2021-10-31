@@ -1,6 +1,8 @@
 import { connect } from "react-redux"
 
-const Dashboard = (props) => {
+const Dashboard = ({directors}, props) => {
+
+    console.log(directors)
 
     return (
         <div className="dashboard">
@@ -9,4 +11,10 @@ const Dashboard = (props) => {
     )
 }
 
-export default connect(null, null)(Dashboard);
+const mapStateToProps = (state) => {
+    return {
+        directors: state.directors.list
+    }
+}
+
+export default connect(mapStateToProps, null)(Dashboard);

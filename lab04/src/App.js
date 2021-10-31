@@ -3,12 +3,15 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Dashboard from './movies/Dashboard';
 import DirectorsForm from './directors/DirectorsForm';
+import Navbar from './Navbar';
 
 function App() {
   return (
     
     <BrowserRouter>
       <div className="App">
+
+        <Navbar />
 
         <h1>Test App</h1>
 

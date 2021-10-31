@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import * as Yup from 'yup';
 import {v4 as uuidv4} from 'uuid';
 import '../styles/DirectorsForm.scss'
+import { addDirector } from "../actions/directorsActions";
 
-const DirectorsForm = (props) => {
+const DirectorsForm = ({addDirector}, props) => {
 
     const initValues={
         firstName: '',
@@ -27,14 +28,16 @@ const DirectorsForm = (props) => {
                 .required('Age is required')
     })
 
-    console.log(uuidv4())
+    const handleSubmit = (payload) => {
+        addDirector(uuidv4(), payload);
+    }
 
 
     return(
         <div className="form">
             <Formik
                 initialValues={initValues}
-                onSubmit={(vals)=>console.log(vals)}
+                onSubmit={(vals, {resetForm})=>{handleSubmit(vals); resetForm()}}
                 validationSchema={validationSchema}
             >
             {({errors, touched, isValid}) => 
@@ -73,4 +76,8 @@ const DirectorsForm = (props) => {
     )
 }
 
-export default connect(null, null)(DirectorsForm);
+const mapDispatchToProps = {
+    addDirector
+}
+
+export default connect(null, mapDispatchToProps)(DirectorsForm);

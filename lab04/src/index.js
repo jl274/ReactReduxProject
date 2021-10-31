@@ -11,7 +11,7 @@ import directorsReducer from './reducers/DirectorsReducer';
 const store = createStore(
   combineReducers({
     movies: movieReducer,
-    diretors: directorsReducer
+    directors: directorsReducer
   })
 )
 
