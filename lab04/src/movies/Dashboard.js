@@ -1,4 +1,6 @@
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+import '../styles/movieTable.scss';
+
 
 const Dashboard = ({directors, movies}, props) => {
 
@@ -9,7 +11,21 @@ const Dashboard = ({directors, movies}, props) => {
 
     return (
         <div className="dashboard">
-            test2
+            <h3>Newest Movies</h3>
+            <div className="movieList">
+                    <ul>
+                        <li>Title</li>
+                        <li>Year</li>
+                        <li>Director</li>
+                    </ul>
+                {movies.sort((a,b)=>a.creationDate - b.creationDate).reverse().slice(0,3).map(movie => 
+                    <ul key={movie.id}>
+                        <li>{movie.title}</li>
+                        <li>{movie.productionYear}</li>
+                        <li>{movie.director}</li>
+                    </ul>)
+                }
+            </div>
         </div>
     )
 }

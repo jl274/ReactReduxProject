@@ -1,0 +1,56 @@
+div.dashboard {
+
+    margin: 0 15vw;
+
+    div.movieList {
+
+        margin: 0;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+
+        ul {
+
+            margin: 0;
+            padding: 0;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            padding: 0;
+
+            li {
+
+                list-style: none;
+
+                grid-column: span 1;
+
+                border-bottom: 1px solid black;
+
+                padding: 5px;
+
+                &:nth-child(2n+1){
+
+                    background-color: gainsboro;
+                }
+
+            }
+
+            &:first-child {
+                li {
+                    background-color: limegreen;
+                    text-transform: uppercase;
+                    letter-spacing: 0.7em;
+                }
+            }
+
+            &:last-child {
+
+                li {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+
+}

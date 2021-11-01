@@ -18,6 +18,9 @@ import {v4 as uuidv4} from 'uuid';
 
 const MovieForm = ({ addMovie, directors }, props) => {
 
+    // options to form -----
+    const options = directors.map(x => `${x.firstName} ${x.lastName}`);
+
     // form -----
 
     const initValues={
@@ -34,7 +37,11 @@ const MovieForm = ({ addMovie, directors }, props) => {
             .number("Enter year of production in format YYYY")
             .min(1900)
             .max(new Date().getFullYear())
-            .required("Production year is required!")
+            .required("Production year is required!"),
+        director: Yup
+            .string()
+            .oneOf([...options])
+            .required()
     })
 
     // form submit -----
@@ -44,8 +51,6 @@ const MovieForm = ({ addMovie, directors }, props) => {
         addMovie(uuidv4(), payload);
     }
 
-    // options to form -----
-    const options = directors.map(x => `${x.firstName} ${x.lastName}`);
 
     return(
         <div className="form">
@@ -76,10 +81,11 @@ const MovieForm = ({ addMovie, directors }, props) => {
                     <div>
                         <label>Director </label>
 
-                        <select id="directors" name="director" className={`${errors.productionYear && touched.productionYear ? `invalid` : ``} 
-                        ${!errors.productionYear && touched.productionYear? `valid` : ``}`} >
+                        <Field as="select" id="directors" name="director" className={`${errors.director && touched.director ? `invalid` : ``} 
+                        ${!errors.director && touched.director? `valid` : ``}`} >
+                            <option value={null}></option>
                             {options.map(option_value => <option key={option_value} value={option_value}>{option_value}</option>)}
-                        </select>
+                        </Field>
                     </div>
                     <ErrorMessage name="director" component="div" className="errorMessage"/>
 
