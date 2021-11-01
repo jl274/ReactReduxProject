@@ -35,6 +35,7 @@ const DirectorsForm = ({addDirector}, props) => {
 
     return(
         <div className="form">
+            <h3>Add director</h3>
             <Formik
                 initialValues={initValues}
                 onSubmit={(vals, {resetForm})=>{handleSubmit(vals); resetForm()}}

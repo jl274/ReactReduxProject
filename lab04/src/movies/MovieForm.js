@@ -54,6 +54,7 @@ const MovieForm = ({ addMovie, directors }, props) => {
 
     return(
         <div className="form">
+            <h3>Add movie</h3>
             <Formik
                 initialValues={initValues}
                 onSubmit={(vals, {resetForm})=>{handleSubmit(vals); resetForm()}}
