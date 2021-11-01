@@ -1,5 +1,6 @@
-import { connect } from "react-redux"
-import { NavLink } from "react-router-dom"
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
+import './styles/navbar.scss';
 
 const Navbar = () => {
     
