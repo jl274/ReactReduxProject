@@ -12,7 +12,7 @@ const Navbar = () => {
                 <li><NavLink to="/movies">List</NavLink></li>
                 <li><NavLink to="/movies/add">Add new</NavLink></li>
                 <p>Directors</p>
-                <li>List</li>
+                <li><NavLink to="/directors">List</NavLink></li>
                 <li><NavLink to="/directors/add">Add new</NavLink></li>
             </ul>
         </nav>
