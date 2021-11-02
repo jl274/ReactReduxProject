@@ -1,8 +1,16 @@
 import { connect } from "react-redux";
 import '../styles/movieTable.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { deleteMovie } from '../actions/movieActions'
 
+const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />;
 
-const MovieList = ({movies}, props) => {
+const MovieList = ({movies, deleteMovie}, props) => {
+
+    const handleDeleteButton = (id) => {
+        deleteMovie(id);
+    }
 
     return (
         <div className="dashboard">
@@ -16,7 +24,7 @@ const MovieList = ({movies}, props) => {
                         </ul>
                     {movies.sort((a,b)=>a.creationDate - b.creationDate).reverse().map(movie => 
                         <ul key={movie.id}>
-                            <li>{movie.title}</li>
+                            <li><div className="deleteIcon" onClick={()=>handleDeleteButton(movie.id)}>{trashIcon}</div>{movie.title}</li>
                             <li>{movie.productionYear}</li>
                             <li>{movie.director}</li>
                         </ul>)
@@ -33,4 +41,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, null)(MovieList);
+const mapDispatchToProps = {
+    deleteMovie
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

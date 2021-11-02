@@ -34,6 +34,22 @@ div.dashboard {
                     background-color: gainsboro;
                 }
 
+                position: relative;
+
+                div.deleteIcon {
+                    position: absolute;
+                    left: 10px;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: white;
+                    }
+
+                    &:active {
+                        color: rgb(0, 163, 108);
+                    }
+                }
+
             }
 
             &:first-child {
