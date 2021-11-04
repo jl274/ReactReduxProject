@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import MovieForm from './movies/MovieForm';
 import MovieList from './movies/MovieList';
 import DirectorsList from './directors/DirectorsList';
+import MovieDetails from './movies/MovieDetails';
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
 
           <Route path="/movies/add">
             <MovieForm />
+          </Route>
+
+          <Route path="/movies/:id" exact>
+            <MovieDetails />
           </Route>
 
           <Route path="/movies">

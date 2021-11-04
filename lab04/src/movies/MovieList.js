@@ -3,6 +3,7 @@ import '../styles/movieTable.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { deleteMovie } from '../actions/movieActions'
+import { Link } from "react-router-dom";
 
 const trashIcon = <FontAwesomeIcon icon={faTrashAlt} />;
 
@@ -24,7 +25,10 @@ const MovieList = ({movies, deleteMovie}, props) => {
                         </ul>
                     {movies.sort((a,b)=>a.creationDate - b.creationDate).reverse().map(movie => 
                         <ul key={movie.id}>
-                            <li><div className="deleteIcon" onClick={()=>handleDeleteButton(movie.id)}>{trashIcon}</div>{movie.title}</li>
+                            <li>
+                                <div className="deleteIcon" onClick={()=>handleDeleteButton(movie.id)}>{trashIcon}</div>
+                                <Link to={`/movies/${movie.id}`}>{movie.title}</Link>      
+                            </li>
                             <li>{movie.productionYear}</li>
                             <li>{movie.director}</li>
                         </ul>)
