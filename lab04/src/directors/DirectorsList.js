@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import '../styles/movieTable.scss';
 
 
@@ -20,7 +21,7 @@ const DirectorsList = ({directors}, props) => {
                             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
                         }).map(director => 
                         <ul key={director.id}>
-                            <li>{director.firstName}</li>
+                            <li>{director.firstName} <Link to={`/directors/${director.id}`}>(details)</Link></li>
                             <li>{director.lastName}</li>
                             <li>{director.age}</li>
                         </ul>)

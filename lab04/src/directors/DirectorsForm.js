@@ -10,7 +10,8 @@ const DirectorsForm = ({addDirector}, props) => {
     const initValues={
         firstName: '',
         lastName: '',
-        age: 0
+        age: 0,
+        country: ''
     }
 
     const validationSchema = Yup.object().shape({
@@ -25,10 +26,16 @@ const DirectorsForm = ({addDirector}, props) => {
         age: Yup
                 .number('Age is a number')
                 .min(10).max(120)
-                .required('Age is required')
+                .required('Age is required'),
+        country: Yup
+                .string('Country must be a string')
+                .min(3, 'At lest 3 characters')
     })
 
     const handleSubmit = (payload) => {
+        if (!payload.country){
+            payload.country = "Unknown";
+        }
         addDirector(uuidv4(), payload);
     }
 
@@ -67,6 +74,13 @@ const DirectorsForm = ({addDirector}, props) => {
                         ${!errors.age && touched.age? `valid` : ``}`}></Field>
                     </div>
                     <ErrorMessage name="age" component="div" className="errorMessage"/>
+
+                    <div className="country">
+                        <label>Country</label>
+                        <Field name="country" type="text" className={`${errors.country && touched.country ? `invalid` : ``} 
+                        ${!errors.country && touched.country? `valid` : ``}`}  ></Field>
+                    </div>
+                    <ErrorMessage name="country" component="div" className="errorMessage"/>
 
                     <button type="submit" disabled={!isValid}>Submit</button>
 
