@@ -7,6 +7,7 @@ import MovieForm from './movies/MovieForm';
 import MovieList from './movies/MovieList';
 import DirectorsList from './directors/DirectorsList';
 import MovieDetails from './movies/MovieDetails';
+import DirectorDetail from './directors/DirectorDetail';
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
 
           <Route path="/directors/add">
             <DirectorsForm />
+          </Route>
+
+          <Route path="/directors/:id" exact>
+            <DirectorDetail />
           </Route>
 
           <Route path="/directors">
