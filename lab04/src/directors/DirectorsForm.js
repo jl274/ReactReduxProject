@@ -3,11 +3,14 @@ import { connect } from "react-redux";
 import * as Yup from 'yup';
 import {v4 as uuidv4} from 'uuid';
 import '../styles/formStyle.scss';
-import { addDirector } from "../actions/directorsActions";
+import { addDirector, editDirector } from "../actions/directorsActions";
+import { withRouter } from "react-router-dom";
 
-const DirectorsForm = ({addDirector}, props) => {
+const DirectorsForm = ({addDirector, editDirector, editedDirector, history}, props) => {
 
-    const initValues={
+    const initValues= editedDirector ? {
+        ...editedDirector
+    } : {
         firstName: '',
         lastName: '',
         age: 0,
@@ -36,13 +39,21 @@ const DirectorsForm = ({addDirector}, props) => {
         if (!payload.country){
             payload.country = "Unknown";
         }
-        addDirector(uuidv4(), payload);
+        
+        if (editedDirector) {
+            editDirector(editedDirector.id, payload);
+            history.push(`/directors/${editedDirector.id}`)
+        } else {
+            addDirector(uuidv4(), payload);
+            history.push(`/directors`)
+        }
+        
     }
 
 
     return(
         <div className="form">
-            <h3>Add director</h3>
+            <h3>{editedDirector ? `Add director` : `Edit`}</h3>
             <Formik
                 initialValues={initValues}
                 onSubmit={(vals, {resetForm})=>{handleSubmit(vals); resetForm()}}
@@ -91,8 +102,22 @@ const DirectorsForm = ({addDirector}, props) => {
     )
 }
 
-const mapDispatchToProps = {
-    addDirector
+const mapStateToProps = (state, otherProps) => {
+    if (otherProps.match.params.id){
+        const { match: {params: {id}} } = otherProps;
+        return {
+            editedDirector: state.directors.list.find(x => x.id === id)
+        }
+    }
+    else {
+        return{}
+    }
+
 }
 
-export default connect(null, mapDispatchToProps)(DirectorsForm);
+const mapDispatchToProps = {
+    addDirector,
+    editDirector
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DirectorsForm));

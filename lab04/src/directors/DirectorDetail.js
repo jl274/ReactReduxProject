@@ -1,11 +1,17 @@
 import { connect } from "react-redux"
-import { withRouter } from "react-router";
+import { withRouter, Link } from "react-router-dom";
 import '../styles/directorDetails.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
+
+const editIcon = <FontAwesomeIcon icon={faEdit} />;
+
 
 const DirectorDetail = ({director}, props) => {
 
     return(
         <div className="directorDetail">
+            <div className="edit"><Link to={`/directors/${director.id}/edit`}>{editIcon}</Link></div>
             <div className="detailsList">
                 <ul>
                     <li className="lastName last"><p>{director.lastName}</p></li>

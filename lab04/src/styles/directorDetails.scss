@@ -2,6 +2,26 @@ div.directorDetail{
 
     margin: 30vh 15vw;
 
+    position: relative;
+
+    div.edit {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+
+        font-size: larger;
+
+        a {
+            text-decoration: none;
+            color: black;
+
+            &:hover {
+                color: white;
+            }
+
+        }
+    }
+
     div.detailsList {
         padding: 0;
         margin: 0;
@@ -29,6 +49,8 @@ div.directorDetail{
                 }
 
                 &.lastName{
+
+                    padding: 0;
 
                     grid-column: span 2;
                     grid-row: span 3;

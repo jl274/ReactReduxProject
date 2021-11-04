@@ -23,6 +23,10 @@ function App() {
             <DirectorsForm />
           </Route>
 
+          <Route path="/directors/:id/edit">
+            <DirectorsForm />
+          </Route>
+
           <Route path="/directors/:id" exact>
             <DirectorDetail />
           </Route>

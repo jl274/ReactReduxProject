@@ -1,4 +1,4 @@
-import { typeAddDirector } from "../actions/directorsActions";
+import { typeAddDirector, typeEditDirector } from "../actions/directorsActions";
 
 const initState = {
     list: []
@@ -9,6 +9,15 @@ const directorsReducer = (state = initState, action) => {
 
         case typeAddDirector:
             return {...state, list: [...state.list, action.payload]};
+
+        case typeEditDirector:
+            return {...state, list: state.list.map(director => {
+                if (director.id === action.payload.id){
+                    return action.payload
+                } else {
+                    return director
+                }
+            })};
 
         default:
             return state;
