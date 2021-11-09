@@ -6,7 +6,8 @@ export const addMovie = (id, payload) => {
         type: typeAddMovie,
         payload: {
             id,
-            ...payload
+            ...payload,
+            actors: []
         }
     }
 }

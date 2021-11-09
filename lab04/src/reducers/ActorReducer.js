@@ -9,7 +9,7 @@ const actorReducer = (state=initState, action) => {
     switch (action.type){
 
         case typeAddActor:
-            return {...state, list: [state.list, ...action.payload]}
+            return {...state, list: [...state.list, action.payload]}
 
         default:
             return state
