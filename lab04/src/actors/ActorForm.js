@@ -4,8 +4,9 @@ import * as Yup from 'yup';
 import '../styles/formStyle.scss';
 import { addActor } from "../actions/actorActions";
 import {v4 as uuidv4} from 'uuid';
+import { withRouter } from "react-router-dom";
 
-const ActorForm = ({ addActor }, props) => {
+const ActorForm = ({ addActor, history }, props) => {
 
     //form ---
     const initValues= {
@@ -36,6 +37,7 @@ const ActorForm = ({ addActor }, props) => {
     const handleSubmit = (values) => {
         const id = uuidv4();
         addActor({id, ...values});
+        history.push(`/actors`);
     }
 
     return (
@@ -93,4 +95,4 @@ const mapDispatchToProps = {
     addActor
 }
 
-export default connect(null, mapDispatchToProps)(ActorForm);
+export default withRouter(connect(null, mapDispatchToProps)(ActorForm));

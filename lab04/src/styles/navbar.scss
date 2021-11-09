@@ -39,8 +39,14 @@ nav {
                 &:active {
                     text-shadow: 2px 2px black, 1px 1px gray;
                 }
+
+                &.selected{
+                    border-bottom: 1px solid black;
+                }
                 
             }
+
+            
         }
 
         p {
