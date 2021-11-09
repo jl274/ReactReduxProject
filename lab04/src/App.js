@@ -8,6 +8,7 @@ import MovieList from './movies/MovieList';
 import DirectorsList from './directors/DirectorsList';
 import MovieDetails from './movies/MovieDetails';
 import DirectorDetail from './directors/DirectorDetail';
+import ActorForm from "./actors/ActorForm";
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
 
           <Route path="/movies">
             <MovieList />
+          </Route>
+
+          <Route path="/actors/add">
+            <ActorForm />
           </Route>
 
           <Route exact path="/">
