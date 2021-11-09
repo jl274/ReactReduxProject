@@ -14,6 +14,9 @@ const Navbar = () => {
                 <p>Directors</p>
                 <li><NavLink to="/directors">List</NavLink></li>
                 <li><NavLink to="/directors/add">Add new</NavLink></li>
+                <p>Actors</p>
+                <li><NavLink to="/">List</NavLink></li>
+                <li><NavLink to="/actors/add">Add new</NavLink></li>
             </ul>
         </nav>
     )
