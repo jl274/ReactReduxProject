@@ -13,7 +13,7 @@ const store = createStore(
   combineReducers({
     movies: movieReducer,
     directors: directorsReducer,
-      actors: actorReducer
+    actors: actorReducer
   })
 )
 
