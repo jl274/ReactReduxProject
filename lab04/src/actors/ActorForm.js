@@ -2,10 +2,10 @@ import { Form, Formik, Field, ErrorMessage } from "formik";
 import { connect } from "react-redux";
 import * as Yup from 'yup';
 import '../styles/formStyle.scss';
-import { addMovie } from "../actions/movieActions";
+import { addActor } from "../actions/actorActions";
 import {v4 as uuidv4} from 'uuid';
 
-const ActorForm = (props) => {
+const ActorForm = ({ addActor }, props) => {
 
     //form ---
     const initValues= {
@@ -33,12 +33,17 @@ const ActorForm = (props) => {
                 .min(3, 'At lest 3 characters')
     })
 
+    const handleSubmit = (values) => {
+        const id = uuidv4();
+        addActor({id, ...values});
+    }
+
     return (
         <div className={"form"}>
             <h3>Add Actor</h3>
             <Formik
                 initialValues={initValues}
-                onSubmit={(vals, {resetForm})=>{console.log(vals); resetForm()}}
+                onSubmit={(vals, {resetForm})=>{handleSubmit(vals); resetForm()}}
                 validationSchema={validationSchema}
             >
             {({errors, touched, isValid}) => 
@@ -84,4 +89,8 @@ const ActorForm = (props) => {
     )
 }
 
-export default connect(null, null)(ActorForm);
+const mapDispatchToProps = {
+    addActor
+}
+
+export default connect(null, mapDispatchToProps)(ActorForm);
