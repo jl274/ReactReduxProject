@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { hideToggle, showToggle } from "../actions/togglerActions";
 import { Formik , Form, Field } from 'formik';
 import { addActorToMovie } from "../actions/movieActions";
+import { addMovieToActor } from "../actions/actorActions";
 
 const customStyles = {
     content: {
@@ -21,7 +22,7 @@ const customStyles = {
   };
 
 
-const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors, addActorToMovie}, props) => {
+const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors, addActorToMovie, addMovieToActor}, props) => {
 
     function openModal() {
         showToggle('modal');
@@ -33,6 +34,7 @@ const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors,
 
     const handleModalSubmit = (values) => {
         addActorToMovie(movie.id, values.actorId);
+        addMovieToActor(values.actorId, movie.title);
     }
 
     return (
@@ -109,7 +111,8 @@ const mapStateToProps = (state, otherProps) => {
 const mapDispatchToProps = {
     showToggle,
     hideToggle,
-    addActorToMovie
+    addActorToMovie,
+    addMovieToActor
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MovieDetails));

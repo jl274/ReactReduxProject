@@ -17,9 +17,11 @@ const movieReducer = (state = initState, action) => {
         case typeAddActorToMovie:
             return {...state, list: state.list.map(movie => {
                 if (movie.id === action.payload.id) {
-                    movie.actors.push(
-                        action.payload.actorId
-                    )
+                    if (!movie.actors.includes(action.payload.actorId)){
+                        movie.actors.push(
+                            action.payload.actorId
+                        )
+                    }
                 }
                 return movie
             })}
