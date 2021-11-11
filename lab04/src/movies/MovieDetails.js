@@ -15,6 +15,12 @@ const MovieDetails = ({movie, director}, props) => {
                     <li className="label">Name</li><li>{director.firstName}</li>
                     <li className="label">Surname</li><li>{director.lastName}</li>
                     <li className="label">Age</li><li>{director.age}</li>
+                    <li className="title">Actors</li>
+                    <li className="actorFlex">
+                        {movie.actors.length === 0 ? 
+                        `No actors added yet` :
+                        movie.movies.map(actor => <div>test</div>)}
+                    </li>
                 </ul>
             </div>
         </div>
