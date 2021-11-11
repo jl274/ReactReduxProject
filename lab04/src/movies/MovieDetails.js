@@ -54,7 +54,7 @@ const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors,
                         `No actors added yet` :
                         actors.map(actor =>{
                             if (movie.actors.includes(actor.id)) {
-                                return <div key={actor.actorId}> {actor.firstName}-{actor.lastName} </div>
+                                return <div key={actor.id}> {actor.firstName}-{actor.lastName} </div>
                             } else {
                                 return null
                             }
@@ -87,7 +87,13 @@ const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors,
                             <label>Add actor </label>
                             <Field as="select" name="actorId">
                                 <option value={null}></option>
-                                {actors.map(actor => <option key={actor.id} value={actor.id}>{actor.firstName} {actor.lastName}</option>)}
+                                {actors.map(actor => {
+                                    if (!movie.actors.includes(actor.id)) {
+                                        return <option key={actor.id} value={actor.id}>{actor.firstName} {actor.lastName}</option>
+                                    } else {
+                                        return null
+                                    }
+                                })}
                             </Field>
                             <button type="submit">Add</button>
                         </Form>
