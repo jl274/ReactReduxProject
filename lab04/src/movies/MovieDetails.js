@@ -3,6 +3,8 @@ import { withRouter } from "react-router";
 import '../styles/movieDetails.scss';
 import Modal from 'react-modal';
 import { hideToggle, showToggle } from "../actions/togglerActions";
+import { Formik , Form, Field } from 'formik';
+import { addActorToMovie } from "../actions/movieActions";
 
 const customStyles = {
     content: {
@@ -19,7 +21,7 @@ const customStyles = {
   };
 
 
-const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors}, props) => {
+const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors, addActorToMovie}, props) => {
 
     function openModal() {
         showToggle('modal');
@@ -29,6 +31,9 @@ const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors}
         hideToggle('modal');
     };
 
+    const handleModalSubmit = (values) => {
+        addActorToMovie(movie.id, values.actorId);
+    }
 
     return (
         <div className="box">
@@ -45,32 +50,46 @@ const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors}
                     <li className="actorFlex">
                         {movie.actors.length === 0 ? 
                         `No actors added yet` :
-                        movie.movies.map(actor => <div>test</div>)}
+                        actors.map(actor =>{
+                            if (movie.actors.includes(actor.id)) {
+                                return <div key={actor.actorId}> {actor.firstName}-{actor.lastName} </div>
+                            } else {
+                                return null
+                            }
+                        })}
                     </li>
                 </ul>
             </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/react-modal/3.14.3/react-modal.min.js"
             integrity="sha512-MY2jfK3DBnVzdS2V8MXo5lRtr0mNRroUI9hoLVv2/yL3vrJTam3VzASuKQ96fLEpyYIT4a8o7YgtUs5lPjiLVQ=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"></script>
+            crossOrigin="anonymous"
+            referrerPolicy="no-referrer"></script>
             <Modal
                 isOpen={toggler.modal}
                 // onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"
+                ariaHideApp={false}
             >   
                 <div className="modal">
                     <h2>Actor list editing</h2>
                     <button className="exitButton" onClick={closeModal}>close</button>
-                    <form>
-                        <label>Add actor </label>
-                        <select>
-                            <option value={null}></option>
-                            {actors.map(actor => <option value={actor.id}>{actor.firstName} {actor.lastName}</option>)}
-                        </select>
-                        <button type="button">Add</button>
-                    </form>
+                    <Formik
+                        initialValues={{
+                            actorId: ''
+                        }}
+                        onSubmit={(values) => {handleModalSubmit(values)}}
+                    >
+                        <Form>
+                            <label>Add actor </label>
+                            <Field as="select" name="actorId">
+                                <option value={null}></option>
+                                {actors.map(actor => <option key={actor.id} value={actor.id}>{actor.firstName} {actor.lastName}</option>)}
+                            </Field>
+                            <button type="submit">Add</button>
+                        </Form>
+                    </Formik>
                 </div>
             </Modal>
         </div>
@@ -89,7 +108,8 @@ const mapStateToProps = (state, otherProps) => {
 
 const mapDispatchToProps = {
     showToggle,
-    hideToggle
+    hideToggle,
+    addActorToMovie
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MovieDetails));
