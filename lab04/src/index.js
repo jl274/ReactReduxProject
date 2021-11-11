@@ -8,12 +8,14 @@ import { Provider } from 'react-redux';
 import movieReducer from './reducers/MoviesReducer.js';
 import directorsReducer from './reducers/DirectorsReducer';
 import actorReducer from "./reducers/ActorReducer";
+import { togglingReducer } from './reducers/TogglerReducer';
 
 const store = createStore(
   combineReducers({
     movies: movieReducer,
     directors: directorsReducer,
-    actors: actorReducer
+    actors: actorReducer,
+    toggler: togglingReducer
   })
 )
 
