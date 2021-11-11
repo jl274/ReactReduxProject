@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/app.scss';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Dashboard from './movies/Dashboard';
 import DirectorsForm from './directors/DirectorsForm';

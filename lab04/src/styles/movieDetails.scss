@@ -36,6 +36,22 @@ div.box{
                     background-color: rgb(0, 163, 108);
                     text-transform: uppercase;
                     letter-spacing: 0.7em;
+
+                    button.edit {
+                        background-color: transparent;
+                        border: none;
+                        border-bottom: 1px solid black;
+                        text-transform: uppercase;
+                        font-size: smaller;
+                        // border-radius: 10px;
+                        padding: 5px;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: white;
+                            border-bottom: 1px solid white;
+                        }
+                    }
                 }
 
                 &.label{
@@ -60,4 +76,37 @@ div.box{
             }
         }
     }
+
+    
 }
+
+div.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    button.exitButton{
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: 0;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    form {
+        select {
+            background-color: transparent;
+            border: none;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 0 10px;
+        }
+    }
+}
+
+
