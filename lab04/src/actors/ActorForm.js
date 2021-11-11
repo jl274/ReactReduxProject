@@ -35,6 +35,9 @@ const ActorForm = ({ addActor, history }, props) => {
     })
 
     const handleSubmit = (values) => {
+        if (!values.country){
+            values.country = "Unknown";
+        }
         const id = uuidv4();
         addActor({id, ...values});
         history.push(`/actors`);

@@ -10,6 +10,7 @@ import MovieDetails from './movies/MovieDetails';
 import DirectorDetail from './directors/DirectorDetail';
 import ActorForm from "./actors/ActorForm";
 import ActorList from './actors/ActorList';
+import ActorDetail from './actors/ActorDetail';
 
 function App() {
   return (
@@ -51,6 +52,10 @@ function App() {
 
           <Route path="/actors/add">
             <ActorForm />
+          </Route>
+
+          <Route path="/actors/:id">
+            <ActorDetail />
           </Route>
 
           <Route path="/actors">

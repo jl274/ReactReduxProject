@@ -21,7 +21,7 @@ const ActorList = ({actors}, props) => {
                             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
                         }).map(actor => 
                         <ul key={actor.id}>
-                            <li>{actor.firstName} <Link to={`/actors/#`}>(details)</Link></li>
+                            <li>{actor.firstName} <Link to={`/actors/${actor.id}`}>(details)</Link></li>
                             <li>{actor.lastName}</li>
                             <li>{actor.age}</li>
                         </ul>)
