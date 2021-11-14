@@ -16,7 +16,7 @@ const ActorDetail = ({actor}, props) => {
                 <li className="movieFlex">
                     {actor.movies.length === 0 ? 
                     `No movies yet` :
-                    actor.movies.map(movie => <div>test</div>)}
+                    actor.movies.map(movie => <div className="actorMovie" key={movie}>{movie}</div>)}
                 </li>
             </ul>
         </div>

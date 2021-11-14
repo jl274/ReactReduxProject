@@ -70,6 +70,16 @@ div.box{
                     flex: 50px;
                     flex-wrap: wrap;
                     justify-content: center;
+
+                    div.movieActor {
+                        border-left: 1px solid black;
+
+                        padding: 0 10px;
+
+                        &:last-of-type {
+                            border-right: 1px solid black;
+                        }
+                    }
                 }
 
                 grid-column: span 2;
