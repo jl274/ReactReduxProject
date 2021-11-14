@@ -1,4 +1,4 @@
-import { typeAddMovie, typeDeleteMovie, typeAddActorToMovie } from "../actions/movieActions";
+import { typeAddMovie, typeDeleteMovie, typeAddActorToMovie, typeDeleteActorFromMovie } from "../actions/movieActions";
 
 const initState = {
     list: []
@@ -13,6 +13,16 @@ const movieReducer = (state = initState, action) => {
 
         case typeDeleteMovie:
             return {...state, list: state.list.filter(x => x.id !== action.payload)};
+
+        case typeDeleteActorFromMovie:
+            return {...state, list: state.list.map(movie => {
+                if (movie.id === action.payload.id) {
+    
+                    movie.actors = movie.actors.filter(x => x !== action.payload.actorId);
+    
+                }
+                return movie
+            })}
 
         case typeAddActorToMovie:
             return {...state, list: state.list.map(movie => {
