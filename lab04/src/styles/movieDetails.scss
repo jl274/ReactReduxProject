@@ -105,16 +105,60 @@ div.modal {
         background: transparent;
         border: none;
         cursor: pointer;
+        color: green;
+
+        &:hover {
+            color: black;
+        }
     }
 
     form {
+        min-width: 500px;
+        margin: 10px 0;
+
+        label {
+            display: block;
+            font-weight: bolder;
+        }
+
         select {
             background-color: transparent;
             border: none;
             border: 1px solid black;
             border-radius: 5px;
             padding: 5px;
-            margin: 0 10px;
+            margin: 0;
+        }
+        button {
+            border: 2px solid green;
+            color: green;
+            text-transform: uppercase;
+            font-size: smaller;
+            letter-spacing: 1px;
+            margin: 5px;
+            border-radius: 3px;
+            padding: 10px;
+            width: auto;
+            overflow: visible;
+
+            background: transparent;
+            cursor: pointer;
+
+            &:hover {
+                background-color: green;
+                color: white;
+            }
+
+            &:disabled {
+                border: 2px solid gray;
+                cursor: not-allowed;
+                color: gray;
+
+                &:hover {
+                    background-color: gray;
+                    color: white;
+                }
+            }
         }
     }
 }

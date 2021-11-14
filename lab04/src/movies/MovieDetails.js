@@ -83,10 +83,10 @@ const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors,
                         }}
                         onSubmit={(values) => {handleModalSubmit(values)}}
                     >
-                        <Form>
+                        {({values})=><Form>
                             <label>Add actor </label>
                             <Field as="select" name="actorId">
-                                <option value={null}></option>
+                                <option value={null}>---</option>
                                 {actors.map(actor => {
                                     if (!movie.actors.includes(actor.id)) {
                                         return <option key={actor.id} value={actor.id}>{actor.firstName} {actor.lastName}</option>
@@ -95,8 +95,34 @@ const MovieDetails = ({movie, director, toggler, showToggle, hideToggle, actors,
                                     }
                                 })}
                             </Field>
-                            <button type="submit">Add</button>
-                        </Form>
+                            <button type="submit" disabled={!values.actorId || values.actorId === '---'}>Add</button>
+                        </Form>}
+                    </Formik>
+                    <Formik
+                        initialValues={{
+                            actorId: ''
+                        }}
+                        onSubmit={(values) => {console.log(values)}}
+                    >
+                        {({values}) => 
+                        <Form>
+                            <label>Delete Actors </label>
+                            {movie.actors.length === 0 
+                            ? <>No actors added yet.</>
+                            : <Field as="select" name="actorId">
+                                    <option value={null}>---</option>
+                                    {actors.map(actor => {
+                                        if (movie.actors.includes(actor.id)) {
+                                            return <option key={actor.id} value={actor.id}>{actor.firstName} {actor.lastName}</option>
+                                        } else {
+                                            return null
+                                        }
+                                    })}
+                              </Field>
+                             }
+                            <button type="submit" disabled={movie.actors.length === 0 || values.actorId === "---"}>Delete</button>
+                        </Form>}
+                        
                     </Formik>
                 </div>
             </Modal>
