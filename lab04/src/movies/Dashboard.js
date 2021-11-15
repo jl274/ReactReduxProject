@@ -55,7 +55,7 @@ const Dashboard = ({directors, movies, actors}, props) => {
             </div>
             <div className="dashboard">
             <h3>Top actors</h3>
-            {movies.length === 0 ? <p>No movies yet</p> : 
+            {movies.length === 0 ? <p>No actors yet</p> : 
                 <div className="topList">
                         <ul>
                             <li>Name</li>

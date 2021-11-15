@@ -61,7 +61,7 @@ const MovieDetails = ({movie, director, toggler, showToggle,
                         `No actors added yet` :
                         actors.map(actor =>{
                             if (movie.actors.includes(actor.id)) {
-                                return <div className="movieActor" key={actor.id}> {actor.firstName}-{actor.lastName} </div>
+                                return <div className="movieActor" key={actor.id}> {actor.firstName} {actor.lastName} </div>
                             } else {
                                 return null
                             }
