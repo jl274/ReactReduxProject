@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { getCounterObject } from "../ducks/counter/selectors";
-import { incrementAction } from '../ducks/counter/actions'
+import { getCounterObject } from "../../ducks/counter/selectors";
+import { incrementAction } from '../../ducks/counter/actions'
 
 const IncrementComponent = ({ counter, incrementAction }, props) => {
 

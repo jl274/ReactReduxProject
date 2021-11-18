@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import IncrementComponent from './ui/IncrementComponent';
+import IncrementComponent from './ui/counter/IncrementComponent';
 
 function App() {
   return (
