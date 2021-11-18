@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import movieReducer from './reducers/MoviesReducer.js';
 import directorsReducer from './reducers/DirectorsReducer';
 import actorReducer from "./reducers/ActorReducer";
 import { togglingReducer } from './reducers/TogglerReducer';
+import logger from 'redux-logger';
 
 const store = createStore(
   combineReducers({
@@ -16,7 +17,8 @@ const store = createStore(
     directors: directorsReducer,
     actors: actorReducer,
     toggler: togglingReducer
-  })
+  }),
+  applyMiddleware(logger)
 )
 
 ReactDOM.render(
