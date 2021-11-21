@@ -1,7 +1,8 @@
 import { types } from "./types";
 
 const initState = {
-    value: 0
+    value: 0,
+    intervalId: null
 }
 
 export const counterReducer = (state = initState, action) =>{
@@ -9,6 +10,12 @@ export const counterReducer = (state = initState, action) =>{
 
         case types.INCREMENT:
             return {...state, value: state.value + action.payload};
+
+        case types.DECREMENT:
+            return {...state, value: state.value - action.payload};
+
+        case types.SET_INTERVAL_ID:
+            return {...state, intervalId: action.payload};
 
         default:
             return state;

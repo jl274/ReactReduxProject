@@ -6,3 +6,17 @@ export const incrementAction = () => {
         payload: 1
     }
 };
+
+export const decrementAction = () => {
+    return {
+        type: types.DECREMENT,
+        payload: 1
+    }
+}
+
+export const setIntervalIdAction = (id) => {
+    return {
+        type: types.SET_INTERVAL_ID,
+        payload: id
+    }
+}
