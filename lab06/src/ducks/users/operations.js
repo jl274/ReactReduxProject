@@ -15,3 +15,18 @@ export const getUsersOperation = () => {
         ]
     })
 }
+
+export const getOneUser = (id) => {
+    return createAction({
+        endpoint: `https://fakestoreapi.com/users/${id}`,
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        types: [
+            types.ONE_USER_GET_REQUEST,
+            types.ONE_USER_GET_SUCCESS,
+            types.ONE_USER_GET_FAILURE
+        ]
+    })
+}

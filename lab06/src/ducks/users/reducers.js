@@ -17,6 +17,15 @@ export const usersReducer = (state = initState, action) => {
         case types.USER_GET_FAILURE:
             return {...state, loading: false};
 
+        case types.ONE_USER_GET_REQUEST:
+            return {...state, loading: true};
+
+        case types.ONE_USER_GET_SUCCESS:
+            return {...state, usersList: [action.payload], loading: false};
+
+        case types.ONE_USER_GET_FAILURE:
+            return {...state, loading: false};
+
         default:
             return state;
     }
