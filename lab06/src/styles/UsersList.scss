@@ -20,6 +20,16 @@ div.usersList {
         padding: 0;
         li {
             list-style: none;
+
+            a {
+                text-decoration: none;
+                cursor: pointer;
+                color: black;
+
+                &:hover {
+                    color: lightblue;
+                }
+            }
         }
     }
 }
