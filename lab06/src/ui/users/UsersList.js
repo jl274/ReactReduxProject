@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUsersOperation } from "../../ducks/users/operations";
 import { getUsers, getUsersIsLoading } from "../../ducks/users/selectors";
-import '../../styles/UsersList.scss';
+import '../../styles/List.scss';
 
 const UsersList = ({ usersList, loadingUsers, getUsersOperation }, props) => {
 
@@ -14,7 +14,7 @@ const UsersList = ({ usersList, loadingUsers, getUsersOperation }, props) => {
     }, [])
 
     return (
-        <div className="usersList">
+        <div className="list">
             <h3>UsersList</h3>
             <ul>
                 {usersList.length === 0 ? <li>{loadingUsers ? 'Loading...' : 'No users found'}</li> : usersList.map(user => 
