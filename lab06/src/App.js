@@ -10,7 +10,7 @@ function App() {
         <h2>Hello</h2>
 
         <Switch>
-          <Route path="/">
+          <Route path="/users">
             <UsersList />
           </Route>
         </Switch>
