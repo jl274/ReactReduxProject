@@ -17,6 +17,9 @@ export const productsReducer = (state = initState, action) => {
         case types.PRODUCTS_GET_FAILURE:
             return {...state, loading: false};
 
+        case types.PRODUCTS_POST_SUCCESS:
+            return {...state, productsList: [...state.productsList, action.payload]}
+
         default:
             return state;
     }

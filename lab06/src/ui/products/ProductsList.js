@@ -19,9 +19,10 @@ const ProductsList = ({ products,  getProductsOperation, loading }) => {
             <ul>
                 {products.length === 0 ? <li>{loading ? 'Loading...' : 'No products found'}</li> : products.map(product => 
                 <li key={product.id}>
-                    <Link to={`/users/${product.id}`}>{product.title}</Link>
+                    <Link to={`/products/${product.id}`}>{product.title}</Link>
                 </li>)}
             </ul>
+            <Link to="/products/form"><button>Add new</button></Link>
         </div>
     )
 }

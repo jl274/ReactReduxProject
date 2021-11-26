@@ -1,0 +1,66 @@
+div.form {
+
+    form{ 
+        
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            div.group{
+                display: flex;
+                align-items: center;
+
+                label{
+                    text-transform: capitalize;
+                    margin: 5px 0;
+                }
+
+                input {
+                    border: 1px solid lightblue;
+                    border-radius: 5px;
+                }
+
+                textarea{
+                    border: 1px solid lightblue;
+                    border-radius: 5px
+                }
+            }
+
+            button {
+                margin: 20px 0;
+                border: 1px solid lightblue;
+                color: lightblue;
+                background-color: transparent;
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: lightblue;
+                    color: white;
+                }
+
+                &:active{
+                    color: black;
+                }
+
+                &.invalid{
+                    cursor: not-allowed;
+                    border: 1px solid gray;
+                    color: gray;
+
+                    &:hover{
+                        background-color: transparent;
+                        color: gray;
+                    }
+    
+                    &:active{
+                        color: gray;
+                    }
+                }
+            }
+        }
+    }
+}

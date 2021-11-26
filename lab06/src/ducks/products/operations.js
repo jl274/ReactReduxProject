@@ -15,3 +15,19 @@ export const getProductsOperation = () => {
         ]
     })
 }
+
+export const postNewProductOperation = (newProduct) => {
+    return createAction({
+        endpoint: "https://fakestoreapi.com/products",
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(newProduct),
+        types: [
+            types.PRODUCTS_POST_REQUEST,
+            types.PRODUCTS_POST_SUCCESS,
+            types.PRODUCTS_POST_FAILURE
+        ]
+    })
+}
