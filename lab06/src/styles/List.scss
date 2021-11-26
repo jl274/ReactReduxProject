@@ -1,6 +1,7 @@
 div.list {
 
     margin: 0 15vw;
+    margin-bottom: 10vh;
     padding: 0;
 
     display: flex;
@@ -19,7 +20,11 @@ div.list {
         margin: 0;
         padding: 0;
         li {
+            margin: 5px 0;
             list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             a {
                 text-decoration: none;

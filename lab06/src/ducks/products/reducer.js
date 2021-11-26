@@ -18,7 +18,10 @@ export const productsReducer = (state = initState, action) => {
             return {...state, loading: false};
 
         case types.PRODUCTS_POST_SUCCESS:
-            return {...state, productsList: [...state.productsList, action.payload]}
+            return {...state, productsList: [...state.productsList, action.payload]};
+
+        case types.PRODUCT_DELETE_SUCCESS:
+            return {...state, productsList: state.productsList.filter(product => `${product.id}` !== `${action.payload.id}`)}
 
         default:
             return state;

@@ -31,3 +31,18 @@ export const postNewProductOperation = (newProduct) => {
         ]
     })
 }
+
+export const deleteProductOperation = (id) => {
+    return createAction({
+        endpoint: `https://fakestoreapi.com/products/${id}`,
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        types: [
+            types.PRODUCT_DELETE_REQUEST,
+            types.PRODUCT_DELETE_SUCCESS,
+            types.PRODUCT_DELETE_FAILURE
+        ]
+    })
+}

@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { getProductsOperation } from "../../ducks/products/operations";
 import { getProductsLits, getProductsLoading } from "../../ducks/products/selectors";
 import '../../styles/List.scss';
+import DeleteButton from "./DeleteButton";
 
 const ProductsList = ({ products,  getProductsOperation, loading }) => {
 
@@ -20,9 +21,10 @@ const ProductsList = ({ products,  getProductsOperation, loading }) => {
                 {products.length === 0 ? <li>{loading ? 'Loading...' : 'No products found'}</li> : products.map(product => 
                 <li key={product.id}>
                     <Link to={`/products/${product.id}`}>{product.title}</Link>
+                    <DeleteButton id={product.id} />
                 </li>)}
             </ul>
-            <Link to="/products/form"><button>Add new</button></Link>
+            <Link to="/products/form"><button className="button1">Add new</button></Link>
         </div>
     )
 }
