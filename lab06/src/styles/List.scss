@@ -16,6 +16,30 @@ div.list {
         padding-bottom: 10px;
     }
 
+    div.options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin: 10px 0;
+
+        div.categories {
+
+            select{
+                background-color: transparent;
+                border: 1px solid lightblue;
+                border-radius: 5px;
+                margin: 0 5px;
+                color: lightblue;
+
+                option {
+                    color: rgb(127, 210, 238);
+                    background-color: white;
+                }
+            }
+        }
+    }
+
     ul {
         margin: 0;
         padding: 0;

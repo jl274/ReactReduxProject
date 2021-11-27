@@ -46,3 +46,33 @@ export const deleteProductOperation = (id) => {
         ]
     })
 }
+
+export const getCategoriesOperation = () => {
+    return createAction({
+        endpoint: "https://fakestoreapi.com/products/categories",
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        types: [
+            types.CATEGORIES_GET_REQUEST,
+            types.CATEGORIES_GET_SUCCESS,
+            types.CATEGORIES_GET_FAILURE
+        ]
+    })
+}
+
+export const getInCategoryOperation = (category) => {
+    return createAction({
+        endpoint: `https://fakestoreapi.com/products/category/${category}`,
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        types: [
+            types.CATEGORY_PRODUCT_GET_REQUEST,
+            types.CATEGORY_PRODUCT_GET_SUCCESS,
+            types.CATEGORY_PRODUCT_GET_FAILURE
+        ]
+    })
+}
