@@ -20,7 +20,7 @@ const ProductDetail = ({ id, product, loading, getOneProduct, history }, props) 
     return(
         <div className="userDetail">
             <button className="return" onClick={handleReturnButton}>← Return to list</button>
-            <h4>{product ? product.username : 'Not found'}</h4>
+            <h4>{product ? product.title : 'Not found'}</h4>
             {product ? <ul>
                     <label>Title</label>
                     <li>{product.title}</li>
