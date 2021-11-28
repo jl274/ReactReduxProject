@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import ProductDetail from './ui/products/ProductDetail';
 import ProductsForm from './ui/products/ProductsForm';
 import ProductsList from './ui/products/ProductsList';
 import UserDetail from './ui/users/UserDetail';
@@ -16,6 +17,10 @@ function App() {
 
           <Route path="/products/form">
             <ProductsForm />
+          </Route>
+
+          <Route path="/products/:id">
+            <ProductDetail />
           </Route>
 
           <Route path="/products">

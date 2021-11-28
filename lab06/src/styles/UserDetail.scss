@@ -29,6 +29,8 @@ div.userDetail {
 
             padding: 10px;
 
+            max-width: 20vw;
+
             &:last-child{
                 border-bottom: none;
             }
@@ -44,6 +46,17 @@ div.userDetail {
             &:last-of-type{
                 border-bottom: none;
             }
+        }
+    }
+
+    div.img {
+
+        margin: 10px 15vw;
+        border: dashed 3px lightblue;
+        padding: 30px;
+
+        img {
+            max-height: 33vh;
         }
     }
 }

@@ -76,3 +76,18 @@ export const getInCategoryOperation = (category) => {
         ]
     })
 }
+
+export const getOneProduct = (id) => {
+    return createAction({
+        endpoint: `https://fakestoreapi.com/products/${id}`,
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        types: [
+            types.GET_ONE_PRODUCT_REQUEST,
+            types.GET_ONE_PRODUCT_SUCCESS,
+            types.GET_ONE_PRODUCT_FAILURE
+        ]
+    })
+}
