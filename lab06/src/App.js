@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import Dashboard from './ui/Dashboard';
 import ProductDetail from './ui/products/ProductDetail';
 import ProductsForm from './ui/products/ProductsForm';
 import ProductsList from './ui/products/ProductsList';
@@ -11,8 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h2>Hello</h2>
-
+        
         <Switch>
 
           <Route path="/products/form">
@@ -33,6 +33,10 @@ function App() {
 
           <Route path="/users">
             <UsersList />
+          </Route>
+
+          <Route path="/">
+            <Dashboard />
           </Route>
 
         </Switch>
