@@ -6,7 +6,8 @@ import { getProductsCategories, getProductsLits, getProductsLoading } from "../.
 import '../../styles/List.scss';
 import DeleteButton from "./DeleteButton";
 
-const ProductsList = ({ products,  getProductsOperation, loading, getCategoriesOperation, categories, getInCategoryOperation }) => {
+const ProductsList = ({ products,  getProductsOperation, loading, getCategoriesOperation, categories,
+    getInCategoryOperation, history }) => {
 
     useEffect(() => {
         if (products.length === 0){
@@ -25,8 +26,14 @@ const ProductsList = ({ products,  getProductsOperation, loading, getCategoriesO
         getProductsOperation(order);
     }
 
+    // go to main page
+    const handleReturn = () => {
+        history.push("/");
+    }
+
     return (
         <div className="list">
+            <button className="return" onClick={handleReturn}>Dashboard</button>
             <h3>Products List</h3>
             <div className="options">
                 <div className="categories">Show: 
