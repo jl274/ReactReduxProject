@@ -20,6 +20,11 @@ const ProductsList = ({ products,  getProductsOperation, loading, getCategoriesO
         category === "all" ? getProductsOperation() : getInCategoryOperation(category);
     }
 
+    // sorting
+    const handleSorting = (order) => {
+        getProductsOperation(order);
+    }
+
     return (
         <div className="list">
             <h3>Products List</h3>
@@ -32,6 +37,10 @@ const ProductsList = ({ products,  getProductsOperation, loading, getCategoriesO
                         ) : null}
                     </select>
                 </div>
+                <div className="sort">Sort: 
+                    <button className="button2" onClick={()=>handleSorting("asc")}>↑</button>
+                    <button className="button2" onClick={()=>handleSorting("desc")}>↓</button>
+                </div>
             </div>
             <ul>
                 {products.length === 0 ? <li>{loading ? 'Loading...' : 'No products found'}</li> : products.map(product => 
@@ -40,7 +49,7 @@ const ProductsList = ({ products,  getProductsOperation, loading, getCategoriesO
                     <DeleteButton id={product.id} />
                 </li>)}
             </ul>
-            <Link to="/products/form"><button className="button1">Add new</button></Link>
+            <Link to="/products/form"><button className="button2">Add new</button></Link>
         </div>
     )
 }

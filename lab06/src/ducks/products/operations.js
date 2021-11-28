@@ -1,9 +1,9 @@
 import { createAction } from 'redux-api-middleware'
 import { types } from './types'
 
-export const getProductsOperation = () => {
+export const getProductsOperation = (order = "asc") => {
     return createAction({
-        endpoint: "https://fakestoreapi.com/products",
+        endpoint: `https://fakestoreapi.com/products?sort=${order}`,
         method: 'GET',
         headers: {
             'Content-type': 'application/json'

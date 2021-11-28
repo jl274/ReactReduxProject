@@ -17,3 +17,23 @@ button.button1 {
         color: black;
     }
 }
+
+button.button2 {
+    margin: 0 1px;
+    border: 1px solid lightblue;
+    color: lightblue;
+    background-color: transparent;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: x-small;
+
+    &:hover{
+        background-color: lightblue;
+        color: white;
+    }
+
+    &:active{
+        color: black;
+    }
+}
