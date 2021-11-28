@@ -59,4 +59,30 @@ div.userDetail {
             max-height: 33vh;
         }
     }
+
+    position: relative;
+
+    button.return{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        margin: 0 1px;
+        border: 1px solid lightblue;
+        color: lightblue;
+        background-color: transparent;
+        padding: 5px 15px;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 2px 2px 2px 2px lightblue;
+
+        &:hover{
+            background-color: lightblue;
+            color: white;
+        }
+
+        &:active{
+            color: black;
+        }
+    }
 }

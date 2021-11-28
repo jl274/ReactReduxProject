@@ -5,7 +5,7 @@ import { getOneUser } from "../../ducks/users/operations";
 import { getUserDetail, getUsersIsLoading } from "../../ducks/users/selectors";
 import '../../styles/UserDetail.scss';
 
-const UserDetail = ({ id, user, loading, getOneUser }, props) => {
+const UserDetail = ({ id, user, loading, getOneUser, history }, props) => {
 
     useEffect(()=>{
         if (user === false) {
@@ -13,8 +13,13 @@ const UserDetail = ({ id, user, loading, getOneUser }, props) => {
         }
     }, [])
 
+    const handleReturnButton = () => {
+        history.push("/products");
+    }
+
     return(
         <div className="userDetail">
+            <button className="return" onClick={handleReturnButton}>← Return to list</button>
             <h4>{user.username}</h4>
             {user ? <ul>
                     <label>Name</label>
