@@ -47,6 +47,25 @@ div.userDetail {
                 border-bottom: none;
             }
         }
+
+        &.cart {
+
+            p {
+                font-weight: bold;
+                border-bottom: 1px solid lightblue;
+                padding-bottom: 5px;
+            }
+
+            display: flex;
+            flex-direction: column;
+            
+            li {
+                border: none;
+                font-size: smaller;
+
+                max-width: 25vw;
+            }
+        }
     }
 
     div.img {
