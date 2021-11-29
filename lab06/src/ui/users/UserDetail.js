@@ -17,7 +17,6 @@ const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products
         if (products.length === 0){
             getProductsOperation();
         }
-        console.log(userCart)
     }, [])
 
     const handleReturnButton = () => {
@@ -46,8 +45,6 @@ const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products
                 <ul className="cart">
                     <p>Cart</p>
                     {products.map(product => {
-                        console.log("x")
-                        console.log(userCart.products.find(x => `${x.productId}` === `${product.id}`))
                         if (userCart.products.find(x => `${x.productId}` === `${product.id}`)){
                             return <li>{product.title} (🛒{userCart.products.find(y => `${y.productId}` === `${product.id}`).quantity})</li>
                         } else {
