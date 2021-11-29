@@ -1,16 +1,19 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import { getCartsOperation } from "../../ducks/cart/operations";
 import { getUsersOperation } from "../../ducks/users/operations";
 import { getUsers, getUsersIsLoading } from "../../ducks/users/selectors";
 import '../../styles/List.scss';
 
-const UsersList = ({ usersList, loadingUsers, getUsersOperation, history }, props) => {
+const UsersList = ({ usersList, loadingUsers, getUsersOperation, getCartsOperation, history }, props) => {
 
     useEffect(()=>{
         if (usersList.length === 0){
             getUsersOperation();
+            
         }
+        getCartsOperation();
     }, [])
 
     const handleReturn = () => {
@@ -39,7 +42,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    getUsersOperation
+    getUsersOperation,
+    getCartsOperation
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersList));
