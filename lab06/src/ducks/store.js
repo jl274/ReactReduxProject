@@ -5,12 +5,14 @@ import thunk from 'redux-thunk';
 import { createMiddleware } from 'redux-api-middleware'
 import { productsReducer } from './products/reducer';
 import { cartReducer } from './cart/reducers';
+import { togglingReducer } from './toggler/reducer';
 
 export const store = createStore(
   combineReducers({
       users: usersReducer,
       products: productsReducer,
-      carts: cartReducer
+      carts: cartReducer,
+      toggler: togglingReducer
   }),
   applyMiddleware(thunk, createMiddleware(), logger)
 );

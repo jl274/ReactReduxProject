@@ -1,0 +1,1 @@
+export const togglerStatus = (state, name) => state.toggler[name] ? true : false;
