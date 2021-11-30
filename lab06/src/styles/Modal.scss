@@ -1,0 +1,56 @@
+div.cartModal {
+    min-width: 50vw;
+    max-width: 60vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        color: lightblue;
+    }
+
+    form {
+
+        div.checkboxGroup {
+
+            overflow:scroll;
+            overflow-y:auto;
+            overflow-x:hidden;
+            max-height: 150px;
+            
+            padding: 10px 30px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+
+            label {
+                grid-column: span 1;
+
+                font-size: small;
+            }
+        }
+    }
+
+    button {
+        margin: 0 1px;
+        border: 1px solid lightblue;
+        color: lightblue;
+        background-color: transparent;
+        padding: 5px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: x-small;
+    
+        &:hover{
+            background-color: lightblue;
+            color: white;
+        }
+    
+        &:active{
+            color: black;
+        }
+    }
+}

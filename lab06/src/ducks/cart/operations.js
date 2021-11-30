@@ -30,3 +30,20 @@ export const getOneCartOperation = (id) => {
         ]
     })
 }
+
+export const updateCart = (cartId, update) => {
+    console.log(cartId, update)
+    return createAction({
+        endpoint: `https://fakestoreapi.com/carts/${cartId}`,
+        method: 'PATCH',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(update),
+        types: [
+            types.ADD_TO_CART_REQUEST,
+            types.ADD_TO_CART_SUCCESS,
+            types.ADD_TO_CART_FAILURE
+        ]
+    })
+}

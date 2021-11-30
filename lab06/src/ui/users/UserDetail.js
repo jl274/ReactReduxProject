@@ -4,11 +4,13 @@ import { withRouter } from "react-router-dom";
 import { getCartByUserId } from "../../ducks/cart/selectors";
 import { getProductsOperation } from "../../ducks/products/operations";
 import { getProductsLits } from "../../ducks/products/selectors";
+import { showToggle } from "../../ducks/toggler/actions";
 import { getOneUser } from "../../ducks/users/operations";
 import { getUserDetail, getUsersIsLoading } from "../../ducks/users/selectors";
 import '../../styles/UserDetail.scss';
+import UserCartModal from "./UserCartModal";
 
-const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products, getProductsOperation }, props) => {
+const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products, getProductsOperation, showToggle }, props) => {
 
     useEffect(()=>{
         if (user === false) {
@@ -44,15 +46,22 @@ const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products
             {userCart ? 
                 <ul className="cart">
                     <p>Cart</p>
+                    
                     {products.map(product => {
                         if (userCart.products.find(x => `${x.productId}` === `${product.id}`)){
-                            return <li>{product.title} (🛒{userCart.products.find(y => `${y.productId}` === `${product.id}`).quantity})</li>
+                            return <li key={product.id}>{product.title} (🛒{userCart.products.find(y => `${y.productId}` === `${product.id}`).quantity})</li>
                         } else {
                             return null
                         }
                     })}
+
+                    
+                    
                 </ul> : null
             }
+
+            <button className="button1" onClick={()=>{showToggle("cart-modal")}}>Add to cart +</button>
+            <UserCartModal userId={id} />
         </div>
     )
 }
@@ -72,7 +81,8 @@ const mapStateToProps = (state, otherProps) => {
 
 const mapDispatchToProps = {
     getOneUser,
-    getProductsOperation
+    getProductsOperation,
+    showToggle
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserDetail));
