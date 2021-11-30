@@ -61,7 +61,7 @@ const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products
             }
 
             <button className="button1" onClick={()=>{showToggle("cart-modal")}}>Add to cart +</button>
-            <UserCartModal userId={id} />
+            <UserCartModal userId={id} cartId={userCart ? userCart.id : null} />
         </div>
     )
 }

@@ -28,6 +28,7 @@ const UserCartModal = ({userId, isOpen, hideToggle, updateCart, cart, products})
 
     const handleUpdatingCart = (checked) => {
         const productsMapped = [...cart.products]
+        checked.forEach(productId => parseInt(productId));
         checked.forEach(productId => {
             if (productsMapped.find(x => `${x.productId}` === `${productId}`)){
                 productsMapped.find(x => `${x.productId}` === `${productId}`).quantity += 1;
@@ -43,7 +44,7 @@ const UserCartModal = ({userId, isOpen, hideToggle, updateCart, cart, products})
             ...cart,
             products: productsMapped
         }
-        updateCart(cart.id, payload);
+        updateCart(parseInt(cart.id), payload);
         hideToggle("cart-modal");
     }
 
@@ -85,12 +86,12 @@ const UserCartModal = ({userId, isOpen, hideToggle, updateCart, cart, products})
 
 const mapStateToProps = (state, otherProps) => {
 
-    const { userId } = otherProps;
-
+    const { userId, cartId } = otherProps;
+    console.log(cartId)
     return {
         userId,
         isOpen: togglerStatus(state, "cart-modal"),
-        cart: getCartByCartId(state, userId),
+        cart: getCartByCartId(state, cartId),
         products: getProductsLits(state)
     }
 };
