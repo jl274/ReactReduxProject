@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { deleteCart } from "../../ducks/cart/operations";
 import { getCartByUserId } from "../../ducks/cart/selectors";
 import { getProductsOperation } from "../../ducks/products/operations";
 import { getProductsLits } from "../../ducks/products/selectors";
@@ -10,7 +11,7 @@ import { getUserDetail, getUsersIsLoading } from "../../ducks/users/selectors";
 import '../../styles/UserDetail.scss';
 import UserCartModal from "./UserCartModal";
 
-const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products, getProductsOperation, showToggle }, props) => {
+const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products, getProductsOperation, showToggle, deleteCart }, props) => {
 
     useEffect(()=>{
         if (user === false) {
@@ -23,6 +24,11 @@ const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products
 
     const handleReturnButton = () => {
         history.push("/users");
+    }
+
+    const handleDelete = () => {
+        console.log(userCart.id)
+        // deleteCart(userCart.id);
     }
 
     return(
@@ -45,7 +51,7 @@ const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products
             }
             {userCart ? 
                 <ul className="cart">
-                    <p>Cart</p>
+                    <p>Cart <button className="button1" onClick={handleDelete}>Delete Cart</button></p>
                     
                     {products.map(product => {
                         if (userCart.products.find(x => `${x.productId}` === `${product.id}`)){
@@ -82,7 +88,8 @@ const mapStateToProps = (state, otherProps) => {
 const mapDispatchToProps = {
     getOneUser,
     getProductsOperation,
-    showToggle
+    showToggle,
+    deleteCart
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserDetail));

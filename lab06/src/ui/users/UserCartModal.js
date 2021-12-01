@@ -6,7 +6,7 @@ import { getCartByCartId } from "../../ducks/cart/selectors";
 import { getProductsLits } from "../../ducks/products/selectors";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import '../../styles/Modal.scss';
-import { updateCart } from '../../ducks/cart/operations';
+import { updateCart, newCart } from '../../ducks/cart/operations';
 
 const customStyles = {
     content: {
@@ -20,33 +20,43 @@ const customStyles = {
   };
   
 
-const UserCartModal = ({userId, isOpen, hideToggle, updateCart, cart, products}) => {
+const UserCartModal = ({userId, isOpen, hideToggle, updateCart, cart, newCart, products}) => {
 
     const initialValues = {
         checked: []
     }
 
     const handleUpdatingCart = (checked) => {
-        const productsMapped = [...cart.products]
-        checked.forEach(productId => parseInt(productId));
-        checked.forEach(productId => {
-            if (productsMapped.find(x => `${x.productId}` === `${productId}`)){
-                productsMapped.find(x => `${x.productId}` === `${productId}`).quantity += 1;
-            } else {
-                productsMapped.push({
-                    productId: parseInt(productId),
-                    quantity: 1
-                })
+        if (cart) {
+            const productsMapped = [...cart.products]
+            checked.forEach(productId => parseInt(productId));
+            checked.forEach(productId => {
+                if (productsMapped.find(x => `${x.productId}` === `${productId}`)){
+                    productsMapped.find(x => `${x.productId}` === `${productId}`).quantity += 1;
+                } else {
+                    productsMapped.push({
+                        productId: parseInt(productId),
+                        quantity: 1
+                    })
+                }
+            });
+            console.log(productsMapped)
+            const payload = {
+                ...cart,
+                products: productsMapped
             }
-        });
-        console.log(productsMapped)
-        const payload = {
-            ...cart,
-            products: productsMapped
+
+            updateCart(parseInt(cart.id), payload);
+        } else {
+            const checkedMapped = checked.map(productId => {
+                return {productId: parseInt(productId), quantity: 1};
+            });
+            console.log(checkedMapped)
+            newCart({userId, date: new Date(), products: [...checkedMapped]})
         }
-        updateCart(parseInt(cart.id), payload);
         hideToggle("cart-modal");
     }
+    
 
     return (
         <Modal
@@ -98,7 +108,8 @@ const mapStateToProps = (state, otherProps) => {
 
 const mapDispatchToProps = {
     hideToggle,
-    updateCart
+    updateCart,
+    newCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserCartModal);

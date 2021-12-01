@@ -32,7 +32,7 @@ export const getOneCartOperation = (id) => {
 }
 
 export const updateCart = (cartId, update) => {
-    console.log(cartId, update)
+    // console.log(cartId, update)
     return createAction({
         endpoint: `https://fakestoreapi.com/carts/${cartId}`,
         method: 'PATCH',
@@ -44,6 +44,37 @@ export const updateCart = (cartId, update) => {
             types.ADD_TO_CART_REQUEST,
             types.ADD_TO_CART_SUCCESS,
             types.ADD_TO_CART_FAILURE
+        ]
+    })
+}
+
+export const newCart = (payload) => {
+    return createAction({
+        endpoint: `https://fakestoreapi.com/carts`,
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+        types: [
+            types.NEW_CART_REQUEST,
+            types.NEW_CART_SUCCESS,
+            types.NEW_CART_FAILURE
+        ]
+    })
+}
+
+export const deleteCart = (id) => {
+    return createAction({
+        endpoint: `https://fakestoreapi.com/carts/${id}`,
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        types: [
+            types.DELETE_CART_REQUEST,
+            types.DELETE_CART_SUCCESS,
+            types.DELETE_CART_FAILURE
         ]
     })
 }

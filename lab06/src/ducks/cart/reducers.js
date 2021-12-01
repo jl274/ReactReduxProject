@@ -20,6 +20,13 @@ export const cartReducer = (state=initState, action) => {
                 }
             })
             return {...state, cartsList: newCartsList};
+
+        case types.NEW_CART_SUCCESS:
+            return {...state, cartsList: [...state.cartsList, action.payload]}
+
+        case types.DELETE_CART_SUCCESS:
+            return {...state, cartsList: state.cartsList.filter(cart => `${cart.id}` !== `${action.payload.id}`)}
+
         case types.ADD_TO_CART:
             // const foundCart = state.cartsList.find(cart => `${cart.id}` === `${action.payload.idCart}`);
             // if (foundCart){
