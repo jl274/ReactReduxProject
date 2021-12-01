@@ -8,6 +8,7 @@ import { getProductsLits } from "../../ducks/products/selectors";
 import { showToggle } from "../../ducks/toggler/actions";
 import { getOneUser } from "../../ducks/users/operations";
 import { getUserDetail, getUsersIsLoading } from "../../ducks/users/selectors";
+
 import '../../styles/UserDetail.scss';
 import UserCartModal from "./UserCartModal";
 
@@ -27,8 +28,7 @@ const UserDetail = ({ id, user, loading, getOneUser, history, userCart, products
     }
 
     const handleDelete = () => {
-        console.log(userCart.id)
-        // deleteCart(userCart.id);
+        deleteCart(userCart.id);
     }
 
     return(

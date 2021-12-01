@@ -3,13 +3,18 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getOneProduct } from "../../ducks/products/operations";
 import { getProductDetail, getProductsLoading } from "../../ducks/products/selectors";
+import { getCartsOperation } from "../../ducks/cart/operations";
 import '../../styles/UserDetail.scss';
+import { getAllCarts } from "../../ducks/cart/selectors";
 
-const ProductDetail = ({ id, product, loading, getOneProduct, history }, props) => {
+const ProductDetail = ({ id, product, loading, getOneProduct, history, getCartsOperation, carts }, props) => {
 
     useEffect(()=>{
         if (product === false) {
             getOneProduct(id);
+        }
+        if (carts.length === 0){
+            getCartsOperation()
         }
     }, [])
 
@@ -33,6 +38,20 @@ const ProductDetail = ({ id, product, loading, getOneProduct, history }, props) 
 
                     <label>Description</label>
                     <li>{product.description}</li>
+
+                    <label>In carts</label>
+                    <li>
+                    {carts ? `${carts.reduce((prev, curr) => {
+                            return prev + curr.products.reduce((prev2, curr2)=>{
+                            if (curr2.productId == id){
+                                return prev2 + 1
+                            } else {
+                                return prev2
+                            }
+                            }, 0) 
+                        }, 0)}` : null
+                    }
+                    </li>
                 </ul> : <p>{loading ? 'Loading' : 'User not found'}</p>
             }
             <div className="img">
@@ -49,12 +68,14 @@ const mapStateToProps = (state, otherProps) => {
     return {
         id,
         product: getProductDetail(state, id) ? getProductDetail(state, id) : false,
-        loading: getProductsLoading(state)
+        loading: getProductsLoading(state),
+        carts: getAllCarts(state)
     }
 }
 
 const mapDispatchToProps = {
-    getOneProduct
+    getOneProduct,
+    getCartsOperation
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductDetail));
