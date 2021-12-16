@@ -29,4 +29,29 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.put('/:id', async (req, res) => {
+    const { name, established, country } = req.body;
+    const { id } = req.params;
+
+    if (name && established && country) {
+
+        const exists = await Producer.exists({_id: id});
+
+        if (exists){
+            const date = new Date(established);
+            await Producer.updateOne({_id: id},
+                {name, established: new Date(date), country, offers: []}
+            );
+            const producer = await Producer.find({_id: id})
+
+            return res.json({producer})
+        } else {
+            return res.status(404).json({err: "Producer not found"})
+        }
+
+    } else {
+        return res.status(400).json({err: "Missing arguments"})
+    }
+})
+
 module.exports = router;
