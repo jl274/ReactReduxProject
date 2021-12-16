@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const games = require('./routes/games');
 const producers = require('./routes/producers');
+const offers = require('./routes/offers');
 
 app.use(express.json());
 
 // „Podłączamy” obsługę „endpointów”, które zdefiniowaliśmy dla kolekcji 'users' w katalogu routes/users.js
 app.use('/games', games);
 app.use('/producers', producers);
+app.use('/offers', offers);
 
 require('dotenv').config();
 const dbConnData = {

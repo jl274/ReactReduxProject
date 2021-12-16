@@ -28,12 +28,15 @@ const gameSchema = new Schema({
         default: 10
     },
     producer: {
-        type: [String],
+        type: String,
         required: true
     },
     offers: {
         type: [String],
         required: true
+    },
+    url: {
+        type: String
     }
 });
 
