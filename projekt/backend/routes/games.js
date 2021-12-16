@@ -84,5 +84,26 @@ router.put('/:id', async (req, res) => {
 
 })
 
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+
+        const exists = await Game.exists({_id: id});
+
+        if (exists) {
+
+            await Game.deleteOne({_id: id});
+
+            return res.json({id})
+
+        } else {
+            return res.status(404).json({err: "Game not found"})
+        }
+
+    } catch (err) {
+        return res.status(500).json({err})
+    }
+})
 
 module.exports = router;

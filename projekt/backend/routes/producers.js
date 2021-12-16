@@ -54,4 +54,19 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    const exists = await Producer.exists({_id: id});
+
+    if (exists){
+        
+        await Producer.deleteOne({_id: id})
+
+        return res.json({id})
+    } else {
+        return res.status(404).json({err: "Producer not found"})
+    }
+        
+})
+
 module.exports = router;
