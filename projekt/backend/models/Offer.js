@@ -10,6 +10,10 @@ const offerSchema = new Schema({
         min: 0.01,
         required: true
     },
+    shop: {
+        type: String,
+        required: true
+    },
     link: {
         type: String,
         match: /^.*[.].*$/,
