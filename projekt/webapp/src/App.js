@@ -1,9 +1,11 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import i18next from 'i18next';
-import { initReactI18next /*,useTranslation*/ } from 'react-i18next';
+import { initReactI18next ,useTranslation } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 import languages from './config/languages';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Navbar from './ui/Navbar';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -31,7 +33,7 @@ i18next.use(Backend)
 
 function App() {
 
-  // const { t, i18n } = useTranslation();
+  const { t/*, i18n*/ } = useTranslation();
 
   // const changeLanguage = (lng) => {
   //   i18n.changeLanguage(lng);
@@ -39,22 +41,21 @@ function App() {
   // }
 
   return (
+    // <div className="App">
+    //   {t('welcome')}
+    // </div>
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Navbar />
+      
+      {/* <Switch>
+
+      </Switch> */}
+
     </div>
+  </BrowserRouter>
+
   );
 }
 

@@ -1,0 +1,35 @@
+nav {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 5vw 10px 1vw;
+    height: 10vh;
+
+    background-color: #F6F4F3;
+    z-index: 1;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+
+    div {
+
+        &.logo {
+
+            display: flex;
+            align-items: center;
+
+            p {
+                padding-left: 5px;
+                display: inline;
+                text-transform: uppercase;
+                font-weight: bold;
+
+                &.logo {
+                    padding-left: 0;
+                    font-size: xx-large;
+                }
+            }
+        }
+    }
+}
