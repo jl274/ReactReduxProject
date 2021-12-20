@@ -5,18 +5,24 @@ nav {
     justify-content: space-between;
     align-items: center;
 
-    padding: 10px 1vw;
-    height: 10vh;
-    max-height: 100px;
+    padding: 10px 0;
+    height: 70px;
+    // height: 10vh;
+    // max-height: 100px;
 
     background-color: #F6F4F3;
     z-index: 1;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 
+    position: fixed;
+    top: 0;
+    width: 100%;
+
     div {
 
         &.logo {
 
+            padding: 10px 1vw;
             display: flex;
             align-items: center;
 
