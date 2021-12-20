@@ -1,7 +1,11 @@
 .App {
   text-align: center;
   background-color: #E5DFDF;
-  height: 100vh;
+  /* height: 100vh; */
+}
+
+body {
+  background-color: #E5DFDF;
 }
 
 .App-logo {

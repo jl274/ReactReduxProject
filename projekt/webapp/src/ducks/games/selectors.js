@@ -1,0 +1,1 @@
+export const getAllGames = (state) => state.entities.games.allIds.map(id => state.entities.games.byId[id]);
