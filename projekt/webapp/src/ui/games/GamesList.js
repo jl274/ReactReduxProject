@@ -15,9 +15,20 @@ const GamesList = ({games, getGamesFromDB}) => {
         <div className='itemsList'>
             <h2>Games</h2>
             <ul>
-                <li>Test</li>
                 {games ? games.map(game => 
-                    <li key={game.id}>{game.name}</li>
+                    <li key={game.id}>
+                        <div className='img'>
+                            <img src={game.url} alt='Cover' ></img>
+                        </div>
+                        <div className='info'>
+                            <div className='gameName'>{game.name}</div>
+                            <div className='otherInfo'>
+                                <div>Genre: {game.genre}</div>
+                                <div>Producer: {game.producer}</div>
+                            </div>
+                        </div>
+                        <div>More</div>
+                    </li>
                 ) : null}
             </ul>
         </div>
