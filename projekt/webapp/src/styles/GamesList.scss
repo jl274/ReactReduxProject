@@ -16,13 +16,11 @@ div.itemsList {
 
         li {
             list-style: none;
-            // display: flex;
-            // flex-direction: row;
-            // justify-content: space-between;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 10px;
             padding: 10px 5px;
+            margin: 20px 0;
 
             div {
                 grid-column: span 1;
