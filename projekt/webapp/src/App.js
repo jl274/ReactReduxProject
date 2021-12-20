@@ -6,6 +6,7 @@ import Backend from 'i18next-http-backend';
 import languages from './config/languages';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './ui/Navbar';
+import GamesList from './ui/games/GamesList';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -49,9 +50,11 @@ function App() {
 
       <Navbar />
       
-      {/* <Switch>
-
-      </Switch> */}
+      <Switch>
+        <Route path='/'>
+          <GamesList />
+        </Route>
+      </Switch>
 
     </div>
   </BrowserRouter>
