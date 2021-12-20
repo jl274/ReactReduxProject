@@ -1,14 +1,8 @@
 {
-    "welcome": "Welcome to react",
-    "delete": "Delete",
-    "todoHeader": "To do",
-    "common": {
-        "delete": "Archive"
-    },
-    "users": {
-
-    },
-    "todo": {
-        
+    "gameList": {
+        "h2": "Games",
+        "genre": "Genre: ",
+        "producer": "Producer: ",
+        "moreBtn": "More"
     }
 }

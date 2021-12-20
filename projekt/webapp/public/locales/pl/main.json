@@ -1,14 +1,8 @@
 {
-    "welcome": "Witaj swiecie",
-    "delete": "Usuń",
-    "todoHeader": "Do zrobienia",
-    "common": {
-        "delete": "Archiwizuj"
-    },
-    "users": {
-
-    },
-    "todo": {
-        
+    "gameList": {
+        "h2": "Gry",
+        "genre": "Gatunek: ",
+        "producer": "Producent: ",
+        "moreBtn": "Więcej"
     }
 }

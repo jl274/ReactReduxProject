@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import {connect} from 'react-redux';
 import { getGamesFromDB } from '../../ducks/games/operations';
 import { getAllGames } from '../../ducks/games/selectors';
+import { useTranslation } from 'react-i18next';
 import '../../styles/GamesList.scss';
 
 
@@ -11,9 +12,11 @@ const GamesList = ({games, getGamesFromDB}) => {
         getGamesFromDB()
     }, [getGamesFromDB]);
 
+    const { t } = useTranslation();
+
     return (
         <div className='itemsList'>
-            <h2>Games</h2>
+            <h2>{t('gameList.h2')}</h2>
             <ul>
                 {games ? games.map(game => 
                     <li key={game.id}>
@@ -23,11 +26,15 @@ const GamesList = ({games, getGamesFromDB}) => {
                         <div className='info'>
                             <div className='gameName'>{game.name}</div>
                             <div className='otherInfo'>
-                                <div>Genre: {game.genre}</div>
-                                <div>Producer: {game.producer}</div>
+                                <div>{t('gameList.genre')}{game.genre}</div>
+                                <div>{t('gameList.producer')}{game.producer}</div>
                             </div>
                         </div>
-                        <div>More</div>
+                        <div>
+                            <button>
+                                {t('gameList.moreBtn')}
+                            </button>
+                        </div>
                     </li>
                 ) : null}
             </ul>

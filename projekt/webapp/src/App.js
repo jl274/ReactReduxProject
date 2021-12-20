@@ -15,7 +15,7 @@ i18next.use(Backend)
   // .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    lng: language || 'pl',
+    lng: language || 'eng',
     fallbackLng: 'en',
     ns: [ 'main' ],
     defaultNS: 'main',
@@ -33,13 +33,6 @@ i18next.use(Backend)
 
 
 function App() {
-
-  const { t/*, i18n*/ } = useTranslation();
-
-  // const changeLanguage = (lng) => {
-  //   i18n.changeLanguage(lng);
-  //   localStorage.setItem('language', lng);
-  // }
 
   return (
     // <div className="App">
