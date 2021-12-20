@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import {connect} from 'react-redux';
 import { getGamesFromDB } from '../../ducks/games/operations';
+import '../../styles/GamesList.scss';
 
 
 const GamesList = ({getGamesFromDB}) => {
@@ -10,8 +11,11 @@ const GamesList = ({getGamesFromDB}) => {
     }, [getGamesFromDB]);
 
     return (
-        <div>
-            Test
+        <div className='itemsList'>
+            <h2>Games</h2>
+            <ul>
+                <li>Test</li>
+            </ul>
         </div>
     )
 };
