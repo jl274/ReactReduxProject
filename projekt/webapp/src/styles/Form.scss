@@ -29,16 +29,22 @@ div.form {
                 letter-spacing: 0.2em;
             }
 
+            * > .invalid {
+                box-shadow: 0 0 3px 2px rgb(255, 84, 84);
+            }
+
             select {
                 border: 1px solid #E5DFDF;
                 border-radius: 20px;
                 padding: 5px;
+                background-color: #f5f5f5;
             }
 
             input {
                 border: 1px solid #E5DFDF;
                 border-radius: 20px;
-                padding: 5px;
+                padding: 5px 10px;
+                background-color: #f5f5f5;
             }
 
             textarea {
@@ -47,6 +53,14 @@ div.form {
                 padding: 10px;
                 min-width: 300px;
                 min-height: 100px;
+                background-color: #f5f5f5;
+            }
+
+            div.errorMessage {
+                font-size: x-small;
+                color: gray;
+                text-transform: uppercase;
+                padding: 5px 10px;
             }
 
             // &.leftForm {
@@ -62,6 +76,27 @@ div.form {
             margin-top: 30px;
             grid-column: 2/3;
             grid-row: 2/3;
+
+            background-color: #7F4677;
+            color: white;
+            border-radius: 30px;
+            border: none;
+            width: 100px;
+            padding: 5px 10px;
+            text-transform: uppercase;
+
+            &:hover {
+                cursor: pointer;
+                background-color: white;
+                color: #7F4677;
+                box-shadow:inset 0px 0px 0px 1px #7F4677;
+            }
+
+            &.disabled {
+                background-color: #E5DFDF;
+                cursor: not-allowed;
+                color: white;
+            }
         }
     }
 }
