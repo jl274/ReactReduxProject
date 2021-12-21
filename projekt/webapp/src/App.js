@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { getProducersFromDB } from './ducks/producers/operations';
 import { getOffersFromDB } from './ducks/offers/operations';
 import { getGamesFromDB } from './ducks/games/operations';
+import GameForm from './ui/games/GameForm';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -53,6 +54,9 @@ function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
       <Navbar />
       
       <Switch>
+        <Route path='/add-new'>
+          <GameForm />
+        </Route>
         <Route path='/'>
           <GamesList />
         </Route>
