@@ -10,6 +10,7 @@ import GamesList from './ui/games/GamesList';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getProducersFromDB } from './ducks/producers/operations';
+import { getOffersFromDB } from './ducks/offers/operations';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -35,11 +36,12 @@ i18next.use(Backend)
 })
 
 
-function App({getProducersFromDB}) {
+function App({getProducersFromDB, getOffersFromDB}) {
 
   useEffect(()=>{
-    getProducersFromDB()
-  }, [getProducersFromDB]);
+    getProducersFromDB();
+    getOffersFromDB();
+  }, [getOffersFromDB, getProducersFromDB]);
 
   return (
 
@@ -61,7 +63,8 @@ function App({getProducersFromDB}) {
 }
 
 const mapDispatchToProps = {
-  getProducersFromDB
+  getProducersFromDB,
+  getOffersFromDB
 }
 
 export default connect(null, mapDispatchToProps)(App);
