@@ -1,16 +1,10 @@
-import { useEffect } from 'react';
 import {connect} from 'react-redux';
-import { getGamesFromDB } from '../../ducks/games/operations';
 import { getAllGames } from '../../ducks/games/selectors';
 import { useTranslation } from 'react-i18next';
 import '../../styles/GamesList.scss';
 
 
-const GamesList = ({games, getGamesFromDB}) => {
-
-    useEffect(() => {
-        getGamesFromDB()
-    }, [getGamesFromDB]);
+const GamesList = ({games}) => {
 
     const { t } = useTranslation();
 
@@ -49,7 +43,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    getGamesFromDB
+    
 }
 
 

@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import i18next from 'i18next';
-import { initReactI18next ,useTranslation } from 'react-i18next';
+import { initReactI18next  } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 import languages from './config/languages';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getProducersFromDB } from './ducks/producers/operations';
 import { getOffersFromDB } from './ducks/offers/operations';
+import { getGamesFromDB } from './ducks/games/operations';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -36,12 +37,13 @@ i18next.use(Backend)
 })
 
 
-function App({getProducersFromDB, getOffersFromDB}) {
+function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
 
   useEffect(()=>{
     getProducersFromDB();
     getOffersFromDB();
-  }, [getOffersFromDB, getProducersFromDB]);
+    getGamesFromDB();
+  }, [getGamesFromDB, getOffersFromDB, getProducersFromDB]);
 
   return (
 
@@ -64,7 +66,8 @@ function App({getProducersFromDB, getOffersFromDB}) {
 
 const mapDispatchToProps = {
   getProducersFromDB,
-  getOffersFromDB
+  getOffersFromDB,
+  getGamesFromDB
 }
 
 export default connect(null, mapDispatchToProps)(App);
