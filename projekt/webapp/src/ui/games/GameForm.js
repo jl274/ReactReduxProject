@@ -7,12 +7,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { getAllProducers } from '../../ducks/producers/selectors';
 import { useTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-const GameForm = ({producers}) => {
+const GameForm = ({producers, history}) => {
 
     const { t } = useTranslation();
+
+    const goBack = () => {
+        history.push('/');
+    }
 
     const initialValues = {
         name: "",
@@ -65,7 +70,7 @@ const GameForm = ({producers}) => {
         <div className='form'>
             <h2>
                 {t('gameForm.h2')}
-                <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="up">
+                <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="up" onClick={goBack}>
                     {returnArrow}
                 </div>
             </h2>
@@ -141,5 +146,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-
-export default connect(mapStateToProps, null)(GameForm);
+export default withRouter(connect(mapStateToProps, null)(GameForm));
