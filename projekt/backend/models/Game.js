@@ -37,6 +37,9 @@ const gameSchema = new Schema({
     },
     url: {
         type: String
+    },
+    description: {
+        type: String
     }
 });
 
