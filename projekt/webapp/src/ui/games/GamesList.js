@@ -2,11 +2,16 @@ import {connect} from 'react-redux';
 import { getAllGames } from '../../ducks/games/selectors';
 import { useTranslation } from 'react-i18next';
 import '../../styles/GamesList.scss';
+import { getAllProducers } from '../../ducks/producers/selectors';
 
 
-const GamesList = ({games}) => {
+const GamesList = ({games, producers}) => {
 
     const { t } = useTranslation();
+
+    const getProducerNameFromId = (id) => {
+        return producers.find(x => x.id === id).name;
+    }
 
     return (
         <div className='itemsList'>
@@ -21,7 +26,7 @@ const GamesList = ({games}) => {
                             <div className='gameName'>{game.name}</div>
                             <div className='otherInfo'>
                                 <div>{t('gameList.genre')}{game.genre}</div>
-                                <div>{t('gameList.producer')}{game.producer}</div>
+                                <div>{t('gameList.producer')}{getProducerNameFromId(game.producer)}</div>
                             </div>
                         </div>
                         <div>
@@ -38,7 +43,8 @@ const GamesList = ({games}) => {
 
 const mapStateToProps = (state) => {
     return {
-        games: getAllGames(state)
+        games: getAllGames(state),
+        producers: getAllProducers(state)
     }
 }
 
