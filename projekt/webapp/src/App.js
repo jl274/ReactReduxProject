@@ -7,6 +7,9 @@ import languages from './config/languages';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './ui/Navbar';
 import GamesList from './ui/games/GamesList';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getProducersFromDB } from './ducks/producers/operations';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -32,12 +35,14 @@ i18next.use(Backend)
 })
 
 
-function App() {
+function App({getProducersFromDB}) {
+
+  useEffect(()=>{
+    getProducersFromDB()
+  }, [getProducersFromDB]);
 
   return (
-    // <div className="App">
-    //   {t('welcome')}
-    // </div>
+
     <BrowserRouter>
     <div className="App">
 
@@ -55,4 +60,8 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = {
+  getProducersFromDB
+}
+
+export default connect(null, mapDispatchToProps)(App);
