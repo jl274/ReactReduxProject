@@ -4,5 +4,19 @@
         "genre": "Genre: ",
         "producer": "Producer: ",
         "moreBtn": "More"
+    },
+    "gameForm": {
+        "h2": "Add new game",
+        "form": {
+            "title": "Title*",
+            "genre": "Genre*",
+            "description": "Description",
+            "complexity": "Complexity score*",
+            "minAge": "Minimum recommended age",
+            "playingTime": "Average playing time",
+            "producer": "Producer*",
+            "url": "Image url",
+            "button": "Add"
+        }
     }
 }

@@ -54,7 +54,7 @@ function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
       <Navbar />
       
       <Switch>
-        <Route path='/add-new'>
+        <Route path='/new-game'>
           <GameForm />
         </Route>
         <Route path='/'>

@@ -4,5 +4,19 @@
         "genre": "Gatunek: ",
         "producer": "Producent: ",
         "moreBtn": "Więcej"
+    },
+    "gameForm": {
+        "h2": "Dodaj nową grę",
+        "form": {
+            "title": "Tytuł*",
+            "genre": "Gatunek*",
+            "description": "Opis",
+            "complexity": "Punktacja trudności*",
+            "minAge": "Rekomendowany minimalny wiek",
+            "playingTime": "Średni czas gry",
+            "producer": "Producent*",
+            "url": "Url obrazka",
+            "button": "Dodaj"
+        }
     }
 }

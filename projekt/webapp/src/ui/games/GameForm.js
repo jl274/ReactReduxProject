@@ -3,8 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import '../../styles/Form.scss';
 import { getAllProducers } from '../../ducks/producers/selectors';
+import { useTranslation } from 'react-i18next';
 
 const GameForm = ({producers}) => {
+
+    const { t } = useTranslation();
 
     const initialValues = {
         name: "",
@@ -55,7 +58,7 @@ const GameForm = ({producers}) => {
 
     return (
         <div className='form'>
-            <h2>Add new game</h2>
+            <h2>{t('gameForm.h2')}</h2>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
@@ -64,17 +67,17 @@ const GameForm = ({producers}) => {
                 <Form>
                     <div className='leftForm'>
                         <div className="group">
-                            <label>Title*</label>
+                            <label>{t('gameForm.form.title')}</label>
                             <Field type="text" name="name" className={`${errors.name && touched.name ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="name" component="div" className="errorMessage"/>
                         </div>
                         <div className="group">
-                            <label>Genre*</label>
+                            <label>{t('gameForm.form.genre')}</label>
                             <Field type="text" name="genre" className={`${errors.genre && touched.genre ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="genre" component="div" className="errorMessage"/>
                         </div>
                         <div className="group">
-                            <label>Description</label>
+                            <label>{t('gameForm.form.description')}</label>
                             <Field as="textarea" type="text" name="description" 
                             className={`${errors.description && touched.description ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="description" component="div" className="errorMessage"/>
@@ -82,25 +85,25 @@ const GameForm = ({producers}) => {
                     </div>
                     <div className='rightForm'>
                         <div className="group">
-                            <label>Complexity score*</label>
+                            <label>{t('gameForm.form.complexity')}</label>
                             <Field type="number" name="complexity" step="1" 
                             className={`${errors.complexity && touched.complexity ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="complexity" component="div" className="errorMessage"/>
                         </div>
                         <div className="group">
-                            <label>Minimum recommended age</label>
+                            <label>{t('gameForm.form.minAge')}</label>
                             <Field type="number" name="minAge" step="1" 
                             className={`${errors.minAge && touched.minAge ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="minAge" component="div" className="errorMessage"/>
                         </div>
                         <div className="group">
-                            <label>Average playing time</label>
+                            <label>{t('gameForm.form.playingTime')}</label>
                             <Field type="number" name="playingTime" step="1"
                             className={`${errors.playingTime && touched.playingTime ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="playingTime" component="div" className="errorMessage"/>
                         </div>
                         <div className='group'>
-                            <label>Producer*</label>
+                            <label>{t('gameForm.form.producer')}</label>
                             <Field as="select" id="producer" name="producer" className={`${errors.producer && touched.producer ? `invalid` : ``}`}>
                                 <option value={null}>---</option>
                                 {producers ? producers.map(producer => 
@@ -108,12 +111,12 @@ const GameForm = ({producers}) => {
                             </Field>
                         </div>
                         <div className="group">
-                            <label>Image url</label>
+                            <label>{t('gameForm.form.url')}</label>
                             <Field type="text" name="url" className={`${errors.url && touched.url ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="url" component="div" className="errorMessage"/>
                         </div>
                     </div>
-                    <button type='submit' disabled={!isValid} className={`${isValid ? '' : 'disabled'}`}>Add</button>
+                    <button type='submit' disabled={!isValid} className={`${isValid ? '' : 'disabled'}`}>{t('gameForm.form.button')}</button>
                 </Form>
                 }
 
