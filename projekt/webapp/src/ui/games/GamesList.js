@@ -3,6 +3,11 @@ import { getAllGames } from '../../ducks/games/selectors';
 import { useTranslation } from 'react-i18next';
 import '../../styles/GamesList.scss';
 import { getAllProducers } from '../../ducks/producers/selectors';
+import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
+const plus = <FontAwesomeIcon icon={faPlus} />
 
 
 const GamesList = ({games, producers}) => {
@@ -16,6 +21,9 @@ const GamesList = ({games, producers}) => {
     return (
         <div className='itemsList'>
             <h2>{t('gameList.h2')}</h2>
+            <div>
+                <button><Link to='/new-game'>{t('gameList.add')} {plus}</Link></button>
+            </div>
             <ul>
                 {games ? games.map(game => 
                     <li key={game.id}>

@@ -11,6 +11,22 @@ div.itemsList {
         border-radius: 30px;
     }
 
+    div {
+
+        button {
+            border: none;
+            text-transform: uppercase;
+            background-color: transparent;
+            font-size: medium;
+            font-weight: bolder;
+
+            a {
+                text-decoration: none;
+                color: #7F4677;
+            }
+        }
+    }
+
     ul {
         padding: 30px 30px;
 
@@ -40,6 +56,9 @@ div.itemsList {
     
                     div.gameName {
                         border-bottom: 1px solid #7F4677;
+                        color: #7F4677;
+                        text-transform: uppercase;
+                        font-weight: bold;
                     }
 
                     div.otherInfo {

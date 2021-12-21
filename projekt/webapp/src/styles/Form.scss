@@ -8,6 +8,17 @@ div.form {
         background-color: #7F4677;
         color: white;
         border-radius: 30px;
+        position: relative;
+
+        div.arrow {
+            position: absolute;
+            left: 15px;
+            top: 10px;
+           
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 
     form {
@@ -100,3 +111,4 @@ div.form {
         }
     }
 }
+

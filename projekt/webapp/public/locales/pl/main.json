@@ -3,10 +3,12 @@
         "h2": "Gry",
         "genre": "Gatunek: ",
         "producer": "Producent: ",
-        "moreBtn": "Więcej"
+        "moreBtn": "Więcej",
+        "add": "Dodaj nową grę"
     },
     "gameForm": {
         "h2": "Dodaj nową grę",
+        "return": "Wróć do poprzedniej strony",
         "form": {
             "title": "Tytuł*",
             "genre": "Gatunek*",

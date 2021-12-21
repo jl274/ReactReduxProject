@@ -3,10 +3,12 @@
         "h2": "Games",
         "genre": "Genre: ",
         "producer": "Producer: ",
-        "moreBtn": "More"
+        "moreBtn": "More",
+        "add": "Add new game"
     },
     "gameForm": {
         "h2": "Add new game",
+        "return": "Return to previous page",
         "form": {
             "title": "Title*",
             "genre": "Genre*",

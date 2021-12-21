@@ -73,7 +73,8 @@ nav {
                     }
 
                     &.active {
-                        box-shadow: 0 0 1px 1px #7F4677;
+                        // box-shadow: 0 0 1px 1px #7F4677;
+                        font-style: italic;
                     }
                 }
             }

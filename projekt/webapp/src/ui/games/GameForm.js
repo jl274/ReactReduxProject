@@ -2,8 +2,13 @@ import { connect } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import '../../styles/Form.scss';
+import '../../styles/Tooltip.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { getAllProducers } from '../../ducks/producers/selectors';
 import { useTranslation } from 'react-i18next';
+
+const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
 const GameForm = ({producers}) => {
 
@@ -58,7 +63,12 @@ const GameForm = ({producers}) => {
 
     return (
         <div className='form'>
-            <h2>{t('gameForm.h2')}</h2>
+            <h2>
+                {t('gameForm.h2')}
+                <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="up">
+                    {returnArrow}
+                </div>
+            </h2>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
