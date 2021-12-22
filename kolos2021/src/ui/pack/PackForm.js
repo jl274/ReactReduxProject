@@ -7,8 +7,7 @@ const PackForm = ({addNewPack, history}) => {
 
     const initialValues = {
         title: "",
-        name: "",
-        surname: ""
+        name: ""
     }
 
     const submit = (packInfo) => {
@@ -28,10 +27,14 @@ const PackForm = ({addNewPack, history}) => {
                 <Form>
                     <label>Game title</label>
                     <Field type="text" name="title"></Field>
-                    <label>Name</label>
+                    {/* <label>Name</label>
                     <Field type="text" name="name"></Field>
                     <label>Surname</label>
-                    <Field type="text" name="surname"></Field>
+                    <Field type="text" name="surname"></Field> */}
+                    <Field as="select" id="producer" name="name">
+                        <option value={null}>---</option>
+                    </Field>
+
                     <button type="submit">Dodaj</button>
                 </Form>}
 

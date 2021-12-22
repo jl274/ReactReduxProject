@@ -16,6 +16,11 @@ function App() {
           <Route path='/add'>
             <PackForm />
           </Route>
+
+          <Route path='/:id'>
+            test
+          </Route>
+
           <Route path='/'>
             <PackList />
           </Route>
