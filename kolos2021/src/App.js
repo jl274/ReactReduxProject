@@ -1,8 +1,9 @@
 // import { useEffect, useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 import PackList from './ui/pack/PackList';
+import PackForm from './ui/pack/PackForm';
 
 function App() {
 
@@ -12,6 +13,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
+          <Route path='/add'>
+            <PackForm />
+          </Route>
           <Route path='/'>
             <PackList />
           </Route>
