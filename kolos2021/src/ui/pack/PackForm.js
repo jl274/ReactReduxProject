@@ -1,7 +1,9 @@
 import { Field, Form, Formik } from "formik";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
+import { addNewPack } from "../../ducks/pack/actions";
 
-const PackForm = () => {
+const PackForm = ({addNewPack, history}) => {
 
     const initialValues = {
         title: "",
@@ -9,10 +11,17 @@ const PackForm = () => {
         surname: ""
     }
 
+    const submit = (packInfo) => {
+        const randomId = Math.floor(Math.random()*10000);
+        addNewPack(randomId, packInfo);
+        history.push('/')
+    }
+
     return (
         <div className="form">
             <Formik
                 initialValues={initialValues}
+                onSubmit={(values)=>{submit(values)}}
             >
 
                 {() => 
@@ -31,4 +40,8 @@ const PackForm = () => {
     )
 }
 
-export default connect(null, null)(PackForm);
+const mapDispatchToProps = {
+    addNewPack
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(PackForm));
