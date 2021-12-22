@@ -11,7 +11,7 @@ const PackList = ({packs, deletePack}) => {
             </div>
             <ul>
                 {packs ? packs.map(x => <li key={x.id}><Link to={`/${x.id}`}>Paczka do {x.name}</Link>
-                <button onClick={()=>{deletePack(x.id)}}>Usuń</button></li>) : <li>No packs yet</li>}
+                <Link to={`/${x.id}/edit`}><button>Edytuj</button></Link>/<button onClick={()=>{deletePack(x.id)}}>Usuń</button></li>) : <li>No packs yet</li>}
             </ul>
         </div>
     )

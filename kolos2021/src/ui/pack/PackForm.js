@@ -1,20 +1,26 @@
 import { Field, Form, Formik } from "formik";
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
-import { addNewPack } from "../../ducks/pack/actions";
+import { addNewPack, editPack } from "../../ducks/pack/actions";
+import { getPackById } from "../../ducks/pack/selectors";
 
-const PackForm = ({addNewPack, history}) => {
+const PackForm = ({addNewPack, history, id, pack, editPack}) => {
 
-    const initialValues = {
+    const initialValues = id ? {title: pack.title, name: pack.name, extended: pack.extended} : {
         title: "",
         name: "",
         extended: false
     }
 
     const submit = (packInfo) => {
-        const randomId = Math.floor(Math.random()*10000);
-        addNewPack(randomId, packInfo);
-        history.push('/')
+        if (id){
+            editPack(id, packInfo);
+            history.push('/')
+        } else {
+            const randomId = Math.floor(Math.random()*10000);
+            addNewPack(randomId, packInfo);
+            history.push('/')
+        }
     }
 
     const names = ["Andrzej Kowalski", "Mateusz Mateuszowski", "Jakub Lendzinski", "Jack Frost", "Mikołaj Święty",
@@ -22,6 +28,7 @@ const PackForm = ({addNewPack, history}) => {
 
     return (
         <div className="form">
+            <h2>{id ? "Edycja" : "Dodanie"}</h2>
             <Formik
                 initialValues={initialValues}
                 onSubmit={(values)=>{submit(values)}}
@@ -29,6 +36,7 @@ const PackForm = ({addNewPack, history}) => {
 
                 {({values}) => 
                 <Form>
+                    
                     <label>Tytuł gry:</label>
                     <Field type="text" name="title"></Field>
                     <label>Do: </label>
@@ -48,7 +56,7 @@ const PackForm = ({addNewPack, history}) => {
                         </label>
                         
                     </div>
-                    <button type="submit">Dodaj</button>
+                    <button type="submit">{id ? "Edytuj" : "Dodaj"}</button>
                 </Form>}
 
             </Formik>
@@ -56,8 +64,17 @@ const PackForm = ({addNewPack, history}) => {
     )
 }
 
-const mapDispatchToProps = {
-    addNewPack
+const mapStateToProps = (state, otherProps) => {
+    const { match: {params: {id}} } = otherProps;
+    return {
+        id,
+        pack: getPackById(state, id)
+    }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(PackForm));
+const mapDispatchToProps = {
+    addNewPack,
+    editPack
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PackForm));

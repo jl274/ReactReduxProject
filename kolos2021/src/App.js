@@ -14,6 +14,11 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
+
+          <Route path='/:id/edit'>
+            <PackForm />
+          </Route>
+
           <Route path='/add'>
             <PackForm />
           </Route>

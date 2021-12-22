@@ -13,3 +13,10 @@ export const deletePack = (id) => {
         payload: id
     }
 }
+
+export const editPack = (id, packInfo) => {
+    return {
+        type: types.EDIT,
+        payload: {id, ...packInfo}
+    }
+}
