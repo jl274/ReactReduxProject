@@ -1,0 +1,1 @@
+export const getAllPackList = (state) => state.packs;
