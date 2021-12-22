@@ -9,6 +9,9 @@ export const packReducer = (store=initState, action) => {
         case types.ADD:
             return [...store, action.payload];
 
+        case types.DELETE:
+            return store.filter(x => x.id !== action.payload);
+
         default:
             return store;
     }

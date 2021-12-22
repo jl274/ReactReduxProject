@@ -6,3 +6,10 @@ export const addNewPack = (id, packInfo) => {
         payload: {id, ...packInfo}
     }
 }
+
+export const deletePack = (id) => {
+    return{
+        type: types.DELETE,
+        payload: id
+    }
+}
