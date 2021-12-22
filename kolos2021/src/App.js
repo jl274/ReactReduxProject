@@ -1,5 +1,5 @@
 // import { useEffect, useState } from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 import PackList from './ui/pack/PackList';
