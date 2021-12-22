@@ -9,7 +9,7 @@ const PackList = ({packs}) => {
                 <Link to="/add">Dodaj nową paczkę</Link>
             </div>
             <ul>
-                {packs ? packs.map(x => <li key={x.id}><Link to={`/${x.id}`}>Paczka do {x.name} {x.surname}</Link></li>) : <li>No packs yet</li>}
+                {packs ? packs.map(x => <li key={x.id}><Link to={`/${x.id}`}>Paczka do {x.name}</Link></li>) : <li>No packs yet</li>}
             </ul>
         </div>
     )

@@ -1,6 +1,6 @@
 import { types } from './types';
 
-const initState = [{id: 0, title: "Monopoly", name: "Andrzej Kowalski"}];
+const initState = [{id: 0, title: "Monopoly", name: "Andrzej Kowalski", extended: false}];
 
 export const packReducer = (store=initState, action) => {
 

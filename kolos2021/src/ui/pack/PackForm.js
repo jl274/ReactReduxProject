@@ -7,7 +7,8 @@ const PackForm = ({addNewPack, history}) => {
 
     const initialValues = {
         title: "",
-        name: ""
+        name: "",
+        extended: false
     }
 
     const submit = (packInfo) => {
@@ -16,6 +17,9 @@ const PackForm = ({addNewPack, history}) => {
         history.push('/')
     }
 
+    const names = ["Andrzej Kowalski", "Mateusz Mateuszowski", "Jakub Lendzinski", "Jack Frost", "Mikołaj Święty",
+        "Witold Wacław", "Filip Bidet", "Michał Michalski"];
+
     return (
         <div className="form">
             <Formik
@@ -23,17 +27,26 @@ const PackForm = ({addNewPack, history}) => {
                 onSubmit={(values)=>{submit(values)}}
             >
 
-                {() => 
+                {({values}) => 
                 <Form>
-                    <label>Game title</label>
+                    <label>Tytuł gry:</label>
                     <Field type="text" name="title"></Field>
-                    {/* <label>Name</label>
-                    <Field type="text" name="name"></Field>
-                    <label>Surname</label>
-                    <Field type="text" name="surname"></Field> */}
+                    <label>Do: </label>
                     <Field as="select" id="producer" name="name">
                         <option value={null}>---</option>
+                        {names.map(name => <option key={name} value={name}>{name}</option>)}
                     </Field>
+                    <label>Wersja rozszerzona: </label>
+                    <div role="group" aria-labelledby="my-radio-group">
+                        <label>
+                        <Field type="radio" name="extended" value={true} />
+                        Tak
+                        </label>
+                        <label>
+                        <Field type="radio" name="extended" value={false} />
+                        Nie
+                        </label>
+                    </div>
 
                     <button type="submit">Dodaj</button>
                 </Form>}
