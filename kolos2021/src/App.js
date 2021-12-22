@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import PackList from './ui/pack/PackList';
 import PackForm from './ui/pack/PackForm';
+import PackDetails from './ui/pack/PackDetails';
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
           </Route>
 
           <Route path='/:id'>
-            test
+            <PackDetails />
           </Route>
 
           <Route path='/'>

@@ -39,15 +39,15 @@ const PackForm = ({addNewPack, history}) => {
                     <label>Wersja rozszerzona: </label>
                     <div role="group" aria-labelledby="my-radio-group">
                         <label>
-                        <Field type="radio" name="extended" value={true} />
+                        <Field type="radio" name="extended" value={true} checked={values.extended === true} />
                         Tak
                         </label>
                         <label>
-                        <Field type="radio" name="extended" value={false} />
+                        <Field type="radio" name="extended" value={false} checked={values.extended === false}/>
                         Nie
                         </label>
+                        
                     </div>
-
                     <button type="submit">Dodaj</button>
                 </Form>}
 
