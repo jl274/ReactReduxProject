@@ -26,8 +26,7 @@ i18next.use(Backend)
     ns: [ 'main' ],
     defaultNS: 'main',
     react: {
-      wait: true,
-      useSuspense: false
+      useSuspense: true
     },
     interpolation: {
       escapeValue: false
