@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
-    const { idProducer, name, genre, playingTime, url, complexity, minAge } = req.body;
+    const { idProducer, name, genre, playingTime, url, complexity, minAge, description } = req.body;
 
     if (idProducer && name && genre && complexity){
 
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
 
                 const game = await Game.create({
                     name, genre, playingTime, complexity, minAge, 
-                    producer: idProducer, offers: [], url
+                    producer: idProducer, offers: [], url, description
                 });
 
                 return res.json({game})

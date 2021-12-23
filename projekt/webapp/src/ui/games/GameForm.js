@@ -8,10 +8,11 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { getAllProducers } from '../../ducks/producers/selectors';
 import { useTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
+import { sendGameToDB } from '../../ducks/games/operations';
 
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-const GameForm = ({producers, history}) => {
+const GameForm = ({producers, history, sendGameToDB}) => {
 
     const { t } = useTranslation();
 
@@ -19,12 +20,17 @@ const GameForm = ({producers, history}) => {
         history.push('/');
     }
 
+    const postGame = (values) => {
+        sendGameToDB(values);
+        goBack();
+    }
+
     const initialValues = {
         name: "",
         genre: "",
         complexity: 1,
         minAge: 5,
-        producer: "",
+        idProducer: "",
         playingTime: 15,
         url: "",
         description: ""
@@ -50,7 +56,7 @@ const GameForm = ({producers, history}) => {
             .integer("Minimum age is an integer")
             .min(5, "Minimum age must be >= 5 and <= 120")
             .max(120, "Minimum age must be >= 5 and <= 120"),
-        producer: Yup
+        idProducer: Yup
             .string()
             .required(),
         playingTime: Yup
@@ -77,6 +83,7 @@ const GameForm = ({producers, history}) => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
+                onSubmit={(values)=>{postGame(values);}}
             >
                 {({errors, touched, isValid}) => 
                 <Form>
@@ -119,10 +126,10 @@ const GameForm = ({producers, history}) => {
                         </div>
                         <div className='group'>
                             <label>{t('gameForm.form.producer')}</label>
-                            <Field as="select" id="producer" name="producer" className={`${errors.producer && touched.producer ? `invalid` : ``}`}>
+                            <Field as="select" id="producer" name="idProducer" className={`${errors.idProducer && touched.idProducer ? `invalid` : ``}`}>
                                 <option value={null}>---</option>
                                 {producers ? producers.map(producer => 
-                                <option key={producer.name} value={producer.name}>{producer.name}</option>) : null}
+                                <option key={producer.name} value={producer.id}>{producer.name}</option>) : null}
                             </Field>
                         </div>
                         <div className="group">
@@ -131,7 +138,10 @@ const GameForm = ({producers, history}) => {
                             <ErrorMessage name="url" component="div" className="errorMessage"/>
                         </div>
                     </div>
-                    <button type='submit' disabled={!isValid} className={`${isValid ? '' : 'disabled'}`}>{t('gameForm.form.button')}</button>
+                    <button type='submit' disabled={!isValid} className={`${isValid ? '' : 'disabled'}`}
+                    >
+                        {t('gameForm.form.button')}
+                    </button>
                 </Form>
                 }
 
@@ -146,4 +156,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, null)(GameForm));
+const mapDispatchToProps = {
+    sendGameToDB
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GameForm));

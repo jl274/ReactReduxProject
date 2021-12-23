@@ -15,7 +15,11 @@ const GamesList = ({games, producers}) => {
     const { t } = useTranslation();
 
     const getProducerNameFromId = (id) => {
+        if (producers){
         return producers.find(x => x.id === id).name;
+        } else {
+            return "Error occured"
+        }
     }
 
     return (

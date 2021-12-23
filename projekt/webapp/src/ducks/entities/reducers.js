@@ -45,6 +45,22 @@ const entityReducer = (entity, state = { allIds: [], byId: {} }, action) => {
                 },
                 allIds: Object.keys(actionEntities)
             }
+        case 'POST':
+            return {
+                byId: {
+                    ...state.byId,
+                    ...Object.keys(actionEntities).reduce(
+                        (acc, id) => ({
+                            ...acc,
+                            [id]: {
+                                // ...state.byId[id],
+                                ...actionEntities[id]
+                            }
+                        })
+                    , {})
+                },
+                allIds: [...state.allIds, ...Object.keys(actionEntities)]
+            };
         case 'DELETE':
             return {
                 byId: _.omit(state.byId, actionEntities),
