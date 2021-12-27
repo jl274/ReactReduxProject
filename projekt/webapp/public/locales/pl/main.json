@@ -20,5 +20,16 @@
             "url": "Url obrazka",
             "button": "Dodaj"
         }
+    },
+    "details": {
+        "genre": "Gatunek: ",
+        "description": {
+            "name": "Opis: ",
+            "unavailable": "Opis dla tej gry jest niedostępny"
+        },
+        "complexity": "Punktacja trudności: ",
+        "minAge": "Rekomendowany minimalny wiek: ",
+        "playingTime": "Średni czas gry: ",
+        "producer": "Prodcucent: "
     }
 }

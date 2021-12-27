@@ -4,11 +4,14 @@ import { getOneGameById } from "../../ducks/games/selectors";
 import '../../styles/Details.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 const lightBulbIcon = <FontAwesomeIcon icon={faLightbulb}/>;
 const lightBulbIconRed = <FontAwesomeIcon className="purple" icon={faLightbulb}/>;
 
 const GameDetails = ({game}) => {
+
+    const { t } = useTranslation();
 
     return (
         <div className="detailsBox">
@@ -18,15 +21,15 @@ const GameDetails = ({game}) => {
                         {game.name}
                     </li>
                     <li>
-                        <p>Genre: </p>
+                        <p>{t('details.genre')}</p>
                         <p>{game.genre}</p>
                     </li>
                     <li>
-                        <p>Producer: </p>
+                        <p>{t('details.producer')}</p>
                         <p>{game.producer}</p>
                     </li>
                     <li>
-                        <p>Complexity score: </p>
+                        <p>{t('details.complexity')}</p>
                         <p>
                             {lightBulbIconRed}
                             {parseInt(game.complexity)/20 > 1 ? lightBulbIconRed : lightBulbIcon}
@@ -38,16 +41,16 @@ const GameDetails = ({game}) => {
                         </p>
                     </li>
                     <li>
-                        <p>Recommended minimum age: </p>
+                        <p>{t('details.minAge')}</p>
                         <p>{game.minAge}</p>
                     </li>
                     <li>
-                        <p>Average playing time: </p>
+                        <p>{t('details.playingTime')}</p>
                         <p>{game.playingTime}</p>
                     </li>
                     <li>
-                        <p>Description: </p>
-                        <p className="description">{game.description ? game.description : "Description is not available for this game"}</p>
+                        <p>{t('details.description.name')}</p>
+                        <p className="description">{game.description ? game.description : t('details.description.unavailable')}</p>
                     </li>
                 </ul>
                 <div className="img">

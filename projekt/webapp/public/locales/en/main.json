@@ -20,5 +20,16 @@
             "url": "Image url",
             "button": "Add"
         }
+    },
+    "details": {
+        "genre": "Genre",
+        "description": {
+            "name": "Description: ",
+            "unavailable": "Description is not available for this game"
+        },
+        "complexity": "Complexity score",
+        "minAge": "Minimum recommended age: ",
+        "playingTime": "Average playing time: ",
+        "producer": "Producer: "
     }
 }
