@@ -22,6 +22,10 @@ nav {
 
         &.logo {
 
+            &:hover {
+                cursor: pointer;
+            }
+
             padding: 10px 1vw;
             display: flex;
             align-items: center;
