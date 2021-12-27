@@ -3,18 +3,26 @@ import { withRouter } from "react-router-dom";
 import { getOneGameById } from "../../ducks/games/selectors";
 import '../../styles/Details.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 
 const lightBulbIcon = <FontAwesomeIcon icon={faLightbulb}/>;
 const lightBulbIconRed = <FontAwesomeIcon className="purple" icon={faLightbulb}/>;
+const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-const GameDetails = ({game}) => {
+const GameDetails = ({game, history}) => {
 
     const { t } = useTranslation();
 
+    const goBack = () => {
+        history.push('/');
+    }
+
     return (
         <div className="detailsBox">
+            <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="up" onClick={goBack}>
+                    {returnArrow}
+            </div>
             <div className="details">
                 <ul>
                     <li className="name">
