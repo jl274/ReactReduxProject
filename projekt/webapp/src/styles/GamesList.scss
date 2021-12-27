@@ -41,6 +41,29 @@ div.itemsList {
 
             div {
                 grid-column: span 1;
+
+                button {
+                    &:hover ~ div { background-color: yellow; }
+                    grid-column: 2/3;
+                    grid-row: 2/3;
+        
+                    background-color: #7F4677;
+                    color: white;
+                    border-radius: 30px;
+                    border: none;
+                    width: 100px;
+                    padding: 5px 10px;
+                    text-transform: uppercase;
+                    font-weight: normal;
+        
+                    &:hover {
+                        cursor: pointer;
+                        background-color: white;
+                        color: #7F4677;
+                        box-shadow:inset 0px 0px 0px 1px #7F4677;
+                    }
+                }
+
                 &.img {
                     img {
                         max-height: 200px;
@@ -48,6 +71,8 @@ div.itemsList {
                     }
                 }
                 &.info{
+
+
                     text-align: left;
                     grid-column: span 3;
                     display: flex;
