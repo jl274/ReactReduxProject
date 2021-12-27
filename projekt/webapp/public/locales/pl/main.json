@@ -31,5 +31,9 @@
         "minAge": "Rekomendowany minimalny wiek: ",
         "playingTime": "Średni czas gry: ",
         "producer": "Prodcucent: "
+    },
+    "offerOverview": {
+        "price": "Cena: ",
+        "button": "Zobacz"
     }
 }

@@ -31,5 +31,9 @@
         "minAge": "Minimum recommended age: ",
         "playingTime": "Average playing time: ",
         "producer": "Producer: "
+    },
+    "offerOverview": {
+        "price": "Price: ",
+        "button": "Go to offer"
     }
 }
