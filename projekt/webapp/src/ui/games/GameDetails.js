@@ -7,12 +7,13 @@ import { faLightbulb, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import '../../styles/Tooltip.scss';
 import { getAllProducers } from "../../ducks/producers/selectors";
+import { getAllOffersOf } from "../../ducks/offers/selectors";
 
 const lightBulbIcon = <FontAwesomeIcon icon={faLightbulb}/>;
 const lightBulbIconRed = <FontAwesomeIcon className="purple" icon={faLightbulb}/>;
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />;
 
-const GameDetails = ({game, history, allProducers}) => {
+const GameDetails = ({game, history, allProducers, gameOffers}) => {
 
     const { t } = useTranslation();
 
@@ -27,6 +28,7 @@ const GameDetails = ({game, history, allProducers}) => {
             return "Error occured"
         }
     }
+    console.log(gameOffers)
 
     return (
         <div className="detailsBox">
@@ -84,7 +86,8 @@ const mapStateToProps = (state, otherProps) => {
     const {match: {params: {id}}} = otherProps
     return {
         game: getOneGameById(state, id),
-        allProducers: getAllProducers(state)
+        allProducers: getAllProducers(state),
+        gameOffers: getAllOffersOf(state, id)
     }
 }
 

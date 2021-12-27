@@ -2,7 +2,8 @@ import _ from 'lodash';
 
 const allEntities = [
     "games",
-    "producers"
+    "producers",
+    "offers"
 ];
 
 /*
