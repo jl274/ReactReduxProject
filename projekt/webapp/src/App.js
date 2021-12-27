@@ -13,6 +13,7 @@ import { getProducersFromDB } from './ducks/producers/operations';
 import { getOffersFromDB } from './ducks/offers/operations';
 import { getGamesFromDB } from './ducks/games/operations';
 import GameForm from './ui/games/GameForm';
+import GameDetails from './ui/games/GameDetails';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -53,6 +54,9 @@ function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
       <Navbar />
       
       <Switch>
+        <Route path="/game/:id">
+          <GameDetails />
+        </Route>
         <Route path='/new-game'>
           <GameForm />
         </Route>

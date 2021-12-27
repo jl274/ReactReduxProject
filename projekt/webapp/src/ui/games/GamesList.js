@@ -42,9 +42,11 @@ const GamesList = ({games, producers}) => {
                             </div>
                         </div>
                         <div>
+                            <Link to={`/game/${game.id}`}>
                             <button>
                                 {t('gameList.moreBtn')}
                             </button>
+                            </Link>
                         </div>
                     </li>
                 ) : null}
