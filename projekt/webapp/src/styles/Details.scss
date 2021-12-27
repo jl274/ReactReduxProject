@@ -70,8 +70,10 @@ div.detailsBox {
         div.img {
             grid-column: span 1;
             img {
+                max-height: 350px;
                 max-width: 300px;
                 padding: 15px;
+                padding-top: 15%;
             }
         }
     }
