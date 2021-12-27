@@ -8,6 +8,9 @@ import { useTranslation } from 'react-i18next';
 import '../../styles/Tooltip.scss';
 import { getAllProducers } from "../../ducks/producers/selectors";
 import { getAllOffersOf } from "../../ducks/offers/selectors";
+import OfferOverview from "../offers/OfferOverview";
+import { useEffect } from "react";
+import _ from 'lodash';
 
 const lightBulbIcon = <FontAwesomeIcon icon={faLightbulb}/>;
 const lightBulbIconRed = <FontAwesomeIcon className="purple" icon={faLightbulb}/>;
@@ -16,6 +19,8 @@ const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />;
 const GameDetails = ({game, history, allProducers, gameOffers}) => {
 
     const { t } = useTranslation();
+
+    useEffect(()=>{window.scrollTo(0, 0)}, [])
 
     const goBack = () => {
         history.push('/');
@@ -28,9 +33,9 @@ const GameDetails = ({game, history, allProducers, gameOffers}) => {
             return "Error occured"
         }
     }
-    console.log(gameOffers)
 
     return (
+        <>
         <div className="detailsBox">
             <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="up" onClick={goBack}>
                     {returnArrow}
@@ -79,6 +84,8 @@ const GameDetails = ({game, history, allProducers, gameOffers}) => {
                 </div>
             </div>
         </div>
+        {gameOffers ? _.sortBy(gameOffers, ['price']).map(offer => <OfferOverview key={offer.id} id={offer.id} data={offer} imgUrl={game.url} />) : null}
+        </>
     )
 }
 
