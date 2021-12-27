@@ -74,6 +74,10 @@ const GameDetails = ({game, history, allProducers, gameOffers}) => {
                         <p>{game.playingTime}</p>
                     </li>
                     <li>
+                        <p>{t('details.offers')}</p>
+                        <p>{game.offers.length}</p>
+                    </li>
+                    <li>
                         <p>{t('details.description.name')}</p>
                         <p className="description">{game.description ? game.description : t('details.description.unavailable')}</p>
                     </li>

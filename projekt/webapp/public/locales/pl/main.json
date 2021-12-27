@@ -30,7 +30,8 @@
         "complexity": "Punktacja trudności: ",
         "minAge": "Rekomendowany minimalny wiek: ",
         "playingTime": "Średni czas gry: ",
-        "producer": "Prodcucent: "
+        "producer": "Prodcucent: ",
+        "offers": "Liczba ofert: "
     },
     "offerOverview": {
         "price": "Cena: ",

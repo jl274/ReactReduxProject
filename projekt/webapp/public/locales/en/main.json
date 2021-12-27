@@ -30,7 +30,8 @@
         "complexity": "Complexity score",
         "minAge": "Minimum recommended age: ",
         "playingTime": "Average playing time: ",
-        "producer": "Producer: "
+        "producer": "Producer: ",
+        "offers": "Number of offers: "
     },
     "offerOverview": {
         "price": "Price: ",
