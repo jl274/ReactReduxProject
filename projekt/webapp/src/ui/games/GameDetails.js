@@ -5,17 +5,27 @@ import '../../styles/Details.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import '../../styles/Tooltip.scss';
+import { getAllProducers } from "../../ducks/producers/selectors";
 
 const lightBulbIcon = <FontAwesomeIcon icon={faLightbulb}/>;
 const lightBulbIconRed = <FontAwesomeIcon className="purple" icon={faLightbulb}/>;
-const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
+const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />;
 
-const GameDetails = ({game, history}) => {
+const GameDetails = ({game, history, allProducers}) => {
 
     const { t } = useTranslation();
 
     const goBack = () => {
         history.push('/');
+    }
+
+    const getProducerNameById = (id) => {
+        if (allProducers){
+        return allProducers.find(x => x.id === id).name;
+        } else {
+            return "Error occured"
+        }
     }
 
     return (
@@ -34,7 +44,7 @@ const GameDetails = ({game, history}) => {
                     </li>
                     <li>
                         <p>{t('details.producer')}</p>
-                        <p>{game.producer}</p>
+                        <p>{getProducerNameById(game.producer)}</p>
                     </li>
                     <li>
                         <p>{t('details.complexity')}</p>
@@ -73,7 +83,8 @@ const GameDetails = ({game, history}) => {
 const mapStateToProps = (state, otherProps) => {
     const {match: {params: {id}}} = otherProps
     return {
-        game: getOneGameById(state, id)
+        game: getOneGameById(state, id),
+        allProducers: getAllProducers(state)
     }
 }
 
