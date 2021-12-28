@@ -30,7 +30,7 @@ const Navbar = ({history}) => {
                 <Formik
                     initialValues={{name: ""}}
                 >
-                    {({})=>(
+                    {()=>(
                         <Form>
                             <Field type="text" name="search" placeholder={t('nav.search')}></Field>
                             <button type='submit'>{searchIcon}</button>
