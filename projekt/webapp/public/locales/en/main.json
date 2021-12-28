@@ -47,6 +47,10 @@
         }
     },
     "offersList": {
+        "h2": "Offers",
+        "add": "Add new offer"
+    },
+    "producersList": {
         "h2": "All available producers"
     },
     "producer": {

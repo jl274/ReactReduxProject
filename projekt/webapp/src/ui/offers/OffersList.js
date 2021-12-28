@@ -6,18 +6,21 @@ import { getGameIdPlusUrl } from "../../ducks/games/selectors";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 const plus = <FontAwesomeIcon icon={faPlus} />
 
 const OffersList = ({offers, urlList}) => {
 
+    const { t } = useTranslation();
+
     return (
         <>
         <div className="offersControl">
-            <h2>Offers</h2>
+            <h2>{t('offersList.h2')}</h2>
             <div></div>
             <div>
-                <button><Link to='/offers/new'>Add new offer {plus}</Link></button>
+                <button><Link to='/offers/new'>{t('offersList.add')} {plus}</Link></button>
             </div>
         </div>
         <div className="offersBox">

@@ -15,7 +15,7 @@ const ProducersList = ({producers, history}) => {
     return (
         <div className="producersBox">
             <ul>
-                <h2>{t('offersList.h2')}</h2>
+                <h2>{t('producersList.h2')}</h2>
                 {producers ? producers.map(producer => 
                     <li 
                         key={producer.id} id={producer.id} 
