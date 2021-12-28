@@ -48,5 +48,10 @@
     },
     "offersList": {
         "h2": "All available producers"
+    },
+    "producer": {
+        "country": "Country:",
+        "established": "Established in:",
+        "games": "Games:"
     }
 }

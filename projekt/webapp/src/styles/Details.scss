@@ -8,6 +8,7 @@ div.detailsBox {
     position: relative;
 
     div.arrow{
+
         position: absolute;
         top: 30px;
         left: -30px;
@@ -30,6 +31,8 @@ div.detailsBox {
 
         &.wide {
             grid-template-columns: repeat(2, 1fr);
+            padding-left: 30px;
+            padding-right: 30px;
 
             ul {
                 padding: 0;

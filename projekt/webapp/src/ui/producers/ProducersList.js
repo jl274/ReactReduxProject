@@ -9,7 +9,7 @@ const ProducersList = ({producers, history}) => {
     const { t } = useTranslation();
 
     const goToProducerDetails = (id) => {
-        history.push(`/producers/${id}`)
+        history.push({pathname:`/producers/${id}`, state: "producer"})
     }
 
     return (
