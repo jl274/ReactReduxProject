@@ -1,4 +1,5 @@
 div.offersBox {
+    
     ul.list {
 
         padding-left: 0;
@@ -6,6 +7,35 @@ div.offersBox {
         li {
             list-style: none;
             
+        }
+    }
+}
+
+div.offersControl {
+    margin: 50px 15vw;
+    margin-bottom: 0;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    padding-bottom: 30px;
+
+    h3 {
+        padding: 10px 30px;
+        background-color: #7F4677;
+        color: white;
+        border-radius: 30px;
+    }
+
+    button {
+        border: none;
+        text-transform: uppercase;
+        background-color: transparent;
+        font-size: medium;
+        font-weight: bolder;
+
+        a {
+            text-decoration: none;
+            color: #7F4677;
         }
     }
 }

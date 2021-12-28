@@ -3,10 +3,23 @@ import { getAllOffers } from "../../ducks/offers/selectors";
 import OfferOverview from "./OfferOverview";
 import '../../styles/OffersList.scss';
 import { getGameIdPlusUrl } from "../../ducks/games/selectors";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
+const plus = <FontAwesomeIcon icon={faPlus} />
 
 const OffersList = ({offers, urlList}) => {
 
     return (
+        <>
+        <div className="offersControl">
+            <h3>Offers</h3>
+            <div></div>
+            <div>
+                <button><Link to='/offers/new'>Add new offer {plus}</Link></button>
+            </div>
+        </div>
         <div className="offersBox">
             <div>
                 <ul className="list">
@@ -23,6 +36,7 @@ const OffersList = ({offers, urlList}) => {
                 </ul>
             </div>
         </div>
+        </>
     )
 };
 
