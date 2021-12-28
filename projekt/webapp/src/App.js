@@ -16,6 +16,7 @@ import GameForm from './ui/games/GameForm';
 import GameDetails from './ui/games/GameDetails';
 import OffersList from './ui/offers/OffersList';
 import ProducersList from './ui/producers/ProducersList';
+import ProducerDetails from './ui/producers/ProducerDetails';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -61,6 +62,9 @@ function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
       <Switch>
         <Route path="/game/:id">
           <GameDetails />
+        </Route>
+        <Route path="/producers/:id">
+          <ProducerDetails />
         </Route>
         <Route path='/new-game'>
           <GameForm />

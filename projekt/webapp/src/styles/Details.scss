@@ -28,6 +28,34 @@ div.detailsBox {
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
 
+        &.wide {
+            grid-template-columns: repeat(2, 1fr);
+
+            ul {
+                padding: 0;
+                .name {
+                    justify-content: flex-start;
+                    text-align: left;
+                    letter-spacing: 15px;
+                }
+                .games {
+                    div > p > a {
+                        font-weight: normal;
+                        text-decoration: none;
+                        color: black;
+                        text-transform: uppercase;
+                        
+                        &:hover {
+                            color: #7F4677;
+                        }
+                    }
+                }
+                svg {
+                    margin-right: 10px;
+                }
+            }
+        }
+
         ul {
             grid-column: span 3;
 

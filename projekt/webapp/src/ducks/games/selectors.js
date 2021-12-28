@@ -10,3 +10,10 @@ export const getGameIdPlusUrl = (state) => state.entities.games.allIds.map(id =>
         }
     }
 )
+export const getGamesNameAndId = state => state.entities.games.allIds.map(id => {
+    return {
+        id: state.entities.games.byId[id].id,
+        name: state.entities.games.byId[id].name,
+        producer: state.entities.games.byId[id].producer
+    }
+});
