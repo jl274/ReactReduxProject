@@ -42,9 +42,12 @@ i18next.use(Backend)
 function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
 
   useEffect(()=>{
-    getProducersFromDB();
-    getOffersFromDB();
-    getGamesFromDB();
+    const load = async () => {
+      await getProducersFromDB();
+      await getOffersFromDB();
+      await getGamesFromDB();
+    }
+    load();
   }, [getGamesFromDB, getOffersFromDB, getProducersFromDB]);
 
   return (

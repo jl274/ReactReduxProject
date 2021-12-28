@@ -11,12 +11,21 @@ import { getAllOffersOf } from "../../ducks/offers/selectors";
 import OfferOverview from "../offers/OfferOverview";
 import { useEffect } from "react";
 import _ from 'lodash';
+import { getGamesFromDB } from '../../ducks/games/operations';
+import { getProducersFromDB } from '../../ducks/producers/operations';
 
 const lightBulbIcon = <FontAwesomeIcon icon={faLightbulb}/>;
 const lightBulbIconRed = <FontAwesomeIcon className="purple" icon={faLightbulb}/>;
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />;
 
-const GameDetails = ({game, history, allProducers, gameOffers}) => {
+const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, getProducersFromDB}) => {
+
+    if (!game){
+        (async () => {
+        await getProducersFromDB();
+        await getGamesFromDB();
+        })()
+    }
 
     const { t } = useTranslation();
 
@@ -27,14 +36,14 @@ const GameDetails = ({game, history, allProducers, gameOffers}) => {
     }
 
     const getProducerNameById = (id) => {
-        if (allProducers){
+        if (allProducers && game){
         return allProducers.find(x => x.id === id).name;
         } else {
             return "Error occured"
         }
     }
 
-    return (
+    return game ? (
         <>
         <div className="detailsBox">
             <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="left" onClick={goBack}>
@@ -90,7 +99,7 @@ const GameDetails = ({game, history, allProducers, gameOffers}) => {
         </div>
         {gameOffers ? _.sortBy(gameOffers, ['price']).map(offer => <OfferOverview key={offer.id} id={offer.id} data={offer} imgUrl={game.url} />) : null}
         </>
-    )
+    ) : <></>
 }
 
 const mapStateToProps = (state, otherProps) => {
@@ -102,4 +111,10 @@ const mapStateToProps = (state, otherProps) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, null)(GameDetails));
+const mapDispatchToProps = {
+    getProducersFromDB,
+    // getOffersFromDB,
+    getGamesFromDB
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GameDetails));
