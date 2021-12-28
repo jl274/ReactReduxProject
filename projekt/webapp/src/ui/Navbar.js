@@ -41,9 +41,9 @@ const Navbar = ({history}) => {
             <div className='rightList'>
                 <div className='navList'>
                     <ul>
-                        <NavLink to="/" activeClassName="selected" exact><li>{homeIcon} Games</li></NavLink>
-                        <NavLink to="/offers" activeClassName="selected"><li>Offers</li></NavLink>
-                        <NavLink to="/producers" activeClassName="selected"><li>Producers</li></NavLink>
+                        <NavLink to="/" activeClassName="selected" exact><li>{homeIcon} {t('nav.links.games')}</li></NavLink>
+                        <NavLink to="/offers" activeClassName="selected"><li>{t('nav.links.offers')}</li></NavLink>
+                        <NavLink to="/producers" activeClassName="selected"><li>{t('nav.links.producers')}</li></NavLink>
                     </ul>
                 </div>
                 <div className='buttons'>

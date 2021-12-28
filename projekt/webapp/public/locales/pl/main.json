@@ -39,6 +39,14 @@
         "details": "Szczegóły gry"
     },
     "nav": {
-        "search": "Wpisz tytuł gry"
+        "search": "Wpisz tytuł gry",
+        "links": {
+            "games": "Gry",
+            "offers": "Oferty",
+            "producers": "Producenci"
+        }
+    },
+    "offersList": {
+        "h2": "Wszyscy dostępni producenci"
     }
 }

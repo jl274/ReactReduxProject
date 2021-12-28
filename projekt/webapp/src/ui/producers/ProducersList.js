@@ -25,7 +25,7 @@ const ProducersList = ({producers, history}) => {
                 {/* <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="left" onClick={goBack}>
                         {returnArrow}
                 </div> */}
-                <h2>All available producers</h2>
+                <h2>{t('offersList.h2')}</h2>
                 {producers ? producers.map(producer => 
                     <li key={producer.id} id={producer.id} aria-label={`Click for details`} data-tooltip="left">
                         <p>{producer.name}</p>

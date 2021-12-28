@@ -39,6 +39,14 @@
         "details": "Game details"
     },
     "nav": {
-        "search": "Enter game title here"
+        "search": "Enter game title here",
+        "links": {
+            "games": "Games",
+            "offers": "Offers",
+            "producers": "Producers"
+        }
+    },
+    "offersList": {
+        "h2": "All available producers"
     }
 }
