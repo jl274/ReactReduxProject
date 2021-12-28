@@ -36,5 +36,8 @@
     "offerOverview": {
         "price": "Cena: ",
         "button": "Zobacz"
+    },
+    "nav": {
+        "search": "Wpisz tytuł gry"
     }
 }

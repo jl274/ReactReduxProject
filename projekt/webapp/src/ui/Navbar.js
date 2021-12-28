@@ -1,11 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChessRook } from '@fortawesome/free-solid-svg-icons';
+import { faChessRook, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { initReactI18next ,useTranslation } from 'react-i18next';
 import { connect } from "react-redux";
 import '../styles/Navbar.scss';
-import { withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 const chessLogo = <FontAwesomeIcon icon={faChessRook} />
+const homeIcon = <FontAwesomeIcon icon={faHome} />
+const searchIcon = <FontAwesomeIcon icon={faSearch} />
 
 const Navbar = ({history}) => {
 
@@ -23,12 +26,27 @@ const Navbar = ({history}) => {
     return (
         <nav>
             <div className='logo' onClick={goToDashboard}><p className='logo'>{chessLogo}</p> <p>Planszomania.pl</p></div>
-            <div className='titleSearch'>Here would be search</div>
+            <div className='titleSearch'>
+                <Formik
+                    initialValues={{name: ""}}
+                >
+                    {({})=>(
+                        <Form>
+                            <Field type="text" name="search" placeholder={t('nav.search')}></Field>
+                            <button type='submit'>{searchIcon}</button>
+                        </Form>
+                    )}
+                </Formik>
+            </div>
             <div className='rightList'>
-                <div>
-                    Some text
+                <div className='navList'>
+                    <ul>
+                        <NavLink to="/" activeClassName="selected" exact><li>{homeIcon} Games</li></NavLink>
+                        <NavLink to="/offers" activeClassName="selected"><li>Offers</li></NavLink>
+                        <NavLink to="/producers" activeClassName="selected" ex><li>Producers</li></NavLink>
+                    </ul>
                 </div>
-                <div>
+                <div className='buttons'>
                     <button className={`${i18n.language === "pl" ? 'active' : ''} left`} onClick={() => changeLanguage('pl')} >
                         PL
                     </button>
