@@ -38,6 +38,12 @@ div.overview {
                 button {
                     margin: 10px 0;
                 }
+                
+                &.smaller {
+                    button {
+                        width: 220px;
+                    }
+                }
             }
 
             &.img{

@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChessRook, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { initReactI18next ,useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { connect } from "react-redux";
 import '../styles/Navbar.scss';
 import { NavLink, withRouter } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 
 const chessLogo = <FontAwesomeIcon icon={faChessRook} />
 const homeIcon = <FontAwesomeIcon icon={faHome} />
@@ -43,7 +43,7 @@ const Navbar = ({history}) => {
                     <ul>
                         <NavLink to="/" activeClassName="selected" exact><li>{homeIcon} Games</li></NavLink>
                         <NavLink to="/offers" activeClassName="selected"><li>Offers</li></NavLink>
-                        <NavLink to="/producers" activeClassName="selected" ex><li>Producers</li></NavLink>
+                        <NavLink to="/producers" activeClassName="selected"><li>Producers</li></NavLink>
                     </ul>
                 </div>
                 <div className='buttons'>

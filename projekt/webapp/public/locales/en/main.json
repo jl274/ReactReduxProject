@@ -35,7 +35,8 @@
     },
     "offerOverview": {
         "price": "Price: ",
-        "button": "Go to offer"
+        "button": "Go to offer",
+        "details": "Game details"
     },
     "nav": {
         "search": "Enter game title here"

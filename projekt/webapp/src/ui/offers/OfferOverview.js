@@ -32,9 +32,9 @@ const OfferOverview = ({data, imgUrl, link, gameTitle}) => {
                     }
                     
                 </li>
-                <li className='selectButtons'>
+                <li className={`selectButtons ${gameTitle ? 'smaller' : ''}`}>
                     <a href={data.link} target="_blank" rel="noopener noreferrer" ><button type='submit'>{t('offerOverview.button')}</button></a>
-                    {link ? <Link to={`/game/${link}`}><button>Game details</button></Link> : null}
+                    {link ? <Link to={`/game/${link}`}><button>{t('offerOverview.details')}</button></Link> : null}
                 </li>
             </ul>
         </div>
