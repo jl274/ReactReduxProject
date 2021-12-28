@@ -32,7 +32,7 @@ const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, g
     useEffect(()=>{window.scrollTo(0, 0)}, [])
 
     const goBack = () => {
-        history.push('/');
+        history.location.state ? history.goBack() : history.push('/');
     }
 
     const getProducerNameById = (id) => {
