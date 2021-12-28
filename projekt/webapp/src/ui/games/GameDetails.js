@@ -37,7 +37,7 @@ const GameDetails = ({game, history, allProducers, gameOffers}) => {
     return (
         <>
         <div className="detailsBox">
-            <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="up" onClick={goBack}>
+            <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="left" onClick={goBack}>
                     {returnArrow}
             </div>
             <div className="details">
