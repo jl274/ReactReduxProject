@@ -14,7 +14,7 @@ const OffersList = ({offers, urlList}) => {
     return (
         <>
         <div className="offersControl">
-            <h3>Offers</h3>
+            <h2>Offers</h2>
             <div></div>
             <div>
                 <button><Link to='/offers/new'>Add new offer {plus}</Link></button>
