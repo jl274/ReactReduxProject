@@ -53,5 +53,16 @@
         "country": "Country:",
         "established": "Established in:",
         "games": "Games:"
+    },
+    "offerForm": {
+        "h2": "Add new offer",
+        "return": "Return to previous page",
+        "form": {
+            "price": "Price*",
+            "product": "Connected product*",
+            "shop": "Shop name*",
+            "link": "Link to offer*",
+            "button": "Add"
+        }
     }
 }

@@ -53,5 +53,16 @@
         "country": "Kraj:",
         "established": "Założono w:",
         "games": "Gry:"
+    },
+    "offerForm": {
+        "h2": "Dodaj nową ofertę",
+        "return": "Wróć do listy ofert",
+        "form": {
+            "price": "Cena*",
+            "shop": "Nazwa sklepu*",
+            "product": "Powiązany produkt*",
+            "link": "Link do oferty*",
+            "button": "Dodaj"
+        }
     }
 }
