@@ -7,10 +7,6 @@ div.overview {
     padding: 20px;
 
     ul {
-        // display: flex;
-        // flex-direction: row;
-        // justify-content: space-between;
-        // align-items: center;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
 
@@ -20,6 +16,29 @@ div.overview {
 
             display: flex;
             align-items: center;
+
+            &.priceOrTitle {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                div.gameTitle {
+                    font-weight: bolder;
+                    text-transform: uppercase;
+                }
+            }
+
+            &.selectButtons {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    margin: 10px 0;
+                }
+            }
 
             &.img{
                 // grid-column: span 1;
