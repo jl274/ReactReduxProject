@@ -1,0 +1,71 @@
+div.producersBox {
+    margin: 50px 15vw;
+
+    ul {
+
+        h2 {
+            padding: 10px 30px;
+            background-color: #7F4677;
+            color: white;
+            border-radius: 30px;
+        }
+
+        background-color: white;
+        border-radius: 30px;
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+        margin: 0;
+        padding: 0;
+
+        li {
+
+            height: 40px;
+            list-style: none;
+            border-bottom: 1px solid rgba(9, 30, 66, 0.25);
+            &:last-of-type {
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px, gray 0 0 5px 5px;
+                cursor: pointer;
+            }
+
+            &:active {
+                color: #7F4677;
+                box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px, #7F4677 0 0 5px 5px;
+            }
+
+            div {
+                display: flex;
+                align-items: center;
+                * {
+                    margin: 0 10px;
+                }
+            }
+
+        }
+
+        position: relative;
+
+        div {
+            
+            &.arrow {
+                color: white;
+                position: absolute;
+                top: 6px;
+                left: 10px;
+                font-size: x-large;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -15,6 +15,7 @@ import { getGamesFromDB } from './ducks/games/operations';
 import GameForm from './ui/games/GameForm';
 import GameDetails from './ui/games/GameDetails';
 import OffersList from './ui/offers/OffersList';
+import ProducersList from './ui/producers/ProducersList';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -66,6 +67,9 @@ function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
         </Route>
         <Route path='/offers'>
           <OffersList />
+        </Route>
+        <Route path='/producers'>
+          <ProducersList />
         </Route>
         <Route path='/'>
           <GamesList />
