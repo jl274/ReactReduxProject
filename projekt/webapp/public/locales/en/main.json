@@ -9,6 +9,8 @@
     "gameForm": {
         "h2": "Add new game",
         "return": "Return to previous page",
+        "edit": "Edit this game",
+        "delete": "Delete this game",
         "form": {
             "title": "Title*",
             "genre": "Genre*",

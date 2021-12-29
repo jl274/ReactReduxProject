@@ -13,6 +13,7 @@ const plus = <FontAwesomeIcon icon={faPlus} />
 const GamesList = ({games, producers}) => {
 
     const { t } = useTranslation();
+    const noCoverSrc = 'https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1';
 
     const getProducerNameFromId = (id) => {
         if (producers){
@@ -32,7 +33,7 @@ const GamesList = ({games, producers}) => {
                 {games ? games.map(game => 
                     <li key={game.id}>
                         <div className='img'>
-                            <img src={game.url} alt='Cover' ></img>
+                            <img src={game.url ? game.url : noCoverSrc} alt='Cover' ></img>
                         </div>
                         <div className='info'>
                             <div className='gameName'>{game.name}</div>

@@ -57,3 +57,26 @@ export const sendGameToDB = (game) => {
         ]
     })
 }
+
+export const deleteGameFromDB = (game) => {
+    console.log(game)
+    return createAction({
+        endpoint: `http://localhost:5000/games/${game.id}`,
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        types: [
+            types.DELETE_GAMES_REQUEST,
+            {
+                type: types.DELETE_GAMES_SUCCESS,
+                payload: async (action, state, res) => {
+                    const { entities } = normalize(game, gameSchema);
+                    return entities;
+                },
+                meta: { actionType: 'DELETE' }
+           },
+            types.DELETE_GAMES_FAILURE
+        ]
+    })
+}

@@ -64,7 +64,7 @@ const entityReducer = (entity, state = { allIds: [], byId: {} }, action) => {
             };
         case 'DELETE':
             return {
-                byId: _.omit(state.byId, actionEntities),
+                byId: _.omit(state.byId, Object.keys(actionEntities)[0]),
                 allIds: state.allIds.filter(id => !Object.keys(actionEntities).includes(id)),
             }
         case 'EDIT':
