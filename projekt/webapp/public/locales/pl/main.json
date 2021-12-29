@@ -5,7 +5,19 @@
         "producer": "Producent: ",
         "moreBtn": "Więcej",
         "add": "Dodaj nową grę",
-        "searchResult": "Wyniki wyszukiwania frazy"
+        "searchResult": "Wyniki wyszukiwania frazy",
+        "filters": {
+            "title": "Filtry:",
+            "max": "Max. trudność "
+        },
+        "sorts": {
+            "newest": "Najnowsze",
+            "oldest": "Najstarsze",
+            "leastPlaying": "Najkrótszy czas gry",
+            "mostPlaying": "Najdłuższy czas gry",
+            "easiest": "Najprostsze",
+            "mostDifficult": "Najtrudniejsze"
+        }
     },
     "gameForm": {
         "h2": "Dodaj nową grę",

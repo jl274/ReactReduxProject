@@ -5,11 +5,13 @@ import '../../styles/GamesList.scss';
 import { getAllProducers } from '../../ducks/producers/selectors';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import _ from 'lodash';
 import { useState } from 'react';
+import { Formik, Form, Field } from 'formik';
 
-const plus = <FontAwesomeIcon icon={faPlus} />
+const plus = <FontAwesomeIcon icon={faPlus} />;
+const searchIcon = <FontAwesomeIcon icon={faSearch} />;
 
 
 const GamesList = ({games, producers}) => {
@@ -26,6 +28,7 @@ const GamesList = ({games, producers}) => {
     }
 
     const [sortMethod, setSortMethod] = useState("new");
+    const [filterOptions, setFilterOptions] = useState({maxComplexity: null});
 
     const gamesToMap = () => {
         let games_copy = [...games]
@@ -44,6 +47,11 @@ const GamesList = ({games, producers}) => {
         } else if (sortMethod === "za"){
             games_copy = _.reverse(_.sortBy(games_copy, ['name']));
         }
+
+        if (filterOptions.maxComplexity){
+            games_copy = games_copy.filter(game => parseInt(game.complexity) <= filterOptions.maxComplexity)
+        }
+
         console.log(games_copy)
         return games_copy
     }
@@ -51,26 +59,48 @@ const GamesList = ({games, producers}) => {
     return (
         <>
         <div className='controlBox'>
+
             <h2>{t('gameList.h2')}</h2>
+
             <div className='sortOptions'>
                 <p>Sort by:</p>
                 <div>
-                    <button className={`${sortMethod === "new" ? "active" : ""} left`} onClick={()=>{setSortMethod("new")}}>Newest</button>
-                    <button className={`${sortMethod === "old" ? "active" : ""} right`} onClick={()=>{setSortMethod("old")}}>Oldest</button>
+                    <button className={`${sortMethod === "new" ? "active" : ""} left`} onClick={()=>{setSortMethod("new")}}>{t('gameList.sorts.newest')}</button>
+                    <button className={`${sortMethod === "old" ? "active" : ""} right`} onClick={()=>{setSortMethod("old")}}>{t('gameList.sorts.oldest')}</button>
                 </div>
                 <div>
                     <button className={`${sortMethod === "az" ? "active" : ""} left`} onClick={()=>{setSortMethod("az")}}>{"A->Z"}</button>
                     <button className={`${sortMethod === "za" ? "active" : ""} right`} onClick={()=>{setSortMethod("za")}}>{"Z->A"}</button>
                 </div>
                 <div>
-                    <button className={`${sortMethod === "leastTime" ? "active" : ""} left`} onClick={()=>{setSortMethod("leastTime")}}>Least playing time</button>
-                    <button className={`${sortMethod === "mostTime" ? "active" : ""} right`} onClick={()=>{setSortMethod("mostTime")}}>Most playing time</button>
+                    <button className={`${sortMethod === "leastTime" ? "active" : ""} left`} onClick={()=>{setSortMethod("leastTime")}}>{t('gameList.sorts.leastPlaying')}</button>
+                    <button className={`${sortMethod === "mostTime" ? "active" : ""} right`} onClick={()=>{setSortMethod("mostTime")}}>{t('gameList.sorts.mostPlaying')}</button>
                 </div>
                 <div>
-                    <button className={`${sortMethod === "leastComplex" ? "active" : ""} left`} onClick={()=>{setSortMethod("leastComplex")}}>Easiest</button>
-                    <button className={`${sortMethod === "mostComplex" ? "active" : ""} right`} onClick={()=>{setSortMethod("mostComplex")}}>Most difficult</button>
+                    <button className={`${sortMethod === "leastComplex" ? "active" : ""} left`} onClick={()=>{setSortMethod("leastComplex")}}>{t('gameList.sorts.easiest')}</button>
+                    <button className={`${sortMethod === "mostComplex" ? "active" : ""} right`} onClick={()=>{setSortMethod("mostComplex")}}>{t('gameList.sorts.mostDifficult')}</button>
                 </div>
             </div>
+
+            <div className='filterOptions'>
+                <p>{t('gameList.filters.title')}</p>
+                <Formik
+                    initialValues={{maxComplexity: 100}}
+                    onSubmit={values=>setFilterOptions({...filterOptions, maxComplexity: parseInt(values.maxComplexity)})}
+                >
+                    {({values}) => 
+                        <Form>
+                            <div>
+                                <p>{t('gameList.filters.max')}</p>
+                                <Field name="maxComplexity" type="range" min="0" max="100"></Field>
+                                <p>{values.maxComplexity}/100</p>
+                                <button>{searchIcon}</button>
+                            </div>
+                        </Form>
+                    }
+                </Formik>
+            </div>
+
             <div>
                 <button><Link to='/new-game'>{t('gameList.add')} {plus}</Link></button>
             </div>

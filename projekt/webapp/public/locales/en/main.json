@@ -5,7 +5,19 @@
         "producer": "Producer: ",
         "moreBtn": "More",
         "add": "Add new game",
-        "searchResult": "Results of searching for"
+        "searchResult": "Results of searching for",
+        "filters": {
+            "title": "Filters:",
+            "max": "Max complexity "
+        },
+        "sorts": {
+            "newest": "Newest",
+            "oldest": "Oldest",
+            "leastPlaying": "Least playing time",
+            "mostPlaying": "Most playing time",
+            "easiest": "Easiest",
+            "mostDifficult": "Most difficult"
+        }
     },
     "gameForm": {
         "h2": "Add new game",
