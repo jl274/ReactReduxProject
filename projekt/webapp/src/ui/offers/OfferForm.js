@@ -7,10 +7,12 @@ import '../../styles/Tooltip.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import { getGamesNameAndId } from '../../ducks/games/selectors';
+import { sendOfferToDB } from '../../ducks/offers/operations';
 
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-const OfferForm = ({history}) => {
+const OfferForm = ({history, games, sendOfferToDB}) => {
 
     const { t } = useTranslation();
 
@@ -18,9 +20,11 @@ const OfferForm = ({history}) => {
         history.push('/offers');
     }
 
+    console.log(games)
+
     const initialValues = {
         shop: "",
-        product: null,
+        product: "",
         price: 0.00,
         link: ""
     }
@@ -43,6 +47,10 @@ const OfferForm = ({history}) => {
             .required("Link to offer is required")
     })
 
+    const submitOffer = (values) => {
+        sendOfferToDB(values)
+    }
+
     return (
         <div className="form">
             <h2>
@@ -54,6 +62,7 @@ const OfferForm = ({history}) => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
+                onSubmit={(values)=>{submitOffer(values)}}
             >
                 {({errors, touched, isValid}) => 
                 <Form>
@@ -65,8 +74,14 @@ const OfferForm = ({history}) => {
                         </div>
                         <div className="group"> 
                             <label>{t('offerForm.form.product')}</label>
-                            <Field as="select" id="product" name="product" className={`${errors.product && touched.product ? `invalid` : ``}`}>
+                            <Field 
+                                as="select" id="product" 
+                                name="product" className={`${errors.product && touched.product ? `invalid` : ``}`}
+                            >
                                 <option value={null}>---</option>
+                                {games ? games.map(game => 
+                                    <option key={game.id} value={game.id}>{game.name}</option>
+                                ) : null}
                             </Field>
                         </div>
                     </div>
@@ -94,4 +109,14 @@ const OfferForm = ({history}) => {
     )
 }
 
-export default withRouter(connect(null, null)(OfferForm));
+const mapStateToProps = state => {
+    return {
+        games: getGamesNameAndId(state)
+    }
+}
+
+const mapDispatchToProps = {
+    sendOfferToDB
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OfferForm));

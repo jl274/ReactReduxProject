@@ -26,7 +26,8 @@ const OffersList = ({offers, urlList}) => {
         <div className="offersBox">
             <div>
                 <ul className="list">
-                    {offers.map(offer => <li key={offer.id} id={offer.id}>
+                    {console.log(urlList)}
+                    {offers.map(offer => urlList ? <li key={offer.id} id={offer.id}>
                         <OfferOverview 
                             data={offer} 
                             imgUrl={urlList.find(x => x.idArray.includes(offer.id)).url 
@@ -35,7 +36,7 @@ const OffersList = ({offers, urlList}) => {
                             link={urlList.find(x => x.idArray.includes(offer.id)).id}
                             gameTitle={urlList.find(x => x.idArray.includes(offer.id)).name}
                         />
-                    </li>)}
+                    </li> : null)}
                 </ul>
             </div>
         </div>
