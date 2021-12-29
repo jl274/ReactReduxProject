@@ -50,8 +50,8 @@ const ProducerForm = ({history, sendProducerToDB}) => {
     return(
         <div className="form">
             <h2>
-                Add new Producer
-                <div className='arrow' aria-label={`${t('offerForm.return')}`} data-tooltip="up" onClick={goBack}>
+                {t('producerForm.h2')}
+                <div className='arrow' aria-label={`${t('producerForm.return')}`} data-tooltip="up" onClick={goBack}>
                     {returnArrow}
                 </div>
             </h2>
@@ -64,23 +64,23 @@ const ProducerForm = ({history, sendProducerToDB}) => {
                 <Form>
                     <div className='leftForm'>
                         <div className="group">
-                            <label>Producer name*</label>
+                            <label>{t('producerForm.form.name')}</label>
                             <Field type="text" name="name" className={`${errors.name && touched.name ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="name" component="div" className="errorMessage"/>
                         </div>
                         <div className="group">
-                            <label>Established in</label>
+                            <label>{t('producerForm.form.established')}</label>
                             <Field type="date" name="established" className={`${errors.established ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="established" component="div" className="errorMessage"/>
                         </div>
                         <div className="group">
-                            <label>Country*</label>
+                            <label>{t('producerForm.form.country')}</label>
                             <Field type="text" name="country" className={`${errors.country && touched.country ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="country" component="div" className="errorMessage"/>
                         </div>
                         <button type='submit' disabled={!isValid} className={`${isValid ? '' : 'disabled'}`}
                         >
-                            {t('offerForm.form.button')}
+                            {t('producerForm.form.button')}
                         </button>
                     </div>
                 </Form>

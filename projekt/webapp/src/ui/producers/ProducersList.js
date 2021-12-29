@@ -3,6 +3,10 @@ import { getAllProducers } from "../../ducks/producers/selectors";
 import '../../styles/ProducersList.scss';
 import { useTranslation } from 'react-i18next';
 import { Link, withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
+const plus = <FontAwesomeIcon icon={faPlus} />
 
 const ProducersList = ({producers, history}) => {
 
@@ -14,11 +18,11 @@ const ProducersList = ({producers, history}) => {
 
     return (
         <div className="producersBox">
-            <div>
-                <Link to='/producers/new'>New</Link>
-            </div>
             <ul>
                 <h2>{t('producersList.h2')}</h2>
+                <div>
+                    <button><Link to='/producers/new'>{t('producersList.add')}{plus}</Link></button>
+                </div>
                 {producers ? producers.map(producer => 
                     <li 
                         key={producer.id} id={producer.id} 

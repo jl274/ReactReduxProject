@@ -51,7 +51,8 @@
         "add": "Dodaj nową ofertę"
     },
     "producersList": {
-        "h2": "Wszyscy dostępni producenci"
+        "h2": "Wszyscy dostępni producenci",
+        "add": "Dodaj nowego producenta"
     },
     "producer": {
         "country": "Kraj:",
@@ -66,6 +67,16 @@
             "shop": "Nazwa sklepu*",
             "product": "Powiązany produkt*",
             "link": "Link do oferty*",
+            "button": "Dodaj"
+        }
+    },
+    "producerForm": {
+        "h2": "Dodaj nowego producenta",
+        "return": "Wróć do listy producentów",
+        "form": {
+            "name": "Nazwa producenta*",
+            "established": "Data założenia",
+            "country": "Kraj pochodzenia*",
             "button": "Dodaj"
         }
     }

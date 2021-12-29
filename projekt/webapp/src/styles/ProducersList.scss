@@ -1,6 +1,23 @@
 div.producersBox {
     margin: 50px 15vw;
 
+    div {
+        button {
+            border: none;
+            text-transform: uppercase;
+            background-color: transparent;
+            font-size: medium;
+            font-weight: bolder;
+
+            a {
+                text-decoration: none;
+                color: #7F4677;
+            }
+        }
+
+        margin-bottom: 30px;
+    }
+
     ul {
 
         h2 {

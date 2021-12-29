@@ -51,7 +51,8 @@
         "add": "Add new offer"
     },
     "producersList": {
-        "h2": "All available producers"
+        "h2": "All available producers",
+        "add": "Add new producer"
     },
     "producer": {
         "country": "Country:",
@@ -60,12 +61,22 @@
     },
     "offerForm": {
         "h2": "Add new offer",
-        "return": "Return to previous page",
+        "return": "Return to offers",
         "form": {
             "price": "Price*",
             "product": "Connected product*",
             "shop": "Shop name*",
             "link": "Link to offer*",
+            "button": "Add"
+        }
+    },
+    "producerForm": {
+        "h2": "Add new producer",
+        "return": "Return to producers",
+        "form": {
+            "name": "Producer name*",
+            "established": "Established in",
+            "country": "Country*",
             "button": "Add"
         }
     }
