@@ -4,7 +4,8 @@
         "genre": "Genre: ",
         "producer": "Producer: ",
         "moreBtn": "More",
-        "add": "Add new game"
+        "add": "Add new game",
+        "searchResult": "Results of searching for"
     },
     "gameForm": {
         "h2": "Add new game",

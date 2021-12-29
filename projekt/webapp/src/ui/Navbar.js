@@ -28,7 +28,8 @@ const Navbar = ({history}) => {
             <div className='logo' onClick={goToDashboard}><p className='logo'>{chessLogo}</p> <p>Planszomania.pl</p></div>
             <div className='titleSearch'>
                 <Formik
-                    initialValues={{name: ""}}
+                    initialValues={{search: ""}}
+                    onSubmit={(values)=>{history.push(`/search/${values.search}`)}}
                 >
                     {()=>(
                         <Form>

@@ -4,7 +4,8 @@
         "genre": "Gatunek: ",
         "producer": "Producent: ",
         "moreBtn": "Więcej",
-        "add": "Dodaj nową grę"
+        "add": "Dodaj nową grę",
+        "searchResult": "Wyniki wyszukiwania frazy"
     },
     "gameForm": {
         "h2": "Dodaj nową grę",
