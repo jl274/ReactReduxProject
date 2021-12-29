@@ -24,11 +24,14 @@ const GamesList = ({games, producers}) => {
     }
 
     return (
-        <div className='itemsList'>
+        <>
+        <div className='controlBox'>
             <h2>{t('gameList.h2')}</h2>
             <div>
                 <button><Link to='/new-game'>{t('gameList.add')} {plus}</Link></button>
             </div>
+        </div>
+        <div className='itemsList'>
             <ul>
                 {games ? games.map(game => 
                     <li key={game.id}>
@@ -53,6 +56,7 @@ const GamesList = ({games, producers}) => {
                 ) : null}
             </ul>
         </div>
+        </>
     )
 };
 
