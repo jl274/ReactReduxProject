@@ -52,8 +52,8 @@ const ProducersList = ({producers, history}) => {
                         <button className={`${sortMethod === "za" ? "active" : ""} right`} onClick={()=>{setSortMethod("za")}}>{"Z->A"}</button>
                     </div>
                     <div>
-                        <button className={`${sortMethod === "newCompany" ? "active" : ""} left`} onClick={()=>{setSortMethod("newCompany")}}>Established at the earliest</button>
-                        <button className={`${sortMethod === "oldCompany" ? "active" : ""} right`} onClick={()=>{setSortMethod("oldCompany")}}>Established at the latest</button>
+                        <button className={`${sortMethod === "oldCompany" ? "active" : ""} left`} onClick={()=>{setSortMethod("oldCompany")}}>Established at the earliest</button>
+                        <button className={`${sortMethod === "newCompany" ? "active" : ""} right`} onClick={()=>{setSortMethod("newCompany")}}>Established at the latest</button>
                     </div>
                 </div>
                 <div>
