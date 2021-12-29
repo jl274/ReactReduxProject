@@ -57,7 +57,8 @@
     "producer": {
         "country": "Kraj:",
         "established": "Założono w:",
-        "games": "Gry:"
+        "games": "Gry:",
+        "empty": "Nie dodano jeszcze gier tego producenta."
     },
     "offerForm": {
         "h2": "Dodaj nową ofertę",

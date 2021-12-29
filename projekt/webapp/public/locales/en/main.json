@@ -57,7 +57,8 @@
     "producer": {
         "country": "Country:",
         "established": "Established in:",
-        "games": "Games:"
+        "games": "Games:",
+        "empty": "No games added yet."
     },
     "offerForm": {
         "h2": "Add new offer",

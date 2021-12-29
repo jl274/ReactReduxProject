@@ -44,11 +44,11 @@ const ProducerDetails = ({producer, games, history}) => {
                     <li className="games">
                         <p>{productsIcon}{t('producer.games')}</p>
                         <div>
-                            {getMatchingGames() ? getMatchingGames().map(game => 
+                            {getMatchingGames().length !== 0 ? getMatchingGames().map(game => 
                                 <p key={game.id} id={game.id}>
                                     <Link to={{pathname: `/game/${game.id}`, state:"producer"}}>{game.name}</Link>
                                 </p>
-                            ) : <p>No games yet</p>}
+                            ) : <p>{t('producer.empty')}</p>}
                         </div>
                     </li>
                 </ul>
