@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Game = require('../models/Game');
 const Producer = require('../models/Producer');
+const Offer = require('../models/Offer');
 
 router.get('/', async (req, res) => {
     try {
@@ -94,6 +95,7 @@ router.delete('/:id', async (req, res) => {
         if (exists) {
 
             await Game.deleteOne({_id: id});
+            await Offer.deleteMany({product: id})
 
             return res.json({id})
 
