@@ -2,6 +2,7 @@ import { types } from './types';
 import { createAction } from 'redux-api-middleware';
 import { schema, normalize} from 'normalizr';
 import _ from 'lodash';
+import { updateOffersList } from '../games/actions';
 
 const offerSchema = new schema.Entity('offers');
 const offersSchema = new schema.Array(offerSchema);
@@ -49,6 +50,7 @@ export const sendOfferToDB = (offer) => {
                     const json = await res.json();
                     json.offer['id'] = json.offer['_id'];
                     const new_offer = _.omit(json.offer, '_id');
+                    updateOffersList(new_offer.product, new_offer.id)
                     const { entities } = normalize(new_offer, offerSchema);
                     return entities;
                 },

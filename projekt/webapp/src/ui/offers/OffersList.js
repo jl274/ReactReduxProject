@@ -27,7 +27,7 @@ const OffersList = ({offers, urlList}) => {
             <div>
                 <ul className="list">
                     {console.log(urlList)}
-                    {offers.map(offer => urlList ? <li key={offer.id} id={offer.id}>
+                    {offers.map(offer => urlList.find(x => x.idArray.includes(offer.id)) ? <li key={offer.id} id={offer.id}>
                         <OfferOverview 
                             data={offer} 
                             imgUrl={urlList.find(x => x.idArray.includes(offer.id)).url 

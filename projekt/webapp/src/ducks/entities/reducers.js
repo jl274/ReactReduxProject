@@ -67,6 +67,23 @@ const entityReducer = (entity, state = { allIds: [], byId: {} }, action) => {
                 byId: _.omit(state.byId, actionEntities),
                 allIds: state.allIds.filter(id => !Object.keys(actionEntities).includes(id)),
             }
+        case 'EDIT':
+            console.log("=====")
+            console.log(actionEntities)
+            console.log("=====")
+            return {
+                byId: {
+                    ...state.byId, 
+                    ...Object.keys(actionEntities).reduce(
+                    (acc, id) => ({
+                        ...acc,
+                        [id]: {
+                            ...actionEntities[id]
+                        }
+                    })
+                , {})},
+                allIds: state.allIds
+            }
         default:
             return state;
             // console.log('Error action not recognized');
