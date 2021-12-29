@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { getAllProducers } from "../../ducks/producers/selectors";
 import '../../styles/ProducersList.scss';
 import { useTranslation } from 'react-i18next';
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const ProducersList = ({producers, history}) => {
 
@@ -14,6 +14,9 @@ const ProducersList = ({producers, history}) => {
 
     return (
         <div className="producersBox">
+            <div>
+                <Link to='/producers/new'>New</Link>
+            </div>
             <ul>
                 <h2>{t('producersList.h2')}</h2>
                 {producers ? producers.map(producer => 

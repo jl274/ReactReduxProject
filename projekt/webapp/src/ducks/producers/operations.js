@@ -30,3 +30,30 @@ export const getProducersFromDB = () => {
         ]
     })
 }
+
+export const sendProducerToDB = (producer) => {
+    return createAction({
+        endpoint: "http://localhost:5000/producers",
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(producer),
+        types: [
+            types.POST_PRODUCERS_REQUEST,
+            {
+                type: types.POST_PRODUCERS_SUCCESS,
+                payload: async (action, state, res) => {
+                    console.log('PAYLOAD', action, state, res);
+                    const json = await res.json();
+                    json.producer['id'] = json.producer['_id'];
+                    const new_producer = _.omit(json.producer, '_id');
+                    const { entities } = normalize(new_producer, producerSchema);
+                    return entities;
+                },
+                meta: { actionType: 'POST' }
+           },
+            types.POST_PRODUCERS_FAILURE
+        ]
+    })
+}
