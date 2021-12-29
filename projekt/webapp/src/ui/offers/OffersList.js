@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
+import { useState } from 'react';
 
 const plus = <FontAwesomeIcon icon={faPlus} />
 
@@ -14,11 +16,44 @@ const OffersList = ({offers, urlList}) => {
 
     const { t } = useTranslation();
 
+    const [sortMethod, setSortMethod] = useState("new");
+
+    const offersToMap = () => {
+        let offers_copy = [...offers]
+        if (sortMethod === "new"){
+            offers_copy = _.reverse(offers_copy)
+        } else if (sortMethod === "cheap"){
+            offers_copy = _.sortBy(offers_copy, ['price']);
+        } else if (sortMethod === "expensive"){
+            offers_copy = _.reverse(_.sortBy(offers_copy, ['price']));
+        } else if (sortMethod === "az"){
+            offers_copy = _.sortBy(offers_copy, ['shop']);
+        } else if (sortMethod === "za"){
+            offers_copy = _.reverse(_.sortBy(offers_copy, ['shop']));
+        }
+        console.log(offers_copy)
+        return offers_copy
+    }
+
     return (
         <>
         <div className="offersControl">
             <h2>{t('offersList.h2')}</h2>
-            <div></div>
+            <div className='sortOptions'>
+                <p>Sort by:</p>
+                <div>
+                    <button className={`${sortMethod === "new" ? "active" : ""} left`} onClick={()=>{setSortMethod("new")}}>Newest</button>
+                    <button className={`${sortMethod === "old" ? "active" : ""} right`} onClick={()=>{setSortMethod("old")}}>Oldest</button>
+                </div>
+                <div>
+                    <button className={`${sortMethod === "az" ? "active" : ""} left`} onClick={()=>{setSortMethod("az")}}>{"A->Z"}</button>
+                    <button className={`${sortMethod === "za" ? "active" : ""} right`} onClick={()=>{setSortMethod("za")}}>{"Z->A"}</button>
+                </div>
+                <div>
+                    <button className={`${sortMethod === "cheap" ? "active" : ""} left`} onClick={()=>{setSortMethod("cheap")}}>Cheapest</button>
+                    <button className={`${sortMethod === "expensive" ? "active" : ""} right`} onClick={()=>{setSortMethod("expensive")}}>Most expensive</button>
+                </div>
+            </div>
             <div>
                 <button><Link to='/offers/new'>{t('offersList.add')} {plus}</Link></button>
             </div>
@@ -26,8 +61,8 @@ const OffersList = ({offers, urlList}) => {
         <div className="offersBox">
             <div>
                 <ul className="list">
-                    {console.log(urlList)}
-                    {offers.map(offer => urlList.find(x => x.idArray.includes(offer.id)) ? <li key={offer.id} id={offer.id}>
+                    {/* {console.log(urlList)} */}
+                    {offersToMap().map(offer => urlList.find(x => x.idArray.includes(offer.id)) ? <li key={offer.id} id={offer.id}>
                         <OfferOverview 
                             data={offer} 
                             imgUrl={urlList.find(x => x.idArray.includes(offer.id)).url 

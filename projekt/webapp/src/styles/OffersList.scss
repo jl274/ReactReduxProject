@@ -38,4 +38,52 @@ div.offersControl {
             color: #7F4677;
         }
     }
+
+    div {
+
+        &.sortOptions {
+            padding: 0 30px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            button {
+
+                outline: none;
+                background-color: #7F4677;
+                color: white;
+                border-radius: 30px;
+                border: none;
+                width: auto;
+                height: 30px;
+                padding: 5px 20px;
+                text-transform: uppercase;
+                font-weight: normal;
+                font-size: small;
+
+                &.left {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &.right {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+    
+                &:hover {
+                    cursor: pointer;
+                    background-color: white;
+                    color: #7F4677;
+                    box-shadow:inset 0px 0px 0px 1px #7F4677;
+                }
+
+                &.active {
+                    background-color: white;
+                    color: #7F4677;
+                    box-shadow:inset 0px 0px 0px 1px #7F4677;
+                }
+            }
+        }
+    }
 }
