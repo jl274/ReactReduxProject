@@ -1,3 +1,63 @@
+div.currencies {
+    margin: 20px 15vw;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    padding: 50px;
+
+    p {
+        margin: 0;
+        padding-bottom: 10px;
+    }
+
+    button {
+        outline: none;
+                background-color: #7F4677;
+                color: white;
+                border-radius: 30px;
+                border: none;
+                width: auto;
+                height: 30px;
+                padding: 5px 20px;
+                text-transform: uppercase;
+                font-weight: normal;
+                font-size: small;
+
+                &.left {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &.right {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+
+                &.l {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &.c {
+                    border-radius: 0;
+                }
+                &.r {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+                &:hover {
+                    cursor: pointer;
+                    background-color: white;
+                    color: #7F4677;
+                    box-shadow:inset 0px 0px 0px 1px #7F4677;
+                }
+
+                &.active {
+                    background-color: white;
+                    color: #7F4677;
+                    box-shadow:inset 0px 0px 0px 1px #7F4677;
+                }
+    }
+}
+
 div.detailsBox {
     margin: 50px 15vw;
     margin-bottom: 30px;

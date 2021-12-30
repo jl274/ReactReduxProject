@@ -69,7 +69,9 @@
     },
     "offersList": {
         "h2": "Offers",
-        "add": "Add new offer"
+        "add": "Add new offer",
+        "currency": "Currencies:",
+        "sortBy": "Sort by:"
     },
     "producersList": {
         "h2": "All available producers",

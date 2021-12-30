@@ -47,7 +47,7 @@ const OffersList = ({offers, urlList, currencyGetter}) => {
         <div className="offersControl">
             <h2>{t('offersList.h2')}</h2>
             <div className='sortOptions'>
-                <p>Currency:</p>
+                <p>{t('offersList.currency')}</p>
                 <div>
                 <button className={`${activeCurrency === "pln" ? "active" : ""} l`} onClick={()=>{setActiveCurrency("pln")}}>PLN</button>
                 <button className={`${activeCurrency === "eur" ? "active" : ""} c`} onClick={()=>{setActiveCurrency("eur")}}>EUR</button>
@@ -56,7 +56,7 @@ const OffersList = ({offers, urlList, currencyGetter}) => {
                 </div>
             </div>
             <div className='sortOptions'>
-                <p>Sort by:</p>
+                <p>{t('offersList.sortBy')}</p>
                 <div>
                     <button className={`${sortMethod === "new" ? "active" : ""} left`} onClick={()=>{setSortMethod("new")}}>Newest</button>
                     <button className={`${sortMethod === "old" ? "active" : ""} right`} onClick={()=>{setSortMethod("old")}}>Oldest</button>

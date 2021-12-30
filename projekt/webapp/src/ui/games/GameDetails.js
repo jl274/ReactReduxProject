@@ -9,13 +9,14 @@ import '../../styles/Tooltip.scss';
 import { getAllProducers } from "../../ducks/producers/selectors";
 import { getAllOffersOf } from "../../ducks/offers/selectors";
 import OfferOverview from "../offers/OfferOverview";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import _ from 'lodash';
 import { deleteGameFromDB, getGamesFromDB } from '../../ducks/games/operations';
 import { getProducersFromDB } from '../../ducks/producers/operations';
 import Modal from 'react-modal';
 import { togglerStatus } from "../../ducks/toggler/selectors";
 import { hideToggle, showToggle } from "../../ducks/toggler/actions";
+import { getCurrencyByCode } from "../../ducks/currencies/selectors";
 
 const lightBulbIcon = <FontAwesomeIcon icon={faLightbulb}/>;
 const lightBulbIconRed = <FontAwesomeIcon className="purple" icon={faLightbulb}/>;
@@ -24,7 +25,7 @@ const editIcon = <FontAwesomeIcon icon={faPen} />;
 const trashIcon = <FontAwesomeIcon icon={faTrash} />;
 
 const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, getProducersFromDB, deleteGameFromDB, 
-    deleteModalStatus, showToggle, hideToggle}) => {
+    deleteModalStatus, showToggle, hideToggle, currencyGetter}) => {
 
     if (!game){
         (async () => {
@@ -65,6 +66,12 @@ const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, g
     const deleteGame = async (game) => {
         await deleteGameFromDB(game);
         goBack();
+    }
+
+    const [activeCurrency, setActiveCurrency] = useState("pln");
+
+    const changeCurrency = (price) => {
+        return Math.round((parseFloat(price) * parseFloat(currencyGetter(`${activeCurrency}`))) * 100) / 100;
     }
 
     Modal.setAppElement('body')
@@ -150,7 +157,17 @@ const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, g
                 </div>
             </div>
         </div>
-        {gameOffers ? _.sortBy(gameOffers, ['price']).map(offer => <OfferOverview key={offer.id} id={offer.id} data={offer} imgUrl={game.url} />) : null}
+        {gameOffers ? _.sortBy(gameOffers, ['price']).map(offer => <OfferOverview key={offer.id} id={offer.id} 
+            data={{...offer, price: changeCurrency(offer.price)}} currency={activeCurrency} imgUrl={game.url} />) : null}
+        <div className='currencies'>
+                <p>{t('offersList.currency')}</p>
+                <div>
+                <button className={`${activeCurrency === "pln" ? "active" : ""} l`} onClick={()=>{setActiveCurrency("pln")}}>PLN</button>
+                <button className={`${activeCurrency === "eur" ? "active" : ""} c`} onClick={()=>{setActiveCurrency("eur")}}>EUR</button>
+                <button className={`${activeCurrency === "usd" ? "active" : ""} c`} onClick={()=>{setActiveCurrency("usd")}}>USD</button>
+                <button className={`${activeCurrency === "gbp" ? "active" : ""} r`} onClick={()=>{setActiveCurrency("gbp")}}>GBP</button>
+                </div>
+        </div>
         </>
     ) : <></>
 }
@@ -161,7 +178,8 @@ const mapStateToProps = (state, otherProps) => {
         game: getOneGameById(state, id),
         allProducers: getAllProducers(state),
         gameOffers: getAllOffersOf(state, id),
-        deleteModalStatus: togglerStatus(state, "deleteModal")
+        deleteModalStatus: togglerStatus(state, "deleteModal"),
+        currencyGetter: (code) => getCurrencyByCode(state, code)
     }
 }
 
