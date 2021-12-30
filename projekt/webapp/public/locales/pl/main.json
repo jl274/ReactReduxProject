@@ -8,7 +8,11 @@
         "searchResult": "Wyniki wyszukiwania frazy",
         "filters": {
             "title": "Filtry:",
-            "max": "Max. trudność "
+            "max": "Max. trudność ",
+            "genres": "Gatunki",
+            "producers": "Producenci",
+            "use": "Zastosuj filtry",
+            "selectAll": "Wszyscy"
         },
         "sorts": {
             "newest": "Najnowsze",

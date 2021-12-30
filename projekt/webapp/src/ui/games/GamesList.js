@@ -113,7 +113,7 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
                             </div>
                             <div className='genresBox'>
                                 <div className='flex'>
-                                Genres: {checkboxesStatus ? 
+                                {t('gameList.filters.genres')} {checkboxesStatus ? 
                                     <p className='icon' onClick={()=>{hideToggle('checkboxes')}}>{toggleOnIcon}</p> :
                                     <p className='icon' onClick={()=>{showToggle('checkboxes')}} >{toggleOffIcon}</p>
                                 }
@@ -129,9 +129,9 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
                                 }
                             </div>
                             <div className='producersBox'>
-                                <label>Producers</label>
+                                <label>{t('gameList.filters.producers')}</label>
                                 <Field as="select" name="producer">
-                                    <option value="Any">All</option>
+                                    <option value="Any">{t('gameList.filters.selectAll')}</option>
                                     {producers ? producers.map(producer => 
                                         <option key={producer.id} value={producer.name}>{producer.name}</option>) : null
                                     }
@@ -140,7 +140,7 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
                         </Form>
                     }
                 </Formik>
-                <div className='submit'><button type="submit" form='filters'>Use filters {searchIcon}</button></div>
+                <div className='submit'><button type="submit" form='filters'>{t('gameList.filters.use')} {searchIcon}</button></div>
             </div>
 
             <div>
@@ -150,7 +150,7 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
 
         <div className='itemsList'>
             <ul>
-                {games ? gamesToMap().map(game => 
+                {games && gamesToMap().length !== 0 ? gamesToMap().map(game => 
                     <li key={game.id}>
                         <div className='img'>
                             <img src={game.url ? game.url : noCoverSrc} alt='Cover' ></img>
@@ -170,7 +170,7 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
                             </Link>
                         </div>
                     </li>
-                ) : null}
+                ) : <li><div style={{"gridColumn": "span 5", "textAlign": "center"}}>Found nothing</div></li>}
             </ul>
         </div>
         </>

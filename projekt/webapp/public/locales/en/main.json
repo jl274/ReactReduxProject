@@ -8,7 +8,11 @@
         "searchResult": "Results of searching for",
         "filters": {
             "title": "Filters:",
-            "max": "Max complexity "
+            "max": "Max complexity ",
+            "genres": "Genres",
+            "producers": "Producers",
+            "use": "Use filters",
+            "selectAll": "All"
         },
         "sorts": {
             "newest": "Newest",
