@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const shopIcon = <FontAwesomeIcon icon={faStoreAlt}/>
 
-const OfferOverview = ({data, imgUrl, link, gameTitle}) => {
+const OfferOverview = ({data, imgUrl, link, gameTitle, currency}) => {
 
     const { t } = useTranslation();
     
@@ -24,7 +24,7 @@ const OfferOverview = ({data, imgUrl, link, gameTitle}) => {
                         gameTitle ? 
                         <>
                             <div className='gameTitle'>{gameTitle}</div>
-                            <div>{t('offerOverview.price')}<p>{parseFloat(data.price)}</p>,-PLN</div>
+                            <div>{t('offerOverview.price')}<p>{parseFloat(data.price)}</p>,-{currency.toUpperCase()}</div>
                         </> : 
                         <>
                             {t('offerOverview.price')}<p>{parseFloat(data.price)}</p>,-PLN

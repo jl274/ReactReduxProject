@@ -70,6 +70,18 @@ div.offersControl {
                     border-top-left-radius: 0;
                     border-bottom-left-radius: 0;
                 }
+
+                &.l {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &.c {
+                    border-radius: 0;
+                }
+                &.r {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
     
                 &:hover {
                     cursor: pointer;

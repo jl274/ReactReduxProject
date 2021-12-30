@@ -9,10 +9,11 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import { useState } from 'react';
+import { getCurrencyByCode } from "../../ducks/currencies/selectors";
 
 const plus = <FontAwesomeIcon icon={faPlus} />
 
-const OffersList = ({offers, urlList}) => {
+const OffersList = ({offers, urlList, currencyGetter}) => {
 
     const { t } = useTranslation();
 
@@ -35,10 +36,25 @@ const OffersList = ({offers, urlList}) => {
         return offers_copy
     }
 
+    const [activeCurrency, setActiveCurrency] = useState("pln");
+
+    const changeCurrency = (price) => {
+        return Math.round((parseFloat(price) * parseFloat(currencyGetter(`${activeCurrency}`))) * 100) / 100;
+    }
+
     return (
         <>
         <div className="offersControl">
             <h2>{t('offersList.h2')}</h2>
+            <div className='sortOptions'>
+                <p>Currency:</p>
+                <div>
+                <button className={`${activeCurrency === "pln" ? "active" : ""} l`} onClick={()=>{setActiveCurrency("pln")}}>PLN</button>
+                <button className={`${activeCurrency === "eur" ? "active" : ""} c`} onClick={()=>{setActiveCurrency("eur")}}>EUR</button>
+                <button className={`${activeCurrency === "usd" ? "active" : ""} c`} onClick={()=>{setActiveCurrency("usd")}}>USD</button>
+                <button className={`${activeCurrency === "gbp" ? "active" : ""} r`} onClick={()=>{setActiveCurrency("gbp")}}>GBP</button>
+                </div>
+            </div>
             <div className='sortOptions'>
                 <p>Sort by:</p>
                 <div>
@@ -63,8 +79,10 @@ const OffersList = ({offers, urlList}) => {
                 <ul className="list">
                     {/* {console.log(urlList)} */}
                     {offersToMap().map(offer => urlList.find(x => x.idArray.includes(offer.id)) ? <li key={offer.id} id={offer.id}>
+                        {console.log(offer)}
                         <OfferOverview 
-                            data={offer} 
+                            data={{...offer, price: changeCurrency(offer.price)}}
+                            currency={activeCurrency} 
                             imgUrl={urlList.find(x => x.idArray.includes(offer.id)).url 
                                 ? urlList.find(x => x.idArray.includes(offer.id)).url 
                                 : 'https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1'} 
@@ -82,7 +100,8 @@ const OffersList = ({offers, urlList}) => {
 const mapStateToProps = (state) => {
     return {
         offers: getAllOffers(state),
-        urlList: getGameIdPlusUrl(state)
+        urlList: getGameIdPlusUrl(state),
+        currencyGetter: (code) => getCurrencyByCode(state, code)
     }
 }
 
