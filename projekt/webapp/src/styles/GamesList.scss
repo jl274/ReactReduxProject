@@ -29,6 +29,12 @@ div.controlBox {
                 width: 100%;
             }
 
+            p {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
             div {
                 grid-column: span 1;
 
@@ -44,6 +50,25 @@ div.controlBox {
 
                 p {
                     margin: 0 5px;
+                }
+
+                &.producersBox{
+                    display: flex;
+                    align-content: center;
+                    justify-content: center;
+                    margin: 0;
+                    padding: 10px;
+
+                    label {
+                        margin-right: 5px;
+                    }
+
+                    select {
+                        border: 1px solid #E5DFDF;
+                        border-radius: 20px;
+                        padding: 5px;
+                        background-color: #f5f5f5;
+                    }
                 }
 
                 &.genresBox {

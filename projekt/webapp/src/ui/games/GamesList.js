@@ -32,7 +32,7 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
     }
 
     const [sortMethod, setSortMethod] = useState("new");
-    const [filterOptions, setFilterOptions] = useState({maxComplexity: null});
+    const [filterOptions, setFilterOptions] = useState({maxComplexity: null, checked: [], producer: "Any"});
 
     const gamesToMap = () => {
         let games_copy = [...games]
@@ -57,6 +57,10 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
         }
         if (filterOptions.checked && filterOptions.checked.length !== 0){
             games_copy = games_copy.filter(game => filterOptions.checked.includes(game.genre));
+        }
+        if (filterOptions.producer !== "Any"){
+            games_copy = games_copy.filter(game => getProducerNameFromId(game.producer) === filterOptions.producer);
+            // games_copy.forEach(game => console.log(game.id, producers.find(x => x.id === game.id)))
         }
 
         console.log(games_copy)
@@ -92,11 +96,12 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
             <div className='filterOptions'>
                 <p>{t('gameList.filters.title')}</p>
                 <Formik
-                    initialValues={{maxComplexity: 100, checked: []}}
+                    initialValues={{maxComplexity: 100, checked: [], producer: "Any"}}
                     onSubmit={values=>setFilterOptions({
                         ...filterOptions, 
                         checked: values.checked, 
-                        maxComplexity: parseInt(values.maxComplexity)
+                        maxComplexity: parseInt(values.maxComplexity),
+                        producer: values.producer
                     })}
                 >
                     {({values}) => 
@@ -123,6 +128,15 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
                                     null
                                 }
                             </div>
+                            <div className='producersBox'>
+                                <label>Producers</label>
+                                <Field as="select" name="producer">
+                                    <option value="Any">All</option>
+                                    {producers ? producers.map(producer => 
+                                        <option key={producer.id} value={producer.name}>{producer.name}</option>) : null
+                                    }
+                                </Field>
+                            </div>
                         </Form>
                     }
                 </Formik>
@@ -133,6 +147,7 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
                 <button><Link to='/new-game'>{t('gameList.add')} {plus}</Link></button>
             </div>
         </div>
+
         <div className='itemsList'>
             <ul>
                 {games ? gamesToMap().map(game => 
