@@ -89,7 +89,7 @@ const GameForm = ({producers, history, sendGameToDB, id, gameToEdit, editGameInD
     return (
         <div className='form'>
             <h2>
-                {t('gameForm.h2')}
+                {id ? t('gameForm.h2edit') : t('gameForm.h2')}
                 <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="up" onClick={goBack}>
                     {returnArrow}
                 </div>
@@ -154,7 +154,7 @@ const GameForm = ({producers, history, sendGameToDB, id, gameToEdit, editGameInD
                     </div>
                     <button type='submit' disabled={!isValid} className={`${isValid ? '' : 'disabled'}`}
                     >
-                        {t('gameForm.form.button')}
+                        {id ? t('gameForm.form.buttonEdit') : t('gameForm.form.button')}
                     </button>
                 </Form>
                 }

@@ -37,8 +37,10 @@
             "playingTime": "Average playing time",
             "producer": "Producer*",
             "url": "Image url",
-            "button": "Add"
-        }
+            "button": "Add",
+            "buttonEdit": "Edit"
+        },
+        "h2edit": "Edit game"
     },
     "details": {
         "genre": "Genre",

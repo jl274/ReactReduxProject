@@ -37,8 +37,10 @@
             "playingTime": "Średni czas gry",
             "producer": "Producent*",
             "url": "Url obrazka",
-            "button": "Dodaj"
-        }
+            "button": "Dodaj",
+            "buttonEdit": "Edytuj"
+        },
+        "h2edit": "Edytuj grę"
     },
     "details": {
         "genre": "Gatunek: ",
