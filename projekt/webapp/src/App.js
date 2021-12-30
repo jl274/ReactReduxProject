@@ -21,6 +21,7 @@ import OfferForm from './ui/offers/OfferForm';
 import ProducerForm from './ui/producers/ProducerForm';
 import Search from './ui/Search';
 import Stats from './ui/stats/Stats';
+import { getAllCurrencies } from './ducks/currencies/operations';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -45,16 +46,17 @@ i18next.use(Backend)
 })
 
 
-function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
+function App({getProducersFromDB, getOffersFromDB, getGamesFromDB, getAllCurrencies}) {
 
   useEffect(()=>{
     const load = async () => {
       await getProducersFromDB();
       await getOffersFromDB();
       await getGamesFromDB();
+      await getAllCurrencies();
     }
     load();
-  }, [getGamesFromDB, getOffersFromDB, getProducersFromDB]);
+  }, [getAllCurrencies, getGamesFromDB, getOffersFromDB, getProducersFromDB]);
 
   return (
 
@@ -108,7 +110,8 @@ function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
 const mapDispatchToProps = {
   getProducersFromDB,
   getOffersFromDB,
-  getGamesFromDB
+  getGamesFromDB,
+  getAllCurrencies
 }
 
 export default connect(null, mapDispatchToProps)(App);

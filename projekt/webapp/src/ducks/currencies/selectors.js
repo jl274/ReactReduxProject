@@ -1,0 +1,1 @@
+export const getCurrencyByCode = (state, code) => state.currencies[code];
