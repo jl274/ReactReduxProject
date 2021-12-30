@@ -76,7 +76,10 @@ const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, g
             <div className='arrow' aria-label={`${t('gameForm.return')}`} data-tooltip="left" onClick={goBack}>
                 {returnArrow}
             </div>
-            <div className='edit' aria-label={`${t('gameForm.edit')}`} data-tooltip="left">
+            <div className='edit' aria-label={`${t('gameForm.edit')}`} data-tooltip="left" onClick={()=>{
+                history.push({pathname: `/game/${game.id}/edit`, state: "edit"});
+            }}
+            >
                 {editIcon}
             </div>
             <div className='delete' aria-label={`${t('gameForm.delete')}`} data-tooltip="left" onClick={()=>{

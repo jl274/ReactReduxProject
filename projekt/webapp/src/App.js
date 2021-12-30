@@ -64,6 +64,9 @@ function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
       <Navbar />
       
       <Switch>
+        <Route path="/game/:id/edit">
+          <GameForm />
+        </Route>
         <Route path="/game/:id">
           <GameDetails />
         </Route>

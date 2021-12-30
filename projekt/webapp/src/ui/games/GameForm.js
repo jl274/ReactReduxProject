@@ -9,15 +9,16 @@ import { getAllProducers } from '../../ducks/producers/selectors';
 import { useTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { sendGameToDB } from '../../ducks/games/operations';
+import { getOneGameById } from '../../ducks/games/selectors';
 
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-const GameForm = ({producers, history, sendGameToDB}) => {
+const GameForm = ({producers, history, sendGameToDB, id, gameToEdit}) => {
 
     const { t } = useTranslation();
 
     const goBack = () => {
-        history.push('/');
+        history.location.state ? history.goBack() : history.push('/');
     }
 
     const postGame = (values) => {
@@ -25,7 +26,20 @@ const GameForm = ({producers, history, sendGameToDB}) => {
         goBack();
     }
 
-    const initialValues = {
+    const getProducerToEditGame = () => {
+        return producers.find(x => x.id === gameToEdit.producer).id;
+    }
+
+    const initialValues = id ? {
+        name: gameToEdit.name,
+        genre: gameToEdit.genre,
+        complexity: gameToEdit.complexity,
+        minAge: gameToEdit.minAge,
+        idProducer: getProducerToEditGame(),
+        playingTime: gameToEdit.playingTime,
+        url: gameToEdit.url,
+        description: gameToEdit.description
+    } : {
         name: "",
         genre: "",
         complexity: 1,
@@ -150,8 +164,13 @@ const GameForm = ({producers, history, sendGameToDB}) => {
     )
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, otherProps) => {
+
+    const { match: { params: { id }}} = otherProps;
+
     return {
+        id,
+        gameToEdit: id ? getOneGameById(state, id) : null,
         producers: getAllProducers(state)
     }
 }
