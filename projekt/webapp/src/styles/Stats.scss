@@ -1,0 +1,37 @@
+div.stats {
+
+    margin: 50px 15vw;
+
+    ul {
+
+        padding: 10px;
+        list-style: none;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: flex-start;
+            
+        // svg {
+        //     height: 20vh;
+        // }
+
+        li {
+            margin: 0;
+            padding-bottom: 30px;
+            background-color: white;
+            border-radius: 30px;
+            box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+            h3 {
+                margin: 0;
+                padding: 10px 30px;
+                background-color: #7F4677;
+                color: white;
+                border-radius: 30px;
+            }
+            svg {
+                margin: 0;
+            }
+
+        }
+            
+    }
+}

@@ -20,6 +20,7 @@ import ProducerDetails from './ui/producers/ProducerDetails';
 import OfferForm from './ui/offers/OfferForm';
 import ProducerForm from './ui/producers/ProducerForm';
 import Search from './ui/Search';
+import Stats from './ui/stats/Stats';
 
 // internationalization ------------
 const language = languages.find(value => value === localStorage.getItem('language'));
@@ -86,6 +87,9 @@ function App({getProducersFromDB, getOffersFromDB, getGamesFromDB}) {
         </Route>
         <Route path='/search/:phrase'>
           <Search />
+        </Route>
+        <Route path='/stats'>
+          <Stats />
         </Route>
         <Route path='/'>
           <GamesList />
