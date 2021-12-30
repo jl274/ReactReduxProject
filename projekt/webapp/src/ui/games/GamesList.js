@@ -1,20 +1,24 @@
 import {connect} from 'react-redux';
-import { getAllGames } from '../../ducks/games/selectors';
+import { getAllGames, getAllGenres } from '../../ducks/games/selectors';
 import { useTranslation } from 'react-i18next';
 import '../../styles/GamesList.scss';
 import { getAllProducers } from '../../ducks/producers/selectors';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSearch, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import _ from 'lodash';
 import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { togglerStatus } from '../../ducks/toggler/selectors';
+import { hideToggle, showToggle } from '../../ducks/toggler/actions';
 
 const plus = <FontAwesomeIcon icon={faPlus} />;
 const searchIcon = <FontAwesomeIcon icon={faSearch} />;
+const toggleOnIcon = <FontAwesomeIcon icon={faChevronUp} />;
+const toggleOffIcon = <FontAwesomeIcon icon={faChevronDown} />;
 
 
-const GamesList = ({games, producers}) => {
+const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, genres}) => {
 
     const { t } = useTranslation();
     const noCoverSrc = 'https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1';
@@ -49,13 +53,16 @@ const GamesList = ({games, producers}) => {
         }
 
         if (filterOptions.maxComplexity){
-            games_copy = games_copy.filter(game => parseInt(game.complexity) <= filterOptions.maxComplexity)
+            games_copy = games_copy.filter(game => parseInt(game.complexity) <= filterOptions.maxComplexity);
+        }
+        if (filterOptions.checked && filterOptions.checked.length !== 0){
+            games_copy = games_copy.filter(game => filterOptions.checked.includes(game.genre));
         }
 
         console.log(games_copy)
         return games_copy
     }
-
+    console.log("show/hide", checkboxesStatus)
     return (
         <>
         <div className='controlBox'>
@@ -85,20 +92,41 @@ const GamesList = ({games, producers}) => {
             <div className='filterOptions'>
                 <p>{t('gameList.filters.title')}</p>
                 <Formik
-                    initialValues={{maxComplexity: 100}}
-                    onSubmit={values=>setFilterOptions({...filterOptions, maxComplexity: parseInt(values.maxComplexity)})}
+                    initialValues={{maxComplexity: 100, checked: []}}
+                    onSubmit={values=>setFilterOptions({
+                        ...filterOptions, 
+                        checked: values.checked, 
+                        maxComplexity: parseInt(values.maxComplexity)
+                    })}
                 >
                     {({values}) => 
-                        <Form>
-                            <div>
+                        <Form id='filters'>
+                            <div className='rangeBox'>
                                 <p>{t('gameList.filters.max')}</p>
                                 <Field name="maxComplexity" type="range" min="0" max="100"></Field>
                                 <p>{values.maxComplexity}/100</p>
-                                <button>{searchIcon}</button>
+                            </div>
+                            <div className='genresBox'>
+                                <div className='flex'>
+                                Genres: {checkboxesStatus ? 
+                                    <p className='icon' onClick={()=>{hideToggle('checkboxes')}}>{toggleOnIcon}</p> :
+                                    <p className='icon' onClick={()=>{showToggle('checkboxes')}} >{toggleOffIcon}</p>
+                                }
+                                </div>
+                                {checkboxesStatus 
+                                    ? <div className='genres'>{genres ? genres.map(genre => 
+                                        <label key={genre}>
+                                        <Field type="checkbox" name="checked" value={`${genre}`} />
+                                        {genre}
+                                        </label>
+                                ) : null}</div> :
+                                    null
+                                }
                             </div>
                         </Form>
                     }
                 </Formik>
+                <div className='submit'><button type="submit" form='filters'>Use filters {searchIcon}</button></div>
             </div>
 
             <div>
@@ -137,12 +165,15 @@ const GamesList = ({games, producers}) => {
 const mapStateToProps = (state) => {
     return {
         games: getAllGames(state),
-        producers: getAllProducers(state)
+        producers: getAllProducers(state),
+        checkboxesStatus: togglerStatus(state, "checkboxes"),
+        genres: getAllGenres(state)
     }
 }
 
 const mapDispatchToProps = {
-    
+    hideToggle,
+    showToggle
 }
 
 

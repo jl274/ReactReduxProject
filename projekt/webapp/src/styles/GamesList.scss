@@ -1,6 +1,6 @@
 div.controlBox {
 
-    margin: 50px 10vw;
+    margin: 50px 15vw;
     margin-bottom: 0;
     padding-bottom: 30px;
     background-color: white;
@@ -19,16 +19,74 @@ div.controlBox {
         &.filterOptions {
             padding: 0 30px;
             margin: 10px 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+            // display: flex;
+            // justify-content: space-around;
+            // align-items: center;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            form {
+                grid-column: span 3;
+                width: 100%;
+            }
 
             div {
+                grid-column: span 1;
+
                 display: flex;
                 align-items: center;
 
+                &.submit button {
+                    font-weight: normal;
+                    display: flex;
+                    flex-direction: row;
+                    width: max-content;
+                }
+
                 p {
                     margin: 0 5px;
+                }
+
+                &.genresBox {
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-content: center;
+                    justify-content: center;
+
+                    div.flex {
+                        display: flex;
+                    }
+
+                    p.icon {
+                        cursor: pointer;
+                        color: #7F4677;
+                    }
+
+                    div.genres {
+
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        overflow:scroll;
+                        // overflow-y:auto;
+                        overflow-x:hidden;
+                        max-height: 50px;
+                        width: 400px;
+
+                        label {
+                            cursor: pointer;
+
+                            input {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+
+                &.rangeBox {
+                    display: flex;
+                    align-content: center;
+                    justify-content: center;
                 }
 
                 button {
