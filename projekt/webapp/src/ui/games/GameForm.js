@@ -8,12 +8,12 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { getAllProducers } from '../../ducks/producers/selectors';
 import { useTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
-import { sendGameToDB } from '../../ducks/games/operations';
+import { editGameInDB, sendGameToDB } from '../../ducks/games/operations';
 import { getOneGameById } from '../../ducks/games/selectors';
 
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-const GameForm = ({producers, history, sendGameToDB, id, gameToEdit}) => {
+const GameForm = ({producers, history, sendGameToDB, id, gameToEdit, editGameInDB}) => {
 
     const { t } = useTranslation();
 
@@ -22,7 +22,7 @@ const GameForm = ({producers, history, sendGameToDB, id, gameToEdit}) => {
     }
 
     const postGame = (values) => {
-        sendGameToDB(values);
+        id ? editGameInDB(id, values) : sendGameToDB(values);
         goBack();
     }
 
@@ -176,7 +176,8 @@ const mapStateToProps = (state, otherProps) => {
 }
 
 const mapDispatchToProps = {
-    sendGameToDB
+    sendGameToDB,
+    editGameInDB
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GameForm));

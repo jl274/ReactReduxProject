@@ -68,9 +68,6 @@ const entityReducer = (entity, state = { allIds: [], byId: {} }, action) => {
                 allIds: state.allIds.filter(id => !Object.keys(actionEntities).includes(id)),
             }
         case 'EDIT':
-            console.log("=====")
-            console.log(actionEntities)
-            console.log("=====")
             return {
                 byId: {
                     ...state.byId, 

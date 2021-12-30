@@ -11,6 +11,13 @@ export const gamesReducer = (state = initState, action) => {
             return [...state, action.payload.game];
         case types.DELETE_GAMES_SUCCESS:
             return state.filter(x => x.id !== action.payload.id);
+        case types.EDIT_GAMES_SUCCESS:
+            return state.map(game => {
+                if (game.id === action.payload.game.id){
+                    game.offers.push(action.payload.game);
+                }
+                return game
+            })
         case types.UPDATE_OFFERS_LIST:
             console.log("-----")
             console.log(state.map(game => {

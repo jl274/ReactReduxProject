@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
 
-    const { idProducer, name, genre, playingTime, url, complexity, minAge } = req.body;
+    const { idProducer, name, genre, playingTime, url, complexity, minAge, description } = req.body;
     const { id } = req.params;
 
     if (idProducer && name && genre && complexity){
@@ -63,11 +63,11 @@ router.put('/:id', async (req, res) => {
 
             if (exists && game_exists) {
 
-                await Game.updateOne({_id: id}, {
-                    name, genre, playingTime, complexity, minAge, 
-                    producer: idProducer, offers: [], url
+                    await Game.updateOne({_id: id}, {
+                    name, genre, playingTime, complexity, minAge, description,
+                    producer: idProducer, url
                 });
-                const game = await Game.find({_id: id});
+                const game = await Game.findOne({_id: id});
 
                 return res.json({game})
 

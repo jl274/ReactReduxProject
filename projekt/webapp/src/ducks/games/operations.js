@@ -58,6 +58,34 @@ export const sendGameToDB = (game) => {
     })
 }
 
+export const editGameInDB = (id, game) => {
+    return createAction({
+        endpoint: `http://localhost:5000/games/${id}`,
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(game),
+        types: [
+            types.EDIT_GAMES_REQUEST,
+            {
+                type: types.EDIT_GAMES_SUCCESS,
+                payload: async (action, state, res) => {
+                    console.log('PAYLOAD', action, state, res);
+                    const json = await res.json();
+                    console.log(json)
+                    json.game['id'] = json.game['_id'];
+                    const new_game = _.omit(json.game, '_id');
+                    const { entities } = normalize(new_game, gameSchema);
+                    return entities;
+                },
+                meta: { actionType: 'EDIT' }
+            },
+            types.EDIT_GAMES_FAILURE
+        ]
+    })
+}
+
 export const deleteGameFromDB = (game) => {
     console.log(game)
     return createAction({
