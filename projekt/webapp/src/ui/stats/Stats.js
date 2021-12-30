@@ -4,8 +4,11 @@ import _ from 'lodash';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryPie } from 'victory';
 import '../../styles/Stats.scss';
 import { getAllProducers } from '../../ducks/producers/selectors';
+import { useTranslation } from 'react-i18next';
 
 const Stats = ({games, producers}) => {
+
+    const { t } = useTranslation();
 
     const gameWithMostOffers = () => {
         const game_copy = [...games.map(game => {return {"name": game.name, "offers": game.offers.length}})];
@@ -40,7 +43,7 @@ const Stats = ({games, producers}) => {
         <div className='stats'>
             <ul>
                 <li>
-                    <h3>Most offers on game</h3>
+                    <h3>{t('stats.offers')}</h3>
                     {gameWithMostOffers() ? <VictoryChart
                         theme={VictoryTheme.material}
                         domainPadding={20}
@@ -73,7 +76,7 @@ const Stats = ({games, producers}) => {
                     }
                 </li>
                 <li>
-                    <h3>Average complexity</h3>
+                    <h3>{t('stats.complexity')}</h3>
                     <VictoryPie
                         colorScale={["#7F1677", "#a6409b", "#cd65c1", "#f68be8", "#ffb2ff" ]}
                         labels={({ datum }) => `"${datum.x}/100" ${datum.y}`}
@@ -84,10 +87,10 @@ const Stats = ({games, producers}) => {
                     />
                 </li>
                 <li>
-                    <h3>Producers by country</h3>
+                    <h3>{t('stats.countries')}</h3>
                     <VictoryChart
                         theme={VictoryTheme.material}
-                        domainPadding={40}
+                        domainPadding={25}
                         // padding={{ top: 20, bottom: 40, left: 50, right: 50 }}
                         height={250}
                         width={500}

@@ -99,5 +99,10 @@
             "country": "Kraj pochodzenia*",
             "button": "Dodaj"
         }
+    },
+    "stats": {
+        "offers": "Najwięcej ofert na grę",
+        "complexity": "Średnia złożoność gier",
+        "countries": "Kraje producentów"
     }
 }

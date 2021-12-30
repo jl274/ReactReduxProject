@@ -99,5 +99,10 @@
             "country": "Country*",
             "button": "Add"
         }
+    },
+    "stats": {
+        "offers": "Most offers on game",
+        "complexity": "Average complexity",
+        "countries": "Producers by country"
     }
 }
