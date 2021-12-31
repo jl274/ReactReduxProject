@@ -52,37 +52,37 @@ const GameForm = ({producers, history, sendGameToDB, id, gameToEdit, editGameInD
 
     const validationSchema = Yup.object().shape({
         name: Yup
-            .string("Title must be a string")
-            .min(2, "At least 2 characters")
-            .required("Title is required"),
+            .string()
+            .min(2, `${t('validation.minChars')}`)
+            .required(`${t('validation.required')}`),
         genre: Yup
-            .string("Genre must be a string")
-            .min(2, "At least 2 characters")
-            .required(),
+            .string()
+            .min(2, `${t('validation.minChars')}`)
+            .required(`${t('validation.required')}`),
         complexity: Yup
-            .number("Complexity score is a number")
-            .integer("Complexity score is an integer")
-            .min(1, "Score must be > 0 and < 101")
-            .max(100, "Score must be > 0 and < 101")
-            .required(),
+            .number(`${t('validation.integer')}`)
+            .integer(`${t('validation.integer')}`)
+            .min(1, `${t('validation.complexity')}`)
+            .max(100, `${t('validation.complexity')}`)
+            .required(`${t('validation.required')}`),
         minAge: Yup
-            .number("Minimum age is a number")
-            .integer("Minimum age is an integer")
-            .min(5, "Minimum age must be >= 5 and <= 120")
-            .max(120, "Minimum age must be >= 5 and <= 120"),
+            .number(`${t('validation.integer')}`)
+            .integer(`${t('validation.integer')}`)
+            .min(5, `${t('validation.minAge')}`)
+            .max(120, `${t('validation.minAge')}`),
         idProducer: Yup
             .string()
-            .required(),
+            .required(`${t('validation.required')}`),
         playingTime: Yup
-            .number("Playing time is a number")
-            .integer("Playing time is an integer")
-            .min(15, "Playing time must be >= 15 and <= 300")
-            .max(300, "Playing time must be >= 15 and <= 300"),
+            .number(`${t('validation.integer')}`)
+            .integer(`${t('validation.integer')}`)
+            .min(15, `${t('validation.playingTime')}`)
+            .max(300, `${t('validation.playingTime')}`),
         url: Yup
-            .string("Invalid url format")
-            .url("Invalid url format"),
+            .string()
+            .url(`${t('validation.url')}`),
         description: Yup
-            .string("Description is a string")
+            .string()
     })
 
 

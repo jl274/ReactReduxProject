@@ -32,19 +32,19 @@ const OfferForm = ({history, games, sendOfferToDB}) => {
     const validationSchema = Yup.object().shape({
         shop: Yup
             .string("Shop name must be string")
-            .min(2, "At least 2 characters")
-            .required("Shop name is required"),
+            .min(2, `${t('validation.minChars')}`)
+            .required(`${t('validation.required')}`),
         product: Yup
             .string()
-            .required("Selecting product is required"),
+            .required(`${t('validation.required')}`),
         price: Yup
-            .number("Price is a number")
-            .min(0.01, "Price must be greater than 0")
-            .required(),
+            .number(`${t('validation.float')}`)
+            .min(0.01, `${t('validation.price')}`)
+            .required(`${t('validation.required')}`),
         link: Yup
-            .string("Invalid url format")
-            .url("Invalid url format")
-            .required("Link to offer is required")
+            .string()
+            .url(`${t('validation.url')}`)
+            .required(`${t('validation.required')}`)
     })
 
     const submitOffer = (values) => {

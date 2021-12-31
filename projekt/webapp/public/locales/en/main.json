@@ -108,5 +108,18 @@
         "offers": "Most offers on game",
         "complexity": "Average complexity",
         "countries": "Producers by country"
+    },
+    "validation": {
+        "required": "This field is required",
+        "minChars": "At least 2 characters",
+        "complexity": "Score must be > 0 and < 101",
+        "playingTime": "Playing time must be \">= 15\" and \"<= 300\"",
+        "integer": "This field must be a number",
+        "url": "Invalid url format",
+        "minAge": "Minimum age must be \">= 5\" and \"<= 120\"",
+        "float": "This field must be float or integer",
+        "price": "Price must be greater than 0",
+        "date": "Invalid date format",
+        "maxDate": "Adding not yet established producers is not possible"
     }
 }

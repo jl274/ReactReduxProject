@@ -29,17 +29,17 @@ const ProducerForm = ({history, sendProducerToDB}) => {
 
     const validationSchema = Yup.object().shape({
         name: Yup
-            .string("Name must be string")
-            .min(2, "At least two characters")
-            .required("Name is required"),
+            .string()
+            .min(2, `${t('validation.minChars')}`)
+            .required(`${t('validation.required')}`),
         established: Yup
-            .date("Establishing date should be a date")
-            .max(today, "Adding not yet established producers is not possible")
+            .date(`${t('validation.date')}`)
+            .max(today, `${t('validation.maxDate')}`)
             // .required("Establishing date is required")
             ,
         country: Yup
             .string()
-            .required("Producer country is required")
+            .required(`${t('validation.required')}`)
     })
 
     const submitProducer = (values) => {

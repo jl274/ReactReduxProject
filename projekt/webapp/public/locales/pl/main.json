@@ -108,5 +108,18 @@
         "offers": "Najwięcej ofert na grę",
         "complexity": "Średnia złożoność gier",
         "countries": "Kraje producentów"
+    },
+    "validation": {
+        "required": "To pole  jest wymagane",
+        "minChars": "Conajmniej 2 znaki",
+        "complexity": "Punktacja trudności musi mieścić się w ramach \"> 0\" i \"< 101\"",
+        "playingTime": "Czas gry musi mieścić się w ramach \">= 15\" i \"<= 300\"",
+        "integer": "To pole musi być liczbą",
+        "url": "Niepoprawny format url",
+        "minAge": "Minimalny wiek musi mieścić się w ramach \">= 5\" i \"<= 120\"",
+        "float": "To pole musi być liczbą",
+        "price": "Cena musi być większa od zera",
+        "date": "Niepoprawna data",
+        "maxDate": "Dodawanie \"przyszłych\" producentów jest niemożliwe"
     }
 }
