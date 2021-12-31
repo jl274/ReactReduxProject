@@ -7,11 +7,12 @@ import '../../styles/Form.scss';
 import '../../styles/Tooltip.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { sendProducerToDB } from "../../ducks/producers/operations";
+import { editProducerInDB, sendProducerToDB } from "../../ducks/producers/operations";
+import { getProducerById } from "../../ducks/producers/selectors";
 
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-const ProducerForm = ({history, sendProducerToDB}) => {
+const ProducerForm = ({history, sendProducerToDB, id, producerToEdit, editProducerInDB}) => {
 
     const { t } = useTranslation();
 
@@ -19,7 +20,11 @@ const ProducerForm = ({history, sendProducerToDB}) => {
         history.push('/producers');
     };
 
-    const initialValues = {
+    const initialValues = id ? {
+        name: producerToEdit.name,
+        established: producerToEdit.established,
+        country: producerToEdit.country
+    } : {
         name: "",
         established: new Date(),
         country: "Poland",
@@ -43,7 +48,9 @@ const ProducerForm = ({history, sendProducerToDB}) => {
     })
 
     const submitProducer = (values) => {
-        sendProducerToDB(values);
+        id 
+            ? editProducerInDB(id, values)
+            : sendProducerToDB(values);
         goBack();
     }
 
@@ -69,7 +76,7 @@ const ProducerForm = ({history, sendProducerToDB}) => {
                             <ErrorMessage name="name" component="div" className="errorMessage"/>
                         </div>
                         <div className="group">
-                            <label>{t('producerForm.form.established')}</label>
+                            <label>{t('producerForm.form.established')}{id ? ` (Previous: ${producerToEdit.established.slice(0,10)}) ` : null}</label>
                             <Field type="date" name="established" className={`${errors.established ? `invalid` : ``}`}></Field>
                             <ErrorMessage name="established" component="div" className="errorMessage"/>
                         </div>
@@ -80,7 +87,7 @@ const ProducerForm = ({history, sendProducerToDB}) => {
                         </div>
                         <button type='submit' disabled={!isValid} className={`${isValid ? '' : 'disabled'}`}
                         >
-                            {t('producerForm.form.button')}
+                            {id ? t('producerForm.form.editButton') : t('producerForm.form.button')}
                         </button>
                     </div>
                 </Form>
@@ -90,8 +97,17 @@ const ProducerForm = ({history, sendProducerToDB}) => {
     )
 }
 
-const mapDispatchToProps = {
-    sendProducerToDB
+const mapStateToProps = (state, otherProps) => {
+    const {match: {params: {id}}} = otherProps;
+    return {
+        id,
+        producerToEdit: id ? getProducerById(state, id) : null
+    }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(ProducerForm));
+const mapDispatchToProps = {
+    sendProducerToDB,
+    editProducerInDB
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProducerForm));

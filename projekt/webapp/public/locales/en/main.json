@@ -101,7 +101,8 @@
             "name": "Producer name*",
             "established": "Established in",
             "country": "Country*",
-            "button": "Add"
+            "button": "Add",
+            "editButton": "Edit"
         },
         "edit": "Edit this producer",
         "delete": "Delete this producer",

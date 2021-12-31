@@ -49,7 +49,7 @@ const ProducerDetails = ({producer, games, history, showToggle, hideToggle, dele
                     {returnArrow}
             </div>
             <div className='edit' aria-label={`${t('producerForm.edit')}`} data-tooltip="left" onClick={()=>{
-                history.push({pathname: `/game/${producer.id}/edit`, state: "edit"});
+                history.push({pathname: `/producer/${producer.id}/edit`, state: "edit"});
             }}
             >
                 {editIcon}

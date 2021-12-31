@@ -69,6 +69,9 @@ function App({getProducersFromDB, getOffersFromDB, getGamesFromDB, getAllCurrenc
         <Route path="/game/:id/edit">
           <GameForm />
         </Route>
+        <Route path="/producer/:id/edit">
+          <ProducerForm />
+        </Route>
         <Route path="/game/:id">
           <GameDetails />
         </Route>

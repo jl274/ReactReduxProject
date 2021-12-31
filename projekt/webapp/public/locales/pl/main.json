@@ -101,7 +101,8 @@
             "name": "Nazwa producenta*",
             "established": "Data założenia",
             "country": "Kraj pochodzenia*",
-            "button": "Dodaj"
+            "button": "Dodaj",
+            "editButton": "Edytuj"
         },
         "edit": "Edytuj tego producenta",
         "delete": "Usuń tego producenta",

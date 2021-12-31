@@ -42,7 +42,7 @@ router.put('/:id', async (req, res) => {
             await Producer.updateOne({_id: id},
                 {name, established: new Date(date), country, offers: []}
             );
-            const producer = await Producer.find({_id: id})
+            const producer = await Producer.findOne({_id: id})
 
             return res.json({producer})
         } else {
