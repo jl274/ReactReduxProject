@@ -39,7 +39,7 @@ const ProducerDetails = ({producer, games, history}) => {
                     </li>
                     <li>
                         <p>{calendarIcon}{t('producer.established')}</p>
-                        <p>{producer.established}</p>
+                        <p>{producer.established.slice(0,10)}</p>
                     </li>
                     <li className="games">
                         <p>{productsIcon}{t('producer.games')}</p>
