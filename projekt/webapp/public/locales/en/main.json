@@ -102,7 +102,16 @@
             "established": "Established in",
             "country": "Country*",
             "button": "Add"
+        },
+        "edit": "Edit this producer",
+        "delete": "Delete this producer",
+        "modal": {
+            "modalTitle": "Are you sure you want to delete",
+            "modalTitleError": "You can't delete producer that has games",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
         }
+        
     },
     "stats": {
         "offers": "Most offers on game",

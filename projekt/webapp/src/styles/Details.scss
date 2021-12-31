@@ -247,6 +247,13 @@ div.deleteModal {
                 cursor: pointer;
                 box-shadow: 0 0 5px 5px #7F4677, 0 0 3px 3px gray;
             }
+
+            &.disabled {
+                background-color: transparent;
+                cursor: not-allowed;
+                color: red;
+                box-shadow:inset 0px 0px 0px 1px red;
+            }
         }
     }
 }
