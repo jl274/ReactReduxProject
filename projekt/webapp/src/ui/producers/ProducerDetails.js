@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { togglerStatus } from "../../ducks/toggler/selectors";
 import { hideToggle, showToggle } from "../../ducks/toggler/actions";
 import Modal from 'react-modal';
+import { deleteProducerFromDB } from "../../ducks/producers/operations";
 
 const flagIcon = <FontAwesomeIcon icon={faFlag} />
 const calendarIcon = <FontAwesomeIcon icon={faCalendarAlt} />
@@ -31,7 +32,7 @@ const customStyles = {
     },
 };
 
-const ProducerDetails = ({producer, games, history, showToggle, hideToggle, deleteModalStatus}) => {
+const ProducerDetails = ({producer, games, history, showToggle, hideToggle, deleteModalStatus, deleteProducerFromDB}) => {
 
     const { t } = useTranslation();
 
@@ -42,6 +43,13 @@ const ProducerDetails = ({producer, games, history, showToggle, hideToggle, dele
     const goBack = () => {
         history.location.state ? history.goBack() : history.push('/');
     }
+
+    const deleteProducer = () => {
+        deleteProducerFromDB(producer);
+        goBack();
+    }
+
+    Modal.setAppElement('body')
 
     return (
         <div className="detailsBox">
@@ -70,9 +78,9 @@ const ProducerDetails = ({producer, games, history, showToggle, hideToggle, dele
                         : <h2>{`${t('producerForm.modal.modalTitle')}`} {producer.name}?</h2>}
                         <div className="buttons">
                             <button onClick={()=>{hideToggle('deleteModal')}}>{`${t('producerForm.modal.cancel')}`}</button>
-                            <button disabled={getMatchingGames().length === 0} 
+                            <button disabled={getMatchingGames().length !== 0} 
                              className={`confirm ${getMatchingGames().length !== 0 ? 'disabled' : ''}`}
-                             onClick={()=>{hideToggle('deleteModal')}}>{`${t('producerForm.modal.confirm')}`}
+                             onClick={()=>{hideToggle('deleteModal'); deleteProducer();}}>{`${t('producerForm.modal.confirm')}`}
                             </button>
                         </div>
                     </div>
@@ -116,7 +124,8 @@ const mapStateToProps = (state, otherProps) => {
 
 const mapDispatchToProps = {
     showToggle,
-    hideToggle
+    hideToggle,
+    deleteProducerFromDB
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProducerDetails));

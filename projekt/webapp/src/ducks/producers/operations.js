@@ -84,3 +84,25 @@ export const editProducerInDB = (id, game) => {
         ]
     })
 }
+
+export const deleteProducerFromDB = (producer) => {
+    return createAction({
+        endpoint: `http://localhost:5000/producers/${producer.id}`,
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        types: [
+            types.DELETE_PRODUCERS_REQUEST,
+            {
+                type: types.DELETE_PRODUCERS_SUCCESS,
+                payload: async (action, state, res) => {
+                    const { entities } = normalize(producer, producerSchema);
+                    return entities;
+                },
+                meta: { actionType: 'DELETE' }
+           },
+            types.DELETE_PRODUCERS_FAILURE
+        ]
+    })
+}
