@@ -170,7 +170,7 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
                             </Link>
                         </div>
                     </li>
-                ) : <li><div style={{"gridColumn": "span 5", "textAlign": "center"}}>Found nothing</div></li>}
+                ) : <li><div style={{"gridColumn": "span 5", "textAlign": "center"}}>{t('gameList.nothingFound')}</div></li>}
             </ul>
         </div>
         </>

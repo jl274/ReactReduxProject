@@ -101,10 +101,10 @@ const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, g
                     contentLabel="Delete modal"
                 >
                     <div className="deleteModal">
-                        <h2>Are you sure you want to delete {game.name}?</h2>
+                        <h2>{`${t('producerForm.modal.modalTitle')}`} {game.name}?</h2>
                         <div className="buttons">
-                            <button onClick={()=>{hideToggle('deleteModal')}}>Cancel</button>
-                            <button className="confirm" onClick={()=>{hideToggle('deleteModal'); deleteGame(game)}}>Confirm</button>
+                            <button onClick={()=>{hideToggle('deleteModal')}}>{`${t('producerForm.modal.cancel')}`}</button>
+                            <button className="confirm" onClick={()=>{hideToggle('deleteModal'); deleteGame(game)}}>{`${t('producerForm.modal.confirm')}`}</button>
                         </div>
                     </div>
                 </Modal>

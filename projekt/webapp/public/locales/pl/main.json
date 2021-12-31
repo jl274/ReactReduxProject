@@ -6,6 +6,7 @@
         "moreBtn": "Więcej",
         "add": "Dodaj nową grę",
         "searchResult": "Wyniki wyszukiwania frazy",
+        "nothingFound": "Nic nie znaleziono",
         "filters": {
             "title": "Filtry:",
             "max": "Max. trudność ",

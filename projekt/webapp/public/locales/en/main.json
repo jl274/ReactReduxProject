@@ -6,6 +6,7 @@
         "moreBtn": "More",
         "add": "Add new game",
         "searchResult": "Results of searching for",
+        "nothingFound": "Nothing found",
         "filters": {
             "title": "Filters:",
             "max": "Max complexity ",

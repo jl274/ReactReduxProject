@@ -36,7 +36,7 @@ export const Search = ({ games, phrase, producers }) => {
         </div>
         <div className="itemsList">
         <ul>
-        {games && phrase && searchForPhrase !== [] ? 
+        {games && phrase && searchForPhrase().length !== 0 ? 
         searchForPhrase().map(game => <li key={game.id}>
             <div className='img'>
                 <img src={game.url ? game.url : noCoverSrc} alt='Cover' ></img>
@@ -56,7 +56,7 @@ export const Search = ({ games, phrase, producers }) => {
                 </Link>
             </div>
         </li>) : 
-        <li>Found nothing</li>}
+        <li><div style={{"gridColumn": "span 5", "textAlign": "center"}}>{t('gameList.nothingFound')}</div></li>}
         </ul>
         </div>
         </>
@@ -65,7 +65,6 @@ export const Search = ({ games, phrase, producers }) => {
 
 const mapStateToProps = (state, otherProps) => {
     const { match: { params: { phrase }}} = otherProps;
-    console.log(phrase)
     return {
         games: getAllGames(state),
         phrase,
