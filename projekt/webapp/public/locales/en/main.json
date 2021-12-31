@@ -64,7 +64,8 @@
         "links": {
             "games": "Games",
             "offers": "Offers",
-            "producers": "Producers"
+            "producers": "Producers",
+            "stats": "Statistics"
         }
     },
     "offersList": {
