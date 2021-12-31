@@ -53,7 +53,8 @@
         "minAge": "Rekomendowany minimalny wiek: ",
         "playingTime": "Średni czas gry: ",
         "producer": "Prodcucent: ",
-        "offers": "Liczba ofert: "
+        "offers": "Liczba ofert: ",
+        "gameDeleteError": "Nie można usunąć gry z ofertami"
     },
     "offerOverview": {
         "price": "Cena: ",

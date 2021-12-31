@@ -53,7 +53,8 @@
         "minAge": "Minimum recommended age: ",
         "playingTime": "Average playing time: ",
         "producer": "Producer: ",
-        "offers": "Number of offers: "
+        "offers": "Number of offers: ",
+        "gameDeleteError": "You can't delete game with offers"
     },
     "offerOverview": {
         "price": "Price: ",
