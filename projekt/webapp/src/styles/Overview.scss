@@ -9,6 +9,37 @@ div.overview {
     ul {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        position: relative;
+
+        div {
+            
+            &.edit {
+                color: gray;
+                opacity: 0.2;
+                position: absolute;
+                top: calc(50% + ((26.1px)/2));
+                left: -50px;
+
+                &:hover {
+                    opacity: 1;
+                    color: #7F4677;
+                    cursor: pointer;
+                }
+            }
+            &.delete{
+                color: gray;
+                opacity: 0.2;
+                position: absolute;
+                top: 25px;
+                left: -50px;
+
+                &:hover {
+                    opacity: 1;
+                    color: red;
+                    cursor: pointer;
+                }
+            }
+        }
 
         li {
             list-style: none;

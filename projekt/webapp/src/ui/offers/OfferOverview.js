@@ -1,10 +1,12 @@
 import '../../styles/Overview.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStoreAlt } from '@fortawesome/free-solid-svg-icons';
+import { faStoreAlt, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 const shopIcon = <FontAwesomeIcon icon={faStoreAlt}/>
+const editIcon = <FontAwesomeIcon icon={faPen} />;
+const trashIcon = <FontAwesomeIcon icon={faTrash} />;
 
 const OfferOverview = ({data, imgUrl, link, gameTitle, currency}) => {
 
@@ -13,6 +15,10 @@ const OfferOverview = ({data, imgUrl, link, gameTitle, currency}) => {
     return (
         <div className="overview">
             <ul>
+                <>
+                    <div className='delete'>{trashIcon}</div>
+                    <div className='edit'>{editIcon}</div>
+                </>
                 <li className='shop'>
                     <p>{shopIcon}</p> {data.shop}
                 </li>
