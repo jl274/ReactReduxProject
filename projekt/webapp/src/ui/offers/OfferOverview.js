@@ -55,7 +55,7 @@ const OfferOverview = ({data, imgUrl, link, gameTitle, currency,
                         contentLabel="Delete modal"
                     >
                         <div className="deleteModal">
-                            <h2>{`${t('producerForm.modal.modalTitle')}`} {data.shop}: {"\"" + gameTitle + "\""}?</h2>
+                            <h2>{`${t('producerForm.modal.modalTitle')}`} {data.shop}{gameTitle ? ": \"" + gameTitle + "\"" : null}?</h2>
                             <div className="buttons">
                                 <button onClick={()=>{hideToggle(`${data.id}offerDeleteModal`)}}>{`${t('producerForm.modal.cancel')}`}</button>
                                 <button className={`confirm`}

@@ -36,7 +36,8 @@ const Stats = ({games, producers}) => {
     
     const countCountries = () => {
         const producers_copy = [...producers.map(producer => {return {name: producer.name, country: producer.country}})]
-        return Object.entries(_.groupBy(producers_copy, 'country')).map(entry => {return {country: entry[0], count: entry[1].length}});
+        return _.chain(Object.entries(_.groupBy(producers_copy, 'country')).map(entry => {return {country: entry[0], count: entry[1].length}}))
+            .orderBy(['count']).reverse().value();
     }
 
     return (
