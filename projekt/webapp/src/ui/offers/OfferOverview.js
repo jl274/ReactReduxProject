@@ -44,7 +44,7 @@ const OfferOverview = ({data, imgUrl, link, gameTitle, currency,
             <ul>
                 <>
                     <div className='delete' onClick={()=>{showToggle(`${data.id}offerDeleteModal`)}}>{trashIcon}</div>
-                    <div className='edit'>{editIcon}</div>
+                    <div className='edit'><Link to={`/offers/${data.id}/edit`}>{editIcon}</Link></div>
                 </>
                 <li className='shop'>
                     <p>{shopIcon}</p> {data.shop}

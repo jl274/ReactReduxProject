@@ -82,3 +82,30 @@ export const deleteOfferFromDB = (offer) => {
         ]
     })
 }
+
+export const editOfferInDB = (id, offer) => {
+    return createAction({
+        endpoint: `http://localhost:5000/offers/${id}`,
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(offer),
+        types: [
+            types.EDIT_OFFERS_REQUEST,
+            {
+                type: types.EDIT_OFFERS_SUCCESS,
+                payload: async (action, state, res) => {
+                    console.log('PAYLOAD', action, state, res);
+                    const json = await res.json();
+                    json.offer['id'] = json.offer['_id'];
+                    const new_offer = _.omit(json.offer, '_id');
+                    const { entities } = normalize(new_offer, offerSchema);
+                    return entities;
+                },
+                meta: { actionType: 'EDIT' }
+            },
+            types.EDIT_OFFERS_FAILURE
+        ]
+    })
+}

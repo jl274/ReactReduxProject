@@ -8,12 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { getGamesNameAndId } from '../../ducks/games/selectors';
-import { sendOfferToDB } from '../../ducks/offers/operations';
+import { editOfferInDB, sendOfferToDB } from '../../ducks/offers/operations';
 import { getGamesFromDB } from '../../ducks/games/operations';
+import { getOneOffer } from '../../ducks/offers/selectors';
 
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-const OfferForm = ({history, games, sendOfferToDB, getGamesFromDB}) => {
+const OfferForm = ({history, games, sendOfferToDB, getGamesFromDB, offerToEdit, editOfferInDB}) => {
 
     const { t } = useTranslation();
 
@@ -21,9 +22,12 @@ const OfferForm = ({history, games, sendOfferToDB, getGamesFromDB}) => {
         history.push('/offers');
     }
 
-    console.log(games)
-
-    const initialValues = {
+    const initialValues = offerToEdit ? {
+        shop: offerToEdit.shop,
+        product: offerToEdit.product,
+        price: offerToEdit.price,
+        link: offerToEdit.link
+    } : {
         shop: "",
         product: "",
         price: 0.00,
@@ -49,15 +53,19 @@ const OfferForm = ({history, games, sendOfferToDB, getGamesFromDB}) => {
     })
 
     const submitOffer = async (values) => {
-        await sendOfferToDB(values);
-        await getGamesFromDB(); // temporary
+        if (offerToEdit){
+            await editOfferInDB(offerToEdit.id ,values);
+        } else {
+            await sendOfferToDB(values); 
+            await getGamesFromDB();
+        }
         goBack();
     }
 
     return (
         <div className="form">
             <h2>
-                {t('offerForm.h2')}
+                {offerToEdit ? t('offerForm.h2edit') : t('offerForm.h2')}
                 <div className='arrow' aria-label={`${t('offerForm.return')}`} data-tooltip="up" onClick={goBack}>
                     {returnArrow}
                 </div>
@@ -78,7 +86,7 @@ const OfferForm = ({history, games, sendOfferToDB, getGamesFromDB}) => {
                         <div className="group"> 
                             <label>{t('offerForm.form.product')}</label>
                             <Field 
-                                as="select" id="product" 
+                                as="select" id="product" disabled={offerToEdit}
                                 name="product" className={`${errors.product && touched.product ? `invalid` : ``}`}
                             >
                                 <option value={null}>---</option>
@@ -103,7 +111,7 @@ const OfferForm = ({history, games, sendOfferToDB, getGamesFromDB}) => {
                     </div>
                     <button type='submit' disabled={!isValid} className={`${isValid ? '' : 'disabled'}`}
                     >
-                        {t('offerForm.form.button')}
+                        {offerToEdit ? t('offerForm.form.buttonEdit') : t('offerForm.form.button')}
                     </button>
                 </Form>
                 }
@@ -112,14 +120,17 @@ const OfferForm = ({history, games, sendOfferToDB, getGamesFromDB}) => {
     )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, otherProps) => {
+    const {match: {params: {id}}} = otherProps;
     return {
+        offerToEdit: id ? getOneOffer(state, id) : null,
         games: getGamesNameAndId(state)
     }
 }
 
 const mapDispatchToProps = {
     sendOfferToDB,
+    editOfferInDB,
     getGamesFromDB
 }
 

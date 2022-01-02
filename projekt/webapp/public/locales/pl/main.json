@@ -88,13 +88,15 @@
     },
     "offerForm": {
         "h2": "Dodaj nową ofertę",
+        "h2edit": "Edytuj ofertę",
         "return": "Wróć do listy ofert",
         "form": {
             "price": "Cena*",
             "shop": "Nazwa sklepu*",
             "product": "Powiązany produkt*",
             "link": "Link do oferty*",
-            "button": "Dodaj"
+            "button": "Dodaj",
+            "buttonEdit": "Edytuj"
         }
     },
     "producerForm": {

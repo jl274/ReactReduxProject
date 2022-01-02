@@ -14,17 +14,23 @@ div.overview {
         div {
             
             &.edit {
-                color: gray;
-                opacity: 0.2;
+                
                 position: absolute;
                 top: calc(50% + ((26.1px)/2));
                 left: -50px;
 
-                &:hover {
-                    opacity: 1;
-                    color: #7F4677;
-                    cursor: pointer;
+                a {
+                    color: gray;
+                    opacity: 0.2;
+
+                    &:hover {
+                        opacity: 1;
+                        color: #7F4677;
+                        cursor: pointer;
+                    }
                 }
+
+                
             }
             &.delete{
                 color: gray;
