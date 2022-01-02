@@ -9,10 +9,11 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { getGamesNameAndId } from '../../ducks/games/selectors';
 import { sendOfferToDB } from '../../ducks/offers/operations';
+import { getGamesFromDB } from '../../ducks/games/operations';
 
 const returnArrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-const OfferForm = ({history, games, sendOfferToDB}) => {
+const OfferForm = ({history, games, sendOfferToDB, getGamesFromDB}) => {
 
     const { t } = useTranslation();
 
@@ -47,8 +48,10 @@ const OfferForm = ({history, games, sendOfferToDB}) => {
             .required(`${t('validation.required')}`)
     })
 
-    const submitOffer = (values) => {
-        sendOfferToDB(values)
+    const submitOffer = async (values) => {
+        await sendOfferToDB(values);
+        await getGamesFromDB(); // temporary
+        goBack();
     }
 
     return (
@@ -116,7 +119,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    sendOfferToDB
+    sendOfferToDB,
+    getGamesFromDB
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OfferForm));

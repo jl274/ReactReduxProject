@@ -8,6 +8,7 @@ import { hideToggle, showToggle } from '../../ducks/toggler/actions';
 import { togglerStatus } from '../../ducks/toggler/selectors';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
+import { getGamesFromDB } from '../../ducks/games/operations';
 
 const shopIcon = <FontAwesomeIcon icon={faStoreAlt}/>
 const editIcon = <FontAwesomeIcon icon={faPen} />;
@@ -27,13 +28,16 @@ const customStyles = {
 };
 
 const OfferOverview = ({data, imgUrl, link, gameTitle, currency, 
-    deleteOfferFromDB, hideToggle, showToggle, deleteModalStatus}) => {
+    deleteOfferFromDB, hideToggle, showToggle, deleteModalStatus, getGamesFromDB}) => {
 
     const { t } = useTranslation();
 
     const deleteOffer = async () => {
         await deleteOfferFromDB({id: data.id, shop: data.shop, price: data.price, link: data.link, __v: data.__V});
+        await getGamesFromDB(); // temporary
     }
+
+    Modal.setAppElement('body');
     
     return (
         <div className="overview">
@@ -95,7 +99,8 @@ const mapStateToProps = (state, otherProps) => {
 const mapDispatchToProps = {
     deleteOfferFromDB,
     showToggle,
-    hideToggle
+    hideToggle,
+    getGamesFromDB
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(OfferOverview);
