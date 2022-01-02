@@ -60,3 +60,25 @@ export const sendOfferToDB = (offer) => {
         ]
     })
 }
+
+export const deleteOfferFromDB = (offer) => {
+    return createAction({
+        endpoint: `http://localhost:5000/offers/${offer.id}`,
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        types: [
+            types.DELETE_OFFERS_REQUEST,
+            {
+                type: types.DELETE_OFFERS_SUCCESS,
+                payload: async (action, state, res) => {
+                    const { entities } = normalize(offer, offerSchema);
+                    return entities;
+                },
+                meta: { actionType: 'DELETE' }
+           },
+            types.DELETE_OFFERS_FAILURE
+        ]
+    })
+}
