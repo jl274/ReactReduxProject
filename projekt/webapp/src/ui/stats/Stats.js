@@ -58,7 +58,7 @@ const Stats = ({games, producers}) => {
                     >
                         <VictoryAxis
                             tickValues={[1, 2, 3, 4]}
-                            tickFormat={x => `${x}`}
+                            tickFormat={x => `${x.length > 16 ? x.slice(0, 16) + "..." : x}`}
                             
                         />
                         <VictoryAxis
