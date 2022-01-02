@@ -129,7 +129,6 @@ nav {
                     &:nth-child(1){
                         border-top-left-radius: 30px;
                         border-bottom-left-radius: 30px;
-                        margin-right: 5px;
                     }
 
                     &:nth-child(2){
@@ -138,8 +137,9 @@ nav {
                     }
 
                     &.active {
-                        // box-shadow: 0 0 1px 1px #7F4677;
-                        font-style: italic;
+                        background-color: #F6F4F3;
+                        box-shadow:inset 0px 0px 0px 1px #7F4677;
+                        color: #7F4677;
                     }
                 }
             }
