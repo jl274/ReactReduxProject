@@ -78,16 +78,16 @@ const OffersList = ({offers, urlList, currencyGetter}) => {
             <div>
                 <ul className="list">
                     {/* {console.log(urlList)} */}
-                    {offersToMap().map(offer => urlList.find(x => x.idArray.includes(offer.id)) ? <li key={offer.id} id={offer.id}>
+                    {offersToMap().map(offer => urlList.find(x => x.id === offer.product) ? <li key={offer.id} id={offer.id}>
                         {console.log(offer)}
                         <OfferOverview 
                             data={{...offer, price: changeCurrency(offer.price)}}
                             currency={activeCurrency} 
-                            imgUrl={urlList.find(x => x.idArray.includes(offer.id)).url 
-                                ? urlList.find(x => x.idArray.includes(offer.id)).url 
+                            imgUrl={urlList.find(x => x.id === offer.product).url 
+                                ? urlList.find(x => x.id === offer.product).url 
                                 : 'https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1'} 
-                            link={urlList.find(x => x.idArray.includes(offer.id)).id}
-                            gameTitle={urlList.find(x => x.idArray.includes(offer.id)).name}
+                            link={urlList.find(x => x.id === offer.product).id}
+                            gameTitle={urlList.find(x => x.id === offer.product).name}
                         />
                     </li> : null)}
                 </ul>

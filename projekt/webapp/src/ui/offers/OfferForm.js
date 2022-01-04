@@ -57,7 +57,6 @@ const OfferForm = ({history, games, sendOfferToDB, getGamesFromDB, offerToEdit, 
             await editOfferInDB(offerToEdit.id ,values);
         } else {
             await sendOfferToDB(values); 
-            await getGamesFromDB();
         }
         goBack();
     }

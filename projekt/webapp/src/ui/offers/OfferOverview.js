@@ -34,7 +34,6 @@ const OfferOverview = ({data, imgUrl, link, gameTitle, currency,
 
     const deleteOffer = async () => {
         await deleteOfferFromDB({id: data.id, shop: data.shop, price: data.price, link: data.link, __v: data.__V});
-        await getGamesFromDB(); // temporary
     }
 
     Modal.setAppElement('body');

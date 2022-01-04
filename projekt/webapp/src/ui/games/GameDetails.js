@@ -146,7 +146,7 @@ const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, g
                     </li>
                     <li>
                         <p>{t('details.offers')}</p>
-                        <p>{game.offers.length}</p>
+                        <p>{gameOffers.length}</p>
                     </li>
                     <li>
                         <p>{t('details.description.name')}</p>
