@@ -159,8 +159,10 @@ const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, g
                 </div>
             </div>
         </div>
+        <div className="shrink">
         {gameOffers ? _.sortBy(gameOffers, ['price']).map(offer => <OfferOverview key={offer.id} id={offer.id} 
             data={{...offer, price: changeCurrency(offer.price)}} currency={activeCurrency} imgUrl={game.url} />) : null}
+        </div>
         <div className='currencies'>
                 <p>{t('offersList.currency')}</p>
                 <div>

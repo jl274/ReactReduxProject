@@ -132,3 +132,51 @@ div.overview {
         }
     }
 }
+
+@media (max-width: 800px) {
+    div.overview{
+        margin: 25px 0vw;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        ul {
+            padding: 2.5px;
+            padding-left: 5px;
+            height: 125px;
+
+            li {
+
+                &.shop {
+                    font-size: larger;
+                }
+
+                &.img {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                &.selectButtons.smaller {
+                    
+                    button {
+                       margin: 5px;
+                       padding: 10px 5px;
+                       font-size: x-small;
+                       width: 150px;
+                    }
+                }
+            }
+
+            div {
+
+                &.edit {
+                    top: 0;
+                    left: 12px;
+                }
+                &.delete {
+                    top: 0;
+                    left: 47px;
+                }
+            }
+        }
+    }
+}

@@ -31,3 +31,10 @@ div.stats {
             
     }
 }
+
+@media (max-width: 1000px) {
+
+    div.stats{
+        margin: 50px 2.5vw;
+    }
+}

@@ -107,3 +107,17 @@ div.form {
     }
 }
 
+@media (max-width: 1000px) {
+
+    div.form {
+        margin: 50px 2.5vw;
+
+        form {
+            div textarea {
+                max-width: 200px;
+                min-width: 100px;
+            }
+        }
+    }
+
+}

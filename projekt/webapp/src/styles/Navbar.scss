@@ -146,3 +146,57 @@ nav {
         }
     }
 }
+
+@media (max-width: 900px) {
+    body {
+        margin-top: 0;
+    }
+    nav {
+        flex-direction: column;
+        height: fit-content;
+        position: sticky;
+        top: 0;
+        padding-top: 0;
+
+        div {
+
+            &.logo {
+
+                p {
+                    margin: 0;
+                }
+            }
+
+            &.titleSearch {
+                
+                form {
+                    input {
+                        width: 50vw;
+                    }
+                }
+            }
+
+            &.rightList {
+                * {
+                    padding: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+
+        position: static;
+
+        div.rightList {
+
+            flex-direction: column;
+
+            div.navList ul {
+                flex-direction: column;
+            }
+        }
+    }
+}

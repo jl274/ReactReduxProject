@@ -99,3 +99,14 @@ div.offersControl {
         }
     }
 }
+
+@media (max-width: 800px) {
+
+    div.offersBox {
+        margin: 50px 2.5vw;
+    }
+
+    div.offersControl {
+        margin: 50px 2.5vw;
+    }
+}

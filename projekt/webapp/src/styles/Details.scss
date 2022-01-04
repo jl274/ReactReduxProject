@@ -257,3 +257,54 @@ div.deleteModal {
         }
     }
 }
+
+@media (max-width: 1200px) {
+    div.detailsBox {
+        div.details div.img{
+            img {
+                max-height: 300px;
+                max-width: 250px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px){
+
+    div.shrink {
+        margin-left: 2.5vw;
+        margin-right: 2.5vw;
+    }
+
+    div.detailsBox {
+        margin: 50px 2.5vw;
+
+        div {
+
+            &.arrow {
+                top: -32px;
+                left: calc(50% + 25px);
+            }
+
+            &.edit {
+                top: -32px;
+                left: calc(50% + 115px);
+            }
+
+            &.delete {
+                top: -32px;
+                left: calc(50% + 205px);
+            }
+
+            &.details {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+        }
+    }
+
+    div.currencies {
+        margin: 20px 2.5vw;
+    }
+
+}

@@ -230,3 +230,26 @@ div.producersBox {
         }
     }
 }
+
+
+@media (max-width: 1000px) {
+
+    div.producersBox {
+        margin: 50px 2.5vw;
+
+        ul {
+
+            div.sortOptions {
+                flex-direction: column;
+
+                div {
+                    margin: 5px;
+                }
+            }
+        }
+    }
+
+    div.list {
+        margin: 50px 2.5vw;
+    }
+}
