@@ -47,6 +47,7 @@ const ProducersList = ({producers, history}) => {
     }
 
     return (
+        <>
         <div className="producersBox">
             <ul>
                 <h2>{t('producersList.h2')}</h2>
@@ -100,10 +101,14 @@ const ProducersList = ({producers, history}) => {
                 </div>
             </div>
 
-                <div>
+                <div className="add">
                     <button><Link to='/producers/new'>{t('producersList.add')}{plus}</Link></button>
                 </div>
-                {producers && producersToMap().length !== 0 ? producersToMap().map(producer => 
+
+            </ul>
+        </div>
+        <div className="list">
+        {producers && producersToMap().length !== 0 ? producersToMap().map(producer => 
                     <li 
                         key={producer.id} id={producer.id} 
                         aria-label={`Click for details`} data-tooltip="left"
@@ -112,8 +117,8 @@ const ProducersList = ({producers, history}) => {
                         <p>{producer.name}</p>
                     </li>
                 ) : <p style={{"paddingBottom": "20px"}}>Producers not found</p>}
-            </ul>
         </div>
+        </>
     )
 };
 
