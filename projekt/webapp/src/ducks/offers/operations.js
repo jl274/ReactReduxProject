@@ -19,9 +19,9 @@ export const getOffersFromDB = () => {
             {
                 type: types.GET_OFFERS_SUCCESS,
                 payload: async (action, state, res) => {
-                    console.log('PAYLOAD', action, state, res);
+
                     const json = await res.json();
-                    console.log('--------------------------');
+
                     const offers = json.offers.map(x => {return _.omit({...x, id: x._id}, '_id')})
                     const { entities } = normalize(offers, offersSchema)
                     return entities;
@@ -46,7 +46,7 @@ export const sendOfferToDB = (offer) => {
             {
                 type: types.POST_OFFERS_SUCCESS,
                 payload: async (action, state, res) => {
-                    console.log('PAYLOAD', action, state, res);
+
                     const json = await res.json();
                     json.offer['id'] = json.offer['_id'];
                     const new_offer = _.omit(json.offer, '_id');
@@ -96,7 +96,7 @@ export const editOfferInDB = (id, offer) => {
             {
                 type: types.EDIT_OFFERS_SUCCESS,
                 payload: async (action, state, res) => {
-                    console.log('PAYLOAD', action, state, res);
+
                     const json = await res.json();
                     json.offer['id'] = json.offer['_id'];
                     const new_offer = _.omit(json.offer, '_id');

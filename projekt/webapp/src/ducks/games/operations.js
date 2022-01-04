@@ -18,7 +18,7 @@ export const getGamesFromDB = () => {
             {
                 type: types.GET_GAMES_SUCCESS,
                 payload: async (action, state, res) => {
-                    console.log('PAYLOAD', action, state, res);
+ 
                     const json = await res.json();
                     const games_with_ids = json.games.map(x => {return _.omit({...x, id: x._id}, '_id')})
                     const { entities } = normalize(games_with_ids, gamesSchema)
@@ -44,7 +44,7 @@ export const sendGameToDB = (game) => {
             {
                 type: types.POST_GAMES_SUCCESS,
                 payload: async (action, state, res) => {
-                    console.log('PAYLOAD', action, state, res);
+
                     const json = await res.json();
                     json.game['id'] = json.game['_id'];
                     const new_game = _.omit(json.game, '_id');
@@ -71,9 +71,9 @@ export const editGameInDB = (id, game) => {
             {
                 type: types.EDIT_GAMES_SUCCESS,
                 payload: async (action, state, res) => {
-                    console.log('PAYLOAD', action, state, res);
+
                     const json = await res.json();
-                    console.log(json)
+
                     json.game['id'] = json.game['_id'];
                     const new_game = _.omit(json.game, '_id');
                     const { entities } = normalize(new_game, gameSchema);
@@ -87,7 +87,7 @@ export const editGameInDB = (id, game) => {
 }
 
 export const deleteGameFromDB = (game) => {
-    console.log(game)
+
     return createAction({
         endpoint: `http://localhost:5000/games/${game.id}`,
         method: "DELETE",

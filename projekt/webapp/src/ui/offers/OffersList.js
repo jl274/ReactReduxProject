@@ -32,7 +32,6 @@ const OffersList = ({offers, urlList, currencyGetter}) => {
         } else if (sortMethod === "za"){
             offers_copy = _.reverse(_.sortBy(offers_copy, ['shop']));
         }
-        console.log(offers_copy)
         return offers_copy
     }
 
@@ -77,9 +76,7 @@ const OffersList = ({offers, urlList, currencyGetter}) => {
         <div className="offersBox">
             <div>
                 <ul className="list">
-                    {/* {console.log(urlList)} */}
                     {offersToMap().map(offer => urlList.find(x => x.id === offer.product) ? <li key={offer.id} id={offer.id}>
-                        {console.log(offer)}
                         <OfferOverview 
                             data={{...offer, price: changeCurrency(offer.price)}}
                             currency={activeCurrency} 

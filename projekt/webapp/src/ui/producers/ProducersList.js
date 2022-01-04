@@ -33,7 +33,6 @@ const ProducersList = ({producers, history}) => {
         } else if (sortMethod === "za"){
             producers_copy = _.reverse(_.sortBy(producers_copy, ['name']));
         }
-        console.log(producers_copy)
         return producers_copy
     }
 

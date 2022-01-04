@@ -19,13 +19,7 @@ export const gamesReducer = (state = initState, action) => {
                 return game
             })
         case types.UPDATE_OFFERS_LIST:
-            console.log("-----")
-            console.log(state.map(game => {
-                if (game.id === action.payload.game_id){
-                    game.offers.push(action.payload.new_offer_id);
-                }
-                return game
-            }))
+
             return state.map(game => {
                 if (game.id === action.payload.game_id){
                     game.offers.push(action.payload.new_offer_id);

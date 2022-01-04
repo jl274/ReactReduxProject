@@ -25,9 +25,9 @@ const defaultState = allEntities.reduce(
 );
 
 const entityReducer = (entity, state = { allIds: [], byId: {} }, action) => {
-    console.log('Before', entity, state, action);
+
     const actionEntities = action.payload[entity];
-    console.log('Entity', actionEntities);
+
     const { actionType } = action.meta;
 
     switch(actionType) {
@@ -83,7 +83,7 @@ const entityReducer = (entity, state = { allIds: [], byId: {} }, action) => {
             }
         default:
             return state;
-            // console.log('Error action not recognized');
+
     }
 }
 
@@ -91,7 +91,7 @@ const entityReducer = (entity, state = { allIds: [], byId: {} }, action) => {
 export const entities = (state = defaultState, action) => {
     if(!action.meta || !action.meta.actionType) return state;
 
-    console.log(action);
+
     return {
         ...state,
         ...Object.keys(action.payload).reduce(

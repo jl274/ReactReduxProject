@@ -18,7 +18,7 @@ export const getProducersFromDB = () => {
             {
                 type: types.GET_PRODUCERS_SUCCESS,
                 payload: async (action, state, res) => {
-                    console.log('PAYLOAD', action, state, res);
+
                     const json = await res.json();
                     const producers = json.producers.map(x => {return _.omit({...x, id: x._id}, '_id')})
                     const { entities } = normalize(producers, producersSchema)
@@ -44,7 +44,7 @@ export const sendProducerToDB = (producer) => {
             {
                 type: types.POST_PRODUCERS_SUCCESS,
                 payload: async (action, state, res) => {
-                    console.log('PAYLOAD', action, state, res);
+
                     const json = await res.json();
                     json.producer['id'] = json.producer['_id'];
                     const new_producer = _.omit(json.producer, '_id');
@@ -71,7 +71,7 @@ export const editProducerInDB = (id, game) => {
             {
                 type: types.EDIT_PRODUCERS_SUCCESS,
                 payload: async (action, state, res) => {
-                    console.log('PAYLOAD', action, state, res);
+
                     const json = await res.json();
                     json.producer['id'] = json.producer['_id'];
                     const new_producer = _.omit(json.producer, '_id');

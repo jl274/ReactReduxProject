@@ -60,13 +60,10 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
         }
         if (filterOptions.producer !== "Any"){
             games_copy = games_copy.filter(game => getProducerNameFromId(game.producer) === filterOptions.producer);
-            // games_copy.forEach(game => console.log(game.id, producers.find(x => x.id === game.id)))
         }
 
-        console.log(games_copy)
         return games_copy
     }
-    console.log("show/hide", checkboxesStatus)
     return (
         <>
         <div className='controlBox'>
