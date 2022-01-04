@@ -52,18 +52,18 @@ const ProducersList = ({producers, history}) => {
             <ul>
                 <h2>{t('producersList.h2')}</h2>
                 <div className='sortOptions'>
-                    <p>Sort by:</p>
+                    <p>{t('producersList.sortBy')}</p>
                     <div>
-                        <button className={`${sortMethod === "new" ? "active" : ""} left`} onClick={()=>{setSortMethod("new")}}>Newest</button>
-                        <button className={`${sortMethod === "old" ? "active" : ""} right`} onClick={()=>{setSortMethod("old")}}>Oldest</button>
+                        <button className={`${sortMethod === "new" ? "active" : ""} left`} onClick={()=>{setSortMethod("new")}}>{t('producersList.newest')}</button>
+                        <button className={`${sortMethod === "old" ? "active" : ""} right`} onClick={()=>{setSortMethod("old")}}>{t('producersList.oldest')}</button>
                     </div>
                     <div>
                         <button className={`${sortMethod === "az" ? "active" : ""} left`} onClick={()=>{setSortMethod("az")}}>{"A->Z"}</button>
                         <button className={`${sortMethod === "za" ? "active" : ""} right`} onClick={()=>{setSortMethod("za")}}>{"Z->A"}</button>
                     </div>
                     <div>
-                        <button className={`${sortMethod === "oldCompany" ? "active" : ""} left`} onClick={()=>{setSortMethod("oldCompany")}}>Established at the earliest</button>
-                        <button className={`${sortMethod === "newCompany" ? "active" : ""} right`} onClick={()=>{setSortMethod("newCompany")}}>Established at the latest</button>
+                        <button className={`${sortMethod === "oldCompany" ? "active" : ""} left`} onClick={()=>{setSortMethod("oldCompany")}}>{t('producersList.early')}</button>
+                        <button className={`${sortMethod === "newCompany" ? "active" : ""} right`} onClick={()=>{setSortMethod("newCompany")}}>{t('producersList.late')}</button>
                     </div>
                 </div>
 
@@ -80,16 +80,16 @@ const ProducersList = ({producers, history}) => {
                     {() => 
                         <Form id='filtersProducers'>
                             <div className='producersBox'>
-                                <label>Country</label>
+                                <label>{t('producersList.country')}</label>
                                 <Field as="select" name="country">
-                                    <option value="All">All</option>
+                                    <option value="All">{t('producersList.all')}</option>
                                     {producers ? _.uniqBy(producers, 'country').map(producer => 
                                         <option key={producer.country} value={producer.country}>{producer.country}</option>) : null
                                     }
                                 </Field>
                             </div>
                             <div className="producersBox">
-                                <label>Established after</label>
+                                <label>{t('producersList.after')}</label>
                                 <Field name="after" type="date"></Field>
                             </div>
                         </Form>
@@ -116,7 +116,7 @@ const ProducersList = ({producers, history}) => {
                     >
                         <p>{producer.name}</p>
                     </li>
-                ) : <p style={{"paddingBottom": "20px"}}>Producers not found</p>}
+                ) : <p style={{"padding": "20px"}}>{t('producersList.404')}</p>}
         </div>
         </>
     )

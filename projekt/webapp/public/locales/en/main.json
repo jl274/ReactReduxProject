@@ -78,7 +78,17 @@
     },
     "producersList": {
         "h2": "All available producers",
-        "add": "Add new producer"
+        "add": "Add new producer",
+        "sortBy": "Sort by:",
+        "newest": "Newest",
+        "oldest": "Oldest",
+        "early": "Established at earliest",
+        "late": "Established at latest",
+        "filters": "Filters:",
+        "country": "Country:",
+        "after": "Established after",
+        "all": "All",
+        "404": "Producers not found"
     },
     "producer": {
         "country": "Country:",

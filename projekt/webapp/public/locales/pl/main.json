@@ -78,7 +78,17 @@
     },
     "producersList": {
         "h2": "Wszyscy dostępni producenci",
-        "add": "Dodaj nowego producenta"
+        "add": "Dodaj nowego producenta",
+        "sortBy": "Sortuj po:",
+        "newest": "Niedawno dodane",
+        "oldest": "Dawno dodane",
+        "early": "Założone najwcześniej",
+        "late": "Założone najpóźniej",
+        "filters": "Filtry:",
+        "country": "Kraj:",
+        "after": "Założone po:",
+        "all": "Wszystkie",
+        "404": "Nie znaleziono żadnego producenta"
     },
     "producer": {
         "country": "Kraj:",
