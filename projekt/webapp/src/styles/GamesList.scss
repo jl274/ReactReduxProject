@@ -19,9 +19,6 @@ div.controlBox {
         &.filterOptions {
             padding: 0 30px;
             margin: 10px 0;
-            // display: flex;
-            // justify-content: space-around;
-            // align-items: center;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             form {
