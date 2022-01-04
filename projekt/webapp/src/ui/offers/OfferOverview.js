@@ -71,10 +71,10 @@ const OfferOverview = ({data, imgUrl, link, gameTitle, currency,
                         gameTitle ? 
                         <>
                             <div className='gameTitle'>{gameTitle}</div>
-                            <div>{t('offerOverview.price')}<p>{parseFloat(data.price)}</p>,-{currency.toUpperCase()}</div>
+                            <div>{t('offerOverview.price')}<p>{data.price ? parseFloat(data.price) : "Error"}</p>,-{currency.toUpperCase()}</div>
                         </> : 
                         <>
-                            {t('offerOverview.price')}<p>{parseFloat(data.price)}</p>,-{currency.toUpperCase()}
+                            {t('offerOverview.price')}<p>{data.price ? parseFloat(data.price) : "Error"}</p>,-{currency.toUpperCase()}
                         </>
                     }
                     
