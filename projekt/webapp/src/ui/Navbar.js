@@ -30,17 +30,16 @@ const Navbar = ({history}) => {
                 <Formik
                     initialValues={{search: ""}}
                     onSubmit={(values)=>{
-                        console.log(history.location.pathname === '/')
                         if (values.search) {
-                            history.location.pathname === '/' ? history.push(`/search/${values.search}`) : history.replace(`/search/${values.search}`)
+                            !history.location.pathname.includes('search') ? history.push(`/search/${values.search}`) : history.replace(`/search/${values.search}`)
                         } else {
-                            history.push('/')
+                            history.goBack()
                         }
                     }}
                 >
                     {({submitForm, values})=>(
                         <Form>
-                            <Field type="text" value={values.search} onInput={()=>{submitForm()}} name="search" placeholder={t('nav.search')}></Field>
+                            <Field type="text" value={history.location.pathname.includes('search') ? values.search : ''} onInput={()=>{submitForm()}} name="search" placeholder={t('nav.search')}></Field>
                             <button type='submit'>{searchIcon}</button>
                         </Form>
                     )}

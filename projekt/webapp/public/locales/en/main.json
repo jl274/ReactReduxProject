@@ -13,6 +13,7 @@
             "genres": "Genres",
             "producers": "Producers",
             "use": "Use filters",
+            "sortBy": "Sort by:",
             "selectAll": "All"
         },
         "sorts": {

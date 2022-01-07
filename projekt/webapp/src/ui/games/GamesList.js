@@ -71,7 +71,7 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
             <h2>{t('gameList.h2')}</h2>
 
             <div className='sortOptions'>
-                <p>Sort by:</p>
+                <p>{t('gameList.filters.sortBy')}</p>
                 <div>
                     <button className={`${sortMethod === "new" ? "active" : ""} left`} onClick={()=>{setSortMethod("new")}}>{t('gameList.sorts.newest')}</button>
                     <button className={`${sortMethod === "old" ? "active" : ""} right`} onClick={()=>{setSortMethod("old")}}>{t('gameList.sorts.oldest')}</button>
@@ -137,7 +137,10 @@ const GamesList = ({games, producers, checkboxesStatus, hideToggle, showToggle, 
                         </Form>
                     }
                 </Formik>
-                <div className='submit'><button type="submit" form='filters'>{t('gameList.filters.use')} {searchIcon}</button></div>
+                <div className='submit'>
+                    <button type="submit" form='filters'>{t('gameList.filters.use')} {searchIcon}</button>
+                    <button type="reset" form='filters' onClick={()=>{setFilterOptions({maxComplexity: 100, checked: [], producer: "Any"})}}>Reset</button>
+                </div>
             </div>
 
             <div>

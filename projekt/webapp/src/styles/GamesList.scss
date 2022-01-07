@@ -70,6 +70,7 @@ div.controlBox {
 
                 &.genresBox {
                     padding: 10px;
+                    padding-top: 0px;
                     display: flex;
                     flex-direction: column;
                     align-content: center;
@@ -90,10 +91,9 @@ div.controlBox {
                         flex-wrap: wrap;
 
                         overflow:scroll;
-                        // overflow-y:auto;
+                        overflow-y:auto;
                         overflow-x:hidden;
                         max-height: 50px;
-                        width: 400px;
 
                         label {
                             cursor: pointer;
@@ -115,6 +115,9 @@ div.controlBox {
                     &:hover {
                         cursor: pointer;
                         color: #7F4677;
+                    }
+                    svg {
+                        margin-left: 5px;
                     }
                 }
 
