@@ -76,7 +76,6 @@ const GameDetails = ({game, history, allProducers, gameOffers, getGamesFromDB, g
 
     Modal.setAppElement('body')
 
-    console.log(deleteModalStatus)
     return game ? (
         <>
         <div className="detailsBox">
