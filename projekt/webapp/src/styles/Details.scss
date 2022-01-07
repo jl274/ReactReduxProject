@@ -308,3 +308,74 @@ div.deleteModal {
     }
 
 }
+
+@media (max-width: 600px){
+    div.detailsBox {
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0;
+        padding: 30px 30px;
+
+        div {
+
+            
+
+            &.arrow {
+                position: static;
+                display: inline-block;
+                border-radius: 0;
+                box-shadow: none;
+                padding: 15px 30px;
+            }
+
+            &.edit {
+                position: static;
+                display: inline-block;
+                border-radius: 0;
+                box-shadow: none;
+                padding: 15px 30px;
+            }
+
+            &.delete {
+                display: inline-block;
+                position: static;
+                border-radius: 0;
+                box-shadow: none;
+                padding: 15px 30px;
+                padding-bottom: 0;
+            }
+
+            &.details {
+                display: flex;
+                flex-direction: column-reverse;
+
+                ul {
+                    padding-left: 0;
+
+                    li {
+                        p {
+                            padding: 0 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    div.shrink {
+        margin-left: 0;
+        margin-right: 0;
+
+        div.overview{
+            ul {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    div.currencies {
+        margin: 20px 0;
+        border-radius: 0;
+    }
+}

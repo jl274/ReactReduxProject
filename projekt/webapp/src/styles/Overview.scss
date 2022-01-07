@@ -180,3 +180,41 @@ div.overview {
         }
     }
 }
+
+@media (max-width: 600px) {
+
+    div.overview{
+        padding-left: 0;
+        padding-right: 0;
+        margin-right: 0;
+        margin-left: 0;
+        border-radius: 0;
+
+        ul {
+            grid-template-columns: repeat(2, 1fr);
+            height: auto;
+
+            li {
+
+                padding: 15px 0;
+
+                &.shop {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                &.price {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                button {
+                    max-width: 90%;
+                }
+            }
+        }
+    }
+
+}

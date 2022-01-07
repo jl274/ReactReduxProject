@@ -384,6 +384,7 @@ div.itemsList {
 
     div.itemsList {
         margin: 50px 2.5vw;
+
     }
 
     div.controlBox {
@@ -394,9 +395,17 @@ div.itemsList {
 
             div {
                 margin: 5px;
+                
             }
         }
+
+        
     }
+
+    div.searchResult {
+        margin-top: 50px;
+    }
+
 }
 
 @media (max-width: 600px){
@@ -420,6 +429,45 @@ div.itemsList {
 
         h2 {
             border-radius: 0;
+        }
+
+
+        div.sortOptions {
+            display: flex;
+            flex-direction: column;
+            button {
+                font-size: x-small;
+            }
+            > p {
+                text-transform: uppercase;
+            }
+        }
+
+        div.filterOptions {
+
+            display: flex;
+            flex-direction: column;
+            > p {
+                text-transform: uppercase;
+            }
+
+            div.rangeBox {
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                justify-content: center;
+                margin-bottom: 30px;
+            }
+
+            div.producersBox {
+                margin-bottom: 30px;
+            }
+
+            div.submit {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 30px;
+            }
         }
 
     }

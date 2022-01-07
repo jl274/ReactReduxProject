@@ -121,3 +121,23 @@ div.form {
     }
 
 }
+
+@media (max-width: 600px) {
+    div.form {
+        margin: 50px 0;
+        border-radius: 0;
+
+        h2 {
+            border-radius: 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                text-align: left;
+            }
+        }
+    }
+}

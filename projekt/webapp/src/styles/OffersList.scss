@@ -110,3 +110,60 @@ div.offersControl {
         margin: 50px 2.5vw;
     }
 }
+
+@media (max-width: 600px) {
+    div.offersControl {
+        margin: 50px 0;
+        border-radius: 0;
+        h2 {
+            border-radius: 0;
+        }
+
+        div.sortOptions {
+            display: flex;
+            flex-direction: column;
+            div {
+                padding: 5px 0;
+            }
+            button {
+                font-size: x-small;
+            }
+            > p {
+                text-transform: uppercase;
+            }
+        }
+
+        div.filterOptions {
+
+            display: flex;
+            flex-direction: column;
+            > p {
+                text-transform: uppercase;
+            }
+
+            div.rangeBox {
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                justify-content: center;
+                margin-bottom: 30px;
+            }
+
+            div.producersBox {
+                margin-bottom: 30px;
+            }
+
+            div.submit {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    div.offersBox {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+}

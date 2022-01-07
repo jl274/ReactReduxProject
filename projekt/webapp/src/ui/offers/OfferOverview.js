@@ -66,7 +66,7 @@ const OfferOverview = ({data, imgUrl, link, gameTitle, currency,
                 <li className='img'>
                     <img src={imgUrl} alt="Miniature cover"></img>
                 </li>
-                <li className={`${gameTitle ? 'priceOrTitle' : ''}`}>
+                <li className={`${gameTitle ? 'priceOrTitle' : ''} price`}>
                     {
                         gameTitle ? 
                         <>

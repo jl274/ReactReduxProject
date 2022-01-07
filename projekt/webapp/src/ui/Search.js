@@ -31,7 +31,7 @@ export const Search = ({ games, phrase, producers }) => {
 
     return (
         <>
-        <div style={{"textTransform": "uppercase"}}>
+        <div className="searchResult" style={{"textTransform": "uppercase"}}>
             {`${t('gameList.searchResult')} "${phrase}"`}
         </div>
         <div className="itemsList">
