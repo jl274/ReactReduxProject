@@ -36,7 +36,7 @@ export const Search = ({ games, phrase, producers }) => {
         </div>
         <div className="itemsList">
         <ul>
-        {games && phrase && searchForPhrase().length !== 0 ? 
+        {games && phrase && searchForPhrase().length ? 
         searchForPhrase().map(game => <li key={game.id}>
             <div className='img'>
                 <img src={game.url ? game.url : noCoverSrc} alt='Cover' ></img>
