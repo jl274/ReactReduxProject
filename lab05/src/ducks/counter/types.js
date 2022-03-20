@@ -1,9 +1,0 @@
-const INCREMENT = "INCREMENT";
-const DECREMENT = "DECREMENT";
-const SET_INTERVAL_ID = "SET_INTERVAL_ID"
-
-export const types = {
-    INCREMENT,
-    DECREMENT,
-    SET_INTERVAL_ID
-};
